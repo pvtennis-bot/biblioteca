@@ -1037,37 +1037,14 @@ async function doISBN() {
     closeIsbn();
     openForm(data, 'qr');
     if (!data.titolo) {
+      var ibsCover = 'https://www.ibs.it/images/' + clean + '_0_0_536_0_75.jpg';
+      var lensUrl = 'https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(ibsCover);
+      var ibsUrl = 'https://www.ibs.it/search/?ts=as&query=' + clean;
       var banner = document.getElementById('form-banner');
-      banner.innerHTML = 'Copertina IBS trovata! <a href="https://www.ibs.it/search/?ts=as&query=' + clean + '" target="_blank" style="color:#90EE90;font-weight:bold;text-decoration:underline">Apri IBS.it</a> per copiare titolo e autore';
+      banner.innerHTML = 'Copertina trovata! Cerca titolo e autore:<br><br>' +
+        '<a href="' + lensUrl + '" target="_blank" style="display:inline-block;background:#4285F4;border-radius:7px;padding:9px 14px;color:#fff;font-family:Georgia,serif;font-size:13px;text-decoration:none;margin-right:8px">🔍 Google Lens</a>' +
+        '<a href="' + ibsUrl + '" target="_blank" style="display:inline-block;background:#8B6914;border-radius:7px;padding:9px 14px;color:#fff;font-family:Georgia,serif;font-size:13px;text-decoration:none">📖 IBS.it</a>';
       banner.style.display = 'block';
-      // Claude AI legge la copertina
-      setTimeout(function() {
-        fetch('https://api.anthropic.com/v1/messages', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-6', max_tokens: 200,
-            messages: [{role: 'user', content: [
-              {type: 'image', source: {type: 'url', url: 'https://www.ibs.it/images/' + clean + '_0_0_536_0_75.jpg'}},
-              {type: 'text', text: 'Leggi titolo autore ed editore da questa copertina libro italiano. Rispondi SOLO JSON: {"titolo":"...","autore":"...","editore":"..."}'}
-            ]}]
-          })
-        }).then(function(r){return r.json();}).then(function(j){
-          var txt = j.content && j.content[0] && j.content[0].text;
-          if (!txt) return;
-          var m = txt.match(/[{][^}]*[}]/);
-          if (!m) return;
-          var p = JSON.parse(m[0]);
-          if (p.titolo && p.titolo.length > 1) {
-            document.getElementById('f-titolo').value = p.titolo;
-            document.getElementById('f-autore').value = p.autore || '';
-            document.getElementById('f-editore').value = p.editore || '';
-            var b = document.getElementById('form-banner');
-            b.innerHTML = 'Titolo e autore letti dalla copertina!';
-            b.style.background = '#1A3A1A';
-          }
-        }).catch(function(){});
-      }, 1000);
     }
   } catch(e) {
     loadEl.style.display = 'none';
@@ -1086,58 +1063,49 @@ async function fetchISBN(isbn) {
   var clean = isbn.replace(/[^0-9X]/gi, "");
   var ibsCover = "https://www.ibs.it/images/" + clean + "_0_0_536_0_75.jpg";
 
-  // Google Books italiano
   try {
     var r1 = await fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + clean + "&langRestrict=it&country=IT");
     var j1 = await r1.json();
     var it1 = j1.items && j1.items[0] && j1.items[0].volumeInfo;
     if (it1 && it1.title) {
       var a1 = (it1.authors||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
-      var ig1 = it1.imageLinks||{}; var cv1 = ig1.extraLarge||ig1.large||ig1.medium||ig1.thumbnail||ibsCover;
-      if(cv1 && cv1!==ibsCover) cv1=cv1.replace("http://","https://").replace("zoom=1","zoom=3");
-      return {titolo:it1.title, autore:a1, editore:it1.publisher||"", anno:((it1.publishedDate||"").match(/\d{4}/)||[""])[0], pagine:it1.pageCount?String(it1.pageCount):"", isbn:clean, copertina:cv1};
+      var ig1=it1.imageLinks||{}; var cv1=ig1.extraLarge||ig1.large||ig1.medium||ig1.thumbnail||ibsCover;
+      if(cv1&&cv1!==ibsCover)cv1=cv1.replace("http://","https://").replace("zoom=1","zoom=3");
+      return{titolo:it1.title,autore:a1,editore:it1.publisher||"",anno:((it1.publishedDate||"").match(/\d{4}/)||[""])[0],pagine:it1.pageCount?String(it1.pageCount):"",isbn:clean,copertina:cv1};
     }
-  } catch(e1) {}
-
-  // Google Books generico
+  } catch(e1){}
   try {
     var r2 = await fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + clean);
     var j2 = await r2.json();
     var it2 = j2.items && j2.items[0] && j2.items[0].volumeInfo;
     if (it2 && it2.title) {
       var a2 = (it2.authors||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
-      var ig2 = it2.imageLinks||{}; var cv2 = ig2.extraLarge||ig2.large||ig2.medium||ig2.thumbnail||ibsCover;
-      if(cv2 && cv2!==ibsCover) cv2=cv2.replace("http://","https://").replace("zoom=1","zoom=3");
-      return {titolo:it2.title, autore:a2, editore:it2.publisher||"", anno:((it2.publishedDate||"").match(/\d{4}/)||[""])[0], pagine:it2.pageCount?String(it2.pageCount):"", isbn:clean, copertina:cv2};
+      var ig2=it2.imageLinks||{}; var cv2=ig2.extraLarge||ig2.large||ig2.medium||ig2.thumbnail||ibsCover;
+      if(cv2&&cv2!==ibsCover)cv2=cv2.replace("http://","https://").replace("zoom=1","zoom=3");
+      return{titolo:it2.title,autore:a2,editore:it2.publisher||"",anno:((it2.publishedDate||"").match(/\d{4}/)||[""])[0],pagine:it2.pageCount?String(it2.pageCount):"",isbn:clean,copertina:cv2};
     }
-  } catch(e2) {}
-
-  // Open Library Search
+  } catch(e2){}
   try {
     var r3 = await fetch("https://openlibrary.org/search.json?isbn="+clean+"&limit=1&fields=title,author_name,publisher,first_publish_year,number_of_pages_median,cover_i");
     var j3 = await r3.json();
     var d3 = j3.docs && j3.docs[0];
     if (d3 && d3.title) {
-      var a3 = (d3.author_name||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
-      var cv3 = d3.cover_i ? "https://covers.openlibrary.org/b/id/"+d3.cover_i+"-L.jpg" : ibsCover;
-      return {titolo:d3.title, autore:a3, editore:(d3.publisher||[])[0]||"", anno:d3.first_publish_year?String(d3.first_publish_year):"", pagine:d3.number_of_pages_median?String(d3.number_of_pages_median):"", isbn:clean, copertina:cv3};
+      var a3=(d3.author_name||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
+      var cv3=d3.cover_i?"https://covers.openlibrary.org/b/id/"+d3.cover_i+"-L.jpg":ibsCover;
+      return{titolo:d3.title,autore:a3,editore:(d3.publisher||[])[0]||"",anno:d3.first_publish_year?String(d3.first_publish_year):"",pagine:d3.number_of_pages_median?String(d3.number_of_pages_median):"",isbn:clean,copertina:cv3};
     }
-  } catch(e3) {}
-
-  // Open Library Books API
+  } catch(e3){}
   try {
     var r4 = await fetch("https://openlibrary.org/api/books?bibkeys=ISBN:"+clean+"&format=json&jscmd=data");
     var j4 = await r4.json();
     var d4 = j4["ISBN:"+clean];
     if (d4 && d4.title) {
-      var a4 = (d4.authors||[]).map(function(a){var p=(a.name||"").trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a.name;}).join("; ");
-      var cv4 = (d4.cover&&(d4.cover.large||d4.cover.medium))||ibsCover;
-      return {titolo:d4.title, autore:a4, editore:(d4.publishers||[]).map(function(p){return p.name;}).join(", "), anno:((d4.publish_date||"").match(/\d{4}/)||[""])[0], pagine:d4.number_of_pages?String(d4.number_of_pages):"", isbn:clean, copertina:cv4};
+      var a4=(d4.authors||[]).map(function(a){var p=(a.name||"").trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a.name;}).join("; ");
+      var cv4=(d4.cover&&(d4.cover.large||d4.cover.medium))||ibsCover;
+      return{titolo:d4.title,autore:a4,editore:(d4.publishers||[]).map(function(p){return p.name;}).join(", "),anno:((d4.publish_date||"").match(/\d{4}/)||[""])[0],pagine:d4.number_of_pages?String(d4.number_of_pages):"",isbn:clean,copertina:cv4};
     }
-  } catch(e4) {}
-
-  // Nessun testo — restituisce copertina IBS
-  return {titolo:"", autore:"", editore:"", anno:"", pagine:"", isbn:clean, copertina:ibsCover};
+  } catch(e4){}
+  return{titolo:"",autore:"",editore:"",anno:"",pagine:"",isbn:clean,copertina:ibsCover};
 }
 
 // ═══════════════════════════════════════════════════
