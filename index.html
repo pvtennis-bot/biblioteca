@@ -621,7 +621,7 @@ body { background: #0D0800; color: #F5E6C8; font-family: Georgia, serif; min-hei
       <textarea class="field-textarea" id="f-note" placeholder="Pensieri, commenti, dove l'hai trovato…"></textarea>
       <label class="field-label">Citazioni preferite</label>
       <textarea class="field-textarea" id="f-cit" placeholder="&quot;Una citazione memorabile…&quot;"></textarea>
-      <div id="paste-form-box" style="display:none;background:#0D0800;border:1px solid #3A2508;border-radius:8px;padding:12px;margin-top:14px">
+      <div id="paste-form-box" style="display:none;background:#1A2E1A;border:1px solid #2E5C2E;border-radius:8px;padding:12px;margin-top:14px">
         <div style="color:#C9A84C;font-size:12px;margin-bottom:8px">📋 Incolla testo da Google Lens o IBS — estraggo titolo e autore automaticamente:</div>
         <textarea id="paste-in-form" class="field-textarea" placeholder="Incolla qui il testo copiato..." style="min-height:70px"></textarea>
         <button onclick="parseFormPaste()" class="btn-primary" style="width:100%;margin-top:8px">✨ Estrai titolo e autore</button>
@@ -1052,9 +1052,12 @@ async function doISBN() {
       var lensU = 'https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(ibsC);
       var ibsU = 'https://www.ibs.it/search/?ts=as&query=' + clean;
       var ban = document.getElementById('form-banner');
-      ban.innerHTML = 'Copertina trovata! Apri <a href="' + lensU + '" target="_blank" style="color:#90EE90;font-weight:bold">Google Lens</a> o <a href="' + ibsU + '" target="_blank" style="color:#90EE90;font-weight:bold">IBS.it</a> e copia il testo — poi usa il campo qui sotto';
+      ban.innerHTML = 'Copertina trovata! Apri <a href="' + lensU + '" target="_blank" style="color:#90EE90;font-weight:bold;text-decoration:underline">Google Lens</a> o <a href="' + ibsU + '" target="_blank" style="color:#90EE90;font-weight:bold;text-decoration:underline">IBS.it</a>, copia il testo e incollalo nel campo verde qui sotto';
       ban.style.display = 'block';
-      document.getElementById('paste-form-box').style.display = 'block';
+      setTimeout(function(){
+        var box = document.getElementById('paste-form-box');
+        if(box) box.style.display = 'block';
+      }, 300);
     }
   } catch(e) {
     loadEl.style.display = 'none';
