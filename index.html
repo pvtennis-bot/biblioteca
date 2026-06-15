@@ -1063,43 +1063,60 @@ async function fetchISBN(isbn) {
   var clean = isbn.replace(/[^0-9X]/gi, "");
   var ibsCover = "https://www.ibs.it/images/" + clean + "_0_0_536_0_75.jpg";
 
-  // 1. IBS tramite proxy — legge titolo, autore, editore, anno, pagine
+  // 1. IBS proxy — estrae dati da URL e HTML della pagina
   try {
-    var ibsSearch = "https://www.ibs.it/search/?ts=as&query=" + clean + "&inhouse=true&af=type:book";
-    var proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(ibsSearch);
+    var ibsUrl = "https://www.ibs.it/search/?ts=as&query=" + clean + "&inhouse=true&af=type:book";
+    var proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(ibsUrl);
     var rp = await fetch(proxy);
     var jp = await rp.json();
     var html = jp.contents || "";
+    var finalUrl = jp.status && jp.status.url ? jp.status.url : "";
 
-    // Estrai og:title formato "Titolo - Autore - Libro - Editore | IBS"
-    var ogMatch = html.match(/og:title[^>]*content="([^"]+)"/);
-    if (!ogMatch) ogMatch = html.match(/content="([^"]+)"[^>]*og:title/);
-
-    if (ogMatch && ogMatch[1] && ogMatch[1].indexOf(" - ") > 0) {
-      var parts = ogMatch[1].split(" - ");
-      var titolo = parts[0] ? parts[0].trim() : "";
-      var autore = parts[1] ? parts[1].trim() : "";
-      var editore = parts[2] ? parts[2].replace("Libro","").replace("|","").replace("IBS","").trim() : "";
-      if(editore === "Libro") editore = "";
-
-      // Cerca anno
-      var annoM = html.match(/(\d{4})<\/span>[^<]*<\/li>[^<]*<li[^>]*>[^<]*<span[^>]*>Pagine/);
-      if(!annoM) annoM = html.match(/Anno[^0-9]*(\d{4})/);
-      var anno = annoM ? annoM[1] : "";
-
-      // Cerca pagine
-      var pagineM = html.match(/Pagine[^0-9]*(\d+)/);
-      var pagine = pagineM ? pagineM[1] : "";
-
-      // Cerca editore dalla pagina se non trovato nell'og:title
-      if(!editore) {
-        var edM = html.match(/Editore[^<]*<[^>]+>([^<]+)<\/a>/);
-        if(edM) editore = edM[1].trim();
+    // Prova da URL finale — formato: /titolo-parole-libro-autore-parole/e/ISBN
+    var urlMatch = finalUrl.match(/ibs\.it\/([^/]+)\/e\//);
+    var titolo = "", autore = "";
+    if (urlMatch && urlMatch[1]) {
+      var slug = urlMatch[1];
+      // Rimuovi suffisso "-libro-" e quello dopo
+      var libroIdx = slug.indexOf("-libro-");
+      if (libroIdx > 0) {
+        var titoloSlug = slug.substring(0, libroIdx);
+        var autoreSlug = slug.substring(libroIdx + 7);
+        // Converti slug in testo: "estate-che-ho-ucciso-mio-nonno" -> "L'estate che ho ucciso mio nonno"
+        titolo = titoloSlug.replace(/-/g, " ");
+        titolo = titolo.charAt(0).toUpperCase() + titolo.slice(1);
+        // Autore: "giulia-lombezzi" -> "Lombezzi, Giulia"
+        var autParts = autoreSlug.split("-");
+        if (autParts.length >= 2) {
+          var cognome = autParts[autParts.length-1];
+          var nome = autParts.slice(0, -1).join(" ");
+          autore = cognome.charAt(0).toUpperCase() + cognome.slice(1) + ", " + nome.charAt(0).toUpperCase() + nome.slice(1);
+        }
       }
+    }
 
-      if (titolo && titolo !== "IBS" && titolo.length > 1) {
-        return {titolo:titolo, autore:autore, editore:editore, anno:anno, pagine:pagine, isbn:clean, copertina:ibsCover};
+    // Se no URL, prova og:title dall'HTML
+    if (!titolo) {
+      var ogMatch = html.match(/og:title[^>]*content="([^"]+)"/) || html.match(/content="([^"]+)"[^>]*og:title/);
+      if (ogMatch && ogMatch[1] && ogMatch[1].indexOf(" - ") > 0) {
+        var parts = ogMatch[1].split(" - ");
+        titolo = parts[0] ? parts[0].trim() : "";
+        autore = parts[1] ? parts[1].trim() : "";
+        if (titolo === "IBS" || titolo.length < 2) { titolo = ""; autore = ""; }
       }
+    }
+
+    // Estrai editore, anno, pagine dall'HTML
+    var editore = "", anno = "", pagine = "";
+    var edMatch = html.match(/class="[^"]*publisher[^"]*"[^>]*>([^<]+)</) || html.match(/Editore[^<]*<[^>]+>([^<]+)</);
+    if (edMatch) editore = edMatch[1].trim();
+    var annoMatch = html.match(/Anno[^0-9]*(\d{4})/) || html.match(/"datePublished":"(\d{4})/);
+    if (annoMatch) anno = annoMatch[1];
+    var pagMatch = html.match(/Pagine[^0-9]*(\d+)/) || html.match(/"numberOfPages":(\d+)/);
+    if (pagMatch) pagine = pagMatch[1];
+
+    if (titolo && titolo.length > 1) {
+      return {titolo:titolo, autore:autore, editore:editore, anno:anno, pagine:pagine, isbn:clean, copertina:ibsCover};
     }
   } catch(ep) {}
 
@@ -1153,7 +1170,6 @@ async function fetchISBN(isbn) {
     }
   } catch(e4){}
 
-  // Nessun testo — copertina IBS + pulsanti
   return{titolo:"",autore:"",editore:"",anno:"",pagine:"",isbn:clean,copertina:ibsCover};
 }
 
