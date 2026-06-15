@@ -630,7 +630,25 @@ body { background: #0D0800; color: #F5E6C8; font-family: Georgia, serif; min-hei
         <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">2. AUTORE</div>
         <input id="paste-autore" type="text" class="field-input" placeholder="Nome Cognome" style="margin-bottom:8px">
         <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">3. EDITORE</div>
-        <input id="paste-editore" type="text" class="field-input" placeholder="Editore" style="margin-bottom:10px">
+        <input id="paste-editore" type="text" class="field-input" placeholder="Editore" style="margin-bottom:8px">
+        <div style="display:flex;gap:8px;margin-bottom:10px">
+          <div style="flex:1">
+            <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">4. ANNO</div>
+            <input id="paste-anno" type="number" class="field-input" placeholder="2025">
+          </div>
+          <div style="flex:1">
+            <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">5. PAGINE</div>
+            <input id="paste-pagine" type="number" class="field-input" placeholder="320">
+          </div>
+        </div>
+        <div style="color:#C9A84C;font-size:11px;margin-bottom:6px">6. GENERE</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+          <button onclick="setPasteGenere('Narrativa')" id="pg-Narrativa" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Narrativa</button>
+          <button onclick="setPasteGenere('Saggistica')" id="pg-Saggistica" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Saggistica</button>
+          <button onclick="setPasteGenere('Classici')" id="pg-Classici" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Classici</button>
+          <button onclick="setPasteGenere('Classici 900')" id="pg-Classici900" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Classici '900</button>
+          <button onclick="setPasteGenere('Libri Ragazzi')" id="pg-LibriRagazzi" class="btn-secondary" style="width:100%;padding:7px 4px;font-size:12px">Libri Ragazzi</button>
+        </div>
         <button onclick="applyPaste()" class="btn-primary" style="width:100%">✓ Compila campi</button>
       </div>
       <div class="btn-row">
@@ -1129,6 +1147,23 @@ function smartParse() {
   document.getElementById('paste-titolo').value = titolo;
   document.getElementById('paste-autore').value = autore;
   document.getElementById('paste-editore').value = editore;
+  if (document.getElementById('paste-anno')) {
+    var annoM = testo.match(/[Aa]nno[^\d]*(\d{4})/); 
+    if(annoM) document.getElementById('paste-anno').value = annoM[1];
+    var pagM = testo.match(/[Pp]agine[^\d]*(\d+)/);
+    if(pagM) document.getElementById('paste-pagine').value = pagM[1];
+  }
+}
+var _pasteGenere = '';
+function setPasteGenere(g) {
+  _pasteGenere = g;
+  ['Narrativa','Saggistica','Classici','Classici900','LibriRagazzi'].forEach(function(id){
+    var el = document.getElementById('pg-'+id);
+    if(el) el.style.background = '';
+  });
+  var idMap = {'Narrativa':'Narrativa','Saggistica':'Saggistica','Classici':'Classici','Classici 900':'Classici900','Libri Ragazzi':'LibriRagazzi'};
+  var el = document.getElementById('pg-'+(idMap[g]||g));
+  if(el) el.style.background = '#8B6914';
 }
 function applyPaste() {
   var titolo = document.getElementById('paste-titolo').value.trim();
@@ -1142,9 +1177,21 @@ function applyPaste() {
       autore = parts[parts.length-1] + ', ' + parts.slice(0,-1).join(' ');
     }
   }
+  var anno = document.getElementById('paste-anno') ? document.getElementById('paste-anno').value.trim() : '';
+  var pagine = document.getElementById('paste-pagine') ? document.getElementById('paste-pagine').value.trim() : '';
   document.getElementById('f-titolo').value = titolo;
   if (autore) document.getElementById('f-autore').value = autore;
   if (editore) document.getElementById('f-editore').value = editore;
+  if (anno) document.getElementById('f-anno').value = anno;
+  if (pagine) document.getElementById('f-pagine').value = pagine;
+  // Applica genere se selezionato
+  if (_pasteGenere) {
+    document.querySelectorAll('.genre-btn').forEach(function(b){ b.classList.remove('sel'); });
+    document.querySelectorAll('.genre-btn').forEach(function(b){
+      if(b.textContent.trim() === _pasteGenere || b.dataset.g === _pasteGenere) b.classList.add('sel');
+    });
+    _pasteGenere = '';
+  }
   document.getElementById('paste-form-box').style.display = 'none';
   document.getElementById('form-banner').innerHTML = 'Dati compilati!';
   document.getElementById('form-banner').style.background = '#1A3A1A';
