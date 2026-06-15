@@ -1115,9 +1115,9 @@ function smartParse() {
     else if (/^[Aa]utor/.test(l)) { var m=l.match(/:\s*(.+)/); if(m) autore=m[1].trim(); }
     else if (/^[Ee]ditor/.test(l)) { var m=l.match(/:\s*(.+)/); if(m) editore=m[1].trim(); }
   }
-  // Se non trovati con label, prova ordine: prima riga=titolo, seconda=autore, terza=editore
-  if (!titolo && lines[0]) titolo = lines[0];
-  if (!autore && lines[1]) autore = lines[1];
+  // Ordine tipico copertine italiane: AUTORE - TITOLO - EDITORE
+  if (!autore && lines[0]) autore = lines[0];
+  if (!titolo && lines[1]) titolo = lines[1];
   if (!editore && lines[2]) editore = lines[2];
   // Prova anche pattern "Titolo - Autore"
   if (!autore && titolo && titolo.indexOf(' - ') > 0) {
