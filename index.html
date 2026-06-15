@@ -1063,45 +1063,30 @@ async function fetchISBN(isbn) {
   var clean = isbn.replace(/[^0-9X]/gi, "");
   var ibsCover = "https://www.ibs.it/images/" + clean + "_0_0_536_0_75.jpg";
 
-  // 1. IBS via proxy diretto alla pagina prodotto
+  // 1. Feltrinelli API — database italiano completo
   try {
-    var ibsProdUrl = "https://www.ibs.it/libri/libri/isbn/" + clean;
-    var proxies = [
-      "https://corsproxy.io/?" + encodeURIComponent(ibsProdUrl),
-      "https://api.allorigins.win/get?url=" + encodeURIComponent("https://www.ibs.it/search/?ts=as&query=" + clean)
-    ];
-    for (var pi = 0; pi < proxies.length; pi++) {
-      try {
-        var rp = await fetch(proxies[pi]);
-        var jp = await rp.json();
-        var html = jp.contents || jp.body || "";
-        if (!html) continue;
-
-        // Cerca og:title
-        var ogM = html.match(/og:title[^>]*content="([^"]+)"/) || html.match(/content="([^"]+)"[^>]*og:title/);
-        if (ogM && ogM[1] && ogM[1].length > 3 && ogM[1] !== "IBS") {
-          var raw = ogM[1];
-          // Formato: "Titolo - Autore - Libro - Editore | IBS" oppure "Titolo | IBS"
-          var parts = raw.split(" - ");
-          var titolo = parts[0].trim();
-          var autore = parts.length > 1 ? parts[1].trim() : "";
-          var editore = "";
-          for (var i = 2; i < parts.length; i++) {
-            var p = parts[i].split("|")[0].trim();
-            if (p && p !== "Libro" && p !== "IBS") { editore = p; break; }
-          }
-          // Cerca anno e pagine
-          var annoM2 = html.match(/Anno[^0-9]*(\d{4})/) || html.match(/"datePublished"\s*:\s*"(\d{4})/);
-          var pagM = html.match(/Pagine[^0-9]*(\d+)/) || html.match(/"numberOfPages"\s*:\s*(\d+)/);
-          var anno = annoM2 ? annoM2[1] : "";
-          var pagine = pagM ? pagM[1] : "";
-          if (titolo.length > 1) {
-            return {titolo:titolo, autore:autore, editore:editore, anno:anno, pagine:pagine, isbn:clean, copertina:ibsCover};
-          }
-        }
-      } catch(epi) {}
+    var felUrl = "https://www.lafeltrinelli.it/api/search-fe/products?q=" + clean + "&store=ITfd&lang=it_IT";
+    var felProxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(felUrl);
+    var rf = await fetch(felProxy);
+    var jf = await rf.json();
+    var dataF = JSON.parse(jf.contents || "{}");
+    var prodF = dataF.hits && dataF.hits[0] && dataF.hits[0].document;
+    if (prodF && prodF.name) {
+      var autF = (prodF.authors || []).map(function(a) {
+        var p = (a.name||a||"").trim().split(" ");
+        return p.length>1 ? p[p.length-1]+", "+p.slice(0,-1).join(" ") : (a.name||a);
+      }).join("; ");
+      return {
+        titolo: prodF.name||"",
+        autore: autF,
+        editore: prodF.publisher||"",
+        anno: prodF.publication_year ? String(prodF.publication_year) : "",
+        pagine: prodF.pages ? String(prodF.pages) : "",
+        isbn: clean,
+        copertina: prodF.cover_image || ibsCover
+      };
     }
-  } catch(ep) {}
+  } catch(ef) {}
 
   // 2. Google Books italiano
   try {
