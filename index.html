@@ -561,6 +561,11 @@ body { background: #0D0800; color: #F5E6C8; font-family: Georgia, serif; min-hei
         <button class="btn-secondary" onclick="closeIsbn()">Annulla</button>
         <button class="btn-primary" onclick="doISBN()">🔍 Cerca</button>
       </div>
+      <div id="paste-section" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid #3A2508">
+        <div style="color:#C9A84C;font-size:12px;margin-bottom:8px">Incolla testo da Google Lens o IBS:</div>
+        <textarea id="paste-input" class="field-textarea" placeholder="Incolla qui il testo copiato..." style="min-height:80px"></textarea>
+        <button class="btn-primary" onclick="parsePaste()" style="width:100%;margin-top:8px">Estrai titolo e autore</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1027,6 +1032,7 @@ async function doISBN() {
   var clean = document.getElementById('isbn-inp').value.replace(/[^0-9X]/gi,'');
   if(clean.length < 10) { showIsbnErr('Inserisci almeno 10 cifre'); return; }
   document.getElementById('isbn-err').style.display = 'none';
+  document.getElementById('paste-section').style.display = 'none';
   var loadEl = document.getElementById('isbn-load');
   loadEl.innerHTML = '<span class="spinner"></span>Ricerca libro in corso...';
   loadEl.style.display = 'block';
@@ -1037,19 +1043,48 @@ async function doISBN() {
     closeIsbn();
     openForm(data, 'qr');
     if (!data.titolo) {
-      var ibsCover = 'https://www.ibs.it/images/' + clean + '_0_0_536_0_75.jpg';
-      var lensUrl = 'https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(ibsCover);
-      var ibsUrl = 'https://www.ibs.it/search/?ts=as&query=' + clean;
-      var banner = document.getElementById('form-banner');
-      banner.innerHTML = 'Copertina trovata! Cerca titolo e autore:<br><br>' +
-        '<a href="' + lensUrl + '" target="_blank" style="display:inline-block;background:#4285F4;border-radius:7px;padding:9px 14px;color:#fff;font-family:Georgia,serif;font-size:13px;text-decoration:none;margin-right:8px;margin-top:6px">🔍 Google Lens</a>' +
-        '<a href="' + ibsUrl + '" target="_blank" style="display:inline-block;background:#8B6914;border-radius:7px;padding:9px 14px;color:#fff;font-family:Georgia,serif;font-size:13px;text-decoration:none;margin-top:6px">📖 IBS.it</a>';
-      banner.style.display = 'block';
+      var ibsC = 'https://www.ibs.it/images/' + clean + '_0_0_536_0_75.jpg';
+      var lensU = 'https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(ibsC);
+      var ibsU = 'https://www.ibs.it/search/?ts=as&query=' + clean;
+      var ban = document.getElementById('form-banner');
+      ban.innerHTML = 'Copertina trovata! Cerca su: <a href="' + lensU + '" target="_blank" style="color:#90EE90;font-weight:bold">Google Lens</a> oppure <a href="' + ibsU + '" target="_blank" style="color:#90EE90;font-weight:bold">IBS.it</a> — poi incolla il testo qui sotto';
+      ban.style.display = 'block';
     }
   } catch(e) {
     loadEl.style.display = 'none';
     loadEl.innerHTML = '<span class="spinner"></span>Ricerca in corso...';
-    showIsbnErr('Nessun dato trovato per ISBN <b>' + clean + '</b>.', clean);
+    document.getElementById('paste-section').style.display = 'block';
+    showIsbnErr('Nessun dato trovato online.', clean);
+  }
+}
+function parsePaste() {
+  var testo = document.getElementById('paste-input').value.trim();
+  if (!testo) return;
+  var titolo = '', autore = '', editore = '', anno = '', pagine = '';
+  var m;
+  var lines = testo.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>1;});
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(!titolo && /[Tt]itolo/.test(l)) { m=l.match(/:\s*(.+)/); if(m) titolo=m[1].trim(); }
+    if(!autore && /[Aa]utor/.test(l)) { m=l.match(/:\s*(.+)/); if(m) autore=m[1].trim(); }
+    if(!editore && /[Ee]ditore/.test(l)) { m=l.match(/:\s*(.+)/); if(m) editore=m[1].trim(); }
+    if(!anno) { m=l.match(/[Aa]nno[^\d]*(\d{4})/); if(m) anno=m[1]; }
+    if(!pagine) { m=l.match(/[Pp]agine[^\d]*(\d+)/); if(m) pagine=m[1]; }
+  }
+  if (!titolo && lines.length>0) {
+    m = lines[0].match(/^([^-]+)\s*-\s*(.+)$/);
+    if(m){ titolo=m[1].trim(); if(!autore) autore=m[2].replace(/[Ll]ibro/g,'').replace(/\|.*/,'').trim(); }
+    else titolo=lines[0];
+    if(!autore && lines[1]) autore=lines[1];
+  }
+  if (titolo) {
+    var isbn = document.getElementById('isbn-inp').value.replace(/[^0-9X]/gi,'');
+    var cover = 'https://www.ibs.it/images/' + isbn + '_0_0_536_0_75.jpg';
+    closeIsbn();
+    openForm({titolo:titolo,autore:autore,editore:editore,anno:anno,pagine:pagine,isbn:isbn,copertina:cover},'qr');
+    showNotif('Dati estratti dal testo!');
+  } else {
+    alert('Non trovo il titolo. Prova: Titolo - Autore');
   }
 }
 function showIsbnErr(msg, isbnCode) {
@@ -1060,85 +1095,30 @@ function showIsbnErr(msg, isbnCode) {
 }
 
 async function fetchISBN(isbn) {
-  var clean = isbn.replace(/[^0-9X]/gi, "");
-  var ibsCover = "https://www.ibs.it/images/" + clean + "_0_0_536_0_75.jpg";
-
-  // 1. Feltrinelli API — database italiano completo
+  var clean = isbn.replace(/[^0-9X]/gi,'');
+  var ibs = 'https://www.ibs.it/images/'+clean+'_0_0_536_0_75.jpg';
+  function fa(authors){ return (authors||[]).map(function(a){var p=(a||'').trim().split(' ');return p.length>1?p[p.length-1]+', '+p.slice(0,-1).join(' '):a;}).join('; '); }
   try {
-    var felUrl = "https://www.lafeltrinelli.it/api/search-fe/products?q=" + clean + "&store=ITfd&lang=it_IT";
-    var felProxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(felUrl);
-    var rf = await fetch(felProxy);
-    var jf = await rf.json();
-    var dataF = JSON.parse(jf.contents || "{}");
-    var prodF = dataF.hits && dataF.hits[0] && dataF.hits[0].document;
-    if (prodF && prodF.name) {
-      var autF = (prodF.authors || []).map(function(a) {
-        var p = (a.name||a||"").trim().split(" ");
-        return p.length>1 ? p[p.length-1]+", "+p.slice(0,-1).join(" ") : (a.name||a);
-      }).join("; ");
-      return {
-        titolo: prodF.name||"",
-        autore: autF,
-        editore: prodF.publisher||"",
-        anno: prodF.publication_year ? String(prodF.publication_year) : "",
-        pagine: prodF.pages ? String(prodF.pages) : "",
-        isbn: clean,
-        copertina: prodF.cover_image || ibsCover
-      };
-    }
-  } catch(ef) {}
-
-  // 2. Google Books italiano
+    var r1=await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+clean+'&langRestrict=it&country=IT');
+    var j1=await r1.json(); var v1=j1.items&&j1.items[0]&&j1.items[0].volumeInfo;
+    if(v1&&v1.title){var ig=v1.imageLinks||{};var cv=ig.extraLarge||ig.large||ig.medium||ig.thumbnail||ibs;if(cv!==ibs)cv=cv.replace('http://','https://').replace('zoom=1','zoom=3');return{titolo:v1.title,autore:fa(v1.authors),editore:v1.publisher||'',anno:((v1.publishedDate||'').match(/\d{4}/)||[''])[0],pagine:v1.pageCount?String(v1.pageCount):'',isbn:clean,copertina:cv};}
+  }catch(e1){}
   try {
-    var r1 = await fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + clean + "&langRestrict=it&country=IT");
-    var j1 = await r1.json();
-    var it1 = j1.items && j1.items[0] && j1.items[0].volumeInfo;
-    if (it1 && it1.title) {
-      var a1=(it1.authors||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
-      var ig1=it1.imageLinks||{}; var cv1=ig1.extraLarge||ig1.large||ig1.medium||ig1.thumbnail||ibsCover;
-      if(cv1&&cv1!==ibsCover)cv1=cv1.replace("http://","https://").replace("zoom=1","zoom=3");
-      return{titolo:it1.title,autore:a1,editore:it1.publisher||"",anno:((it1.publishedDate||"").match(/\d{4}/)||[""])[0],pagine:it1.pageCount?String(it1.pageCount):"",isbn:clean,copertina:cv1};
-    }
-  } catch(e1){}
-
-  // 3. Google Books generico
+    var r2=await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+clean);
+    var j2=await r2.json(); var v2=j2.items&&j2.items[0]&&j2.items[0].volumeInfo;
+    if(v2&&v2.title){var ig2=v2.imageLinks||{};var cv2=ig2.extraLarge||ig2.large||ig2.medium||ig2.thumbnail||ibs;if(cv2!==ibs)cv2=cv2.replace('http://','https://').replace('zoom=1','zoom=3');return{titolo:v2.title,autore:fa(v2.authors),editore:v2.publisher||'',anno:((v2.publishedDate||'').match(/\d{4}/)||[''])[0],pagine:v2.pageCount?String(v2.pageCount):'',isbn:clean,copertina:cv2};}
+  }catch(e2){}
   try {
-    var r2 = await fetch("https://www.googleapis.com/books/v1/volumes?q=isbn:" + clean);
-    var j2 = await r2.json();
-    var it2 = j2.items && j2.items[0] && j2.items[0].volumeInfo;
-    if (it2 && it2.title) {
-      var a2=(it2.authors||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
-      var ig2=it2.imageLinks||{}; var cv2=ig2.extraLarge||ig2.large||ig2.medium||ig2.thumbnail||ibsCover;
-      if(cv2&&cv2!==ibsCover)cv2=cv2.replace("http://","https://").replace("zoom=1","zoom=3");
-      return{titolo:it2.title,autore:a2,editore:it2.publisher||"",anno:((it2.publishedDate||"").match(/\d{4}/)||[""])[0],pagine:it2.pageCount?String(it2.pageCount):"",isbn:clean,copertina:cv2};
-    }
-  } catch(e2){}
-
-  // 4. Open Library Search
+    var r3=await fetch('https://openlibrary.org/search.json?isbn='+clean+'&limit=1&fields=title,author_name,publisher,first_publish_year,number_of_pages_median,cover_i');
+    var j3=await r3.json(); var d3=j3.docs&&j3.docs[0];
+    if(d3&&d3.title){var cv3=d3.cover_i?'https://covers.openlibrary.org/b/id/'+d3.cover_i+'-L.jpg':ibs;return{titolo:d3.title,autore:fa(d3.author_name),editore:(d3.publisher||[])[0]||'',anno:d3.first_publish_year?String(d3.first_publish_year):'',pagine:d3.number_of_pages_median?String(d3.number_of_pages_median):'',isbn:clean,copertina:cv3};}
+  }catch(e3){}
   try {
-    var r3 = await fetch("https://openlibrary.org/search.json?isbn="+clean+"&limit=1&fields=title,author_name,publisher,first_publish_year,number_of_pages_median,cover_i");
-    var j3 = await r3.json();
-    var d3 = j3.docs && j3.docs[0];
-    if (d3 && d3.title) {
-      var a3=(d3.author_name||[]).map(function(a){var p=a.trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a;}).join("; ");
-      var cv3=d3.cover_i?"https://covers.openlibrary.org/b/id/"+d3.cover_i+"-L.jpg":ibsCover;
-      return{titolo:d3.title,autore:a3,editore:(d3.publisher||[])[0]||"",anno:d3.first_publish_year?String(d3.first_publish_year):"",pagine:d3.number_of_pages_median?String(d3.number_of_pages_median):"",isbn:clean,copertina:cv3};
-    }
-  } catch(e3){}
-
-  // 5. Open Library Books API
-  try {
-    var r4 = await fetch("https://openlibrary.org/api/books?bibkeys=ISBN:"+clean+"&format=json&jscmd=data");
-    var j4 = await r4.json();
-    var d4 = j4["ISBN:"+clean];
-    if (d4 && d4.title) {
-      var a4=(d4.authors||[]).map(function(a){var p=(a.name||"").trim().split(" ");return p.length>1?p[p.length-1]+", "+p.slice(0,-1).join(" "):a.name;}).join("; ");
-      var cv4=(d4.cover&&(d4.cover.large||d4.cover.medium))||ibsCover;
-      return{titolo:d4.title,autore:a4,editore:(d4.publishers||[]).map(function(p){return p.name;}).join(", "),anno:((d4.publish_date||"").match(/\d{4}/)||[""])[0],pagine:d4.number_of_pages?String(d4.number_of_pages):"",isbn:clean,copertina:cv4};
-    }
-  } catch(e4){}
-
-  return{titolo:"",autore:"",editore:"",anno:"",pagine:"",isbn:clean,copertina:ibsCover};
+    var r4=await fetch('https://openlibrary.org/api/books?bibkeys=ISBN:'+clean+'&format=json&jscmd=data');
+    var j4=await r4.json(); var d4=j4['ISBN:'+clean];
+    if(d4&&d4.title){var a4=(d4.authors||[]).map(function(a){var p=(a.name||'').trim().split(' ');return p.length>1?p[p.length-1]+', '+p.slice(0,-1).join(' '):a.name;}).join('; ');var cv4=(d4.cover&&(d4.cover.large||d4.cover.medium))||ibs;return{titolo:d4.title,autore:a4,editore:(d4.publishers||[]).map(function(p){return p.name;}).join(', '),anno:((d4.publish_date||'').match(/\d{4}/)||[''])[0],pagine:d4.number_of_pages?String(d4.number_of_pages):'',isbn:clean,copertina:cv4};}
+  }catch(e4){}
+  return{titolo:'',autore:'',editore:'',anno:'',pagine:'',isbn:clean,copertina:ibs};
 }
 
 // ═══════════════════════════════════════════════════
