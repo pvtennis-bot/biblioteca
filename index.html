@@ -1047,7 +1047,7 @@ async function doISBN() {
       var lensU = 'https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(ibsC);
       var ibsU = 'https://www.ibs.it/search/?ts=as&query=' + clean;
       var ban = document.getElementById('form-banner');
-      ban.innerHTML = 'Copertina trovata! Cerca su: <a href="' + lensU + '" target="_blank" style="color:#90EE90;font-weight:bold">Google Lens</a> oppure <a href="' + ibsU + '" target="_blank" style="color:#90EE90;font-weight:bold">IBS.it</a> — poi incolla il testo qui sotto';
+      ban.innerHTML = 'Copertina trovata! Apri <a href="' + lensU + '" target="_blank" style="color:#90EE90;font-weight:bold">Google Lens</a> o <a href="' + ibsU + '" target="_blank" style="color:#90EE90;font-weight:bold">IBS.it</a>, copia il testo e incollalo qui sotto:<br><br><textarea id="paste-in-form" style="width:100%;background:#0D0800;border:1px solid #4A3210;border-radius:7px;padding:9px;color:#F5E6C8;font-family:Georgia,serif;font-size:13px;min-height:70px;margin-top:4px" placeholder="Incolla qui titolo, autore..."></textarea><br><button onclick="parseFormPaste()" style="background:#8B6914;border:none;border-radius:7px;padding:9px 16px;color:#fff;font-family:Georgia,serif;font-size:13px;cursor:pointer;margin-top:6px;width:100%">Estrai titolo e autore</button>';
       ban.style.display = 'block';
     }
   } catch(e) {
@@ -1085,6 +1085,40 @@ function parsePaste() {
     showNotif('Dati estratti dal testo!');
   } else {
     alert('Non trovo il titolo. Prova: Titolo - Autore');
+  }
+}
+function parseFormPaste() {
+  var testo = document.getElementById('paste-in-form') ? document.getElementById('paste-in-form').value.trim() : '';
+  if (!testo) { alert('Incolla prima il testo'); return; }
+  var titolo = '', autore = '', editore = '', anno = '', pagine = '';
+  var m;
+  var lines = testo.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>1;});
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i];
+    if(!titolo && /[Tt]itolo/.test(l)) { m=l.match(/[:\s]\s*(.+)/); if(m) titolo=m[1].trim(); }
+    if(!autore && /[Aa]utor/.test(l)) { m=l.match(/[:\s]\s*(.+)/); if(m) autore=m[1].trim(); }
+    if(!editore && /[Ee]ditore/.test(l)) { m=l.match(/[:\s]\s*(.+)/); if(m) editore=m[1].trim(); }
+    if(!anno) { m=l.match(/[Aa]nno[^\d]*(\d{4})/); if(m) anno=m[1]; }
+    if(!pagine) { m=l.match(/[Pp]agine[^\d]*(\d+)/); if(m) pagine=m[1]; }
+  }
+  if (!titolo && lines.length>0) {
+    m = lines[0].match(/^([^-]+)\s*-\s*(.+)$/);
+    if(m){ titolo=m[1].trim(); if(!autore) autore=m[2].replace(/Libro/gi,'').trim(); }
+    else titolo=lines[0];
+    if(!autore && lines[1]) autore=lines[1];
+  }
+  if (titolo) {
+    document.getElementById('f-titolo').value = titolo;
+    if(autore) document.getElementById('f-autore').value = autore;
+    if(editore) document.getElementById('f-editore').value = editore;
+    if(anno) document.getElementById('f-anno').value = anno;
+    if(pagine) document.getElementById('f-pagine').value = pagine;
+    var ban = document.getElementById('form-banner');
+    ban.innerHTML = 'Dati estratti con successo!';
+    ban.style.background = '#1A3A1A';
+    showNotif('Titolo e autore compilati!');
+  } else {
+    alert('Non trovo il titolo. Incolla il testo completo dalla pagina del libro.');
   }
 }
 function showIsbnErr(msg, isbnCode) {
