@@ -622,9 +622,14 @@ body { background: #0D0800; color: #F5E6C8; font-family: Georgia, serif; min-hei
       <label class="field-label">Citazioni preferite</label>
       <textarea class="field-textarea" id="f-cit" placeholder="&quot;Una citazione memorabile…&quot;"></textarea>
       <div id="paste-form-box" style="display:block;background:#1A2E1A;border:1px solid #2E5C2E;border-radius:8px;padding:12px;margin-top:14px">
-        <div style="color:#C9A84C;font-size:12px;margin-bottom:8px">📋 Incolla testo da Google Lens o IBS — estraggo titolo e autore automaticamente:</div>
-        <textarea id="paste-in-form" class="field-textarea" placeholder="Incolla qui il testo copiato..." style="min-height:70px"></textarea>
-        <button onclick="parseFormPaste()" class="btn-primary" style="width:100%;margin-top:8px">✨ Estrai titolo e autore</button>
+        <div style="color:#90EE90;font-size:12px;margin-bottom:10px">📋 Incolla qui il testo da Google Lens o IBS:</div>
+        <div style="color:#C9A84C;font-size:11px;margin-bottom:4px">TITOLO (incolla solo il titolo)</div>
+        <input id="paste-titolo" type="text" class="field-input" placeholder="Es: L'estate che ho ucciso mio nonno" style="margin-bottom:8px">
+        <div style="color:#C9A84C;font-size:11px;margin-bottom:4px">AUTORE (incolla solo il nome)</div>
+        <input id="paste-autore" type="text" class="field-input" placeholder="Es: Giulia Lombezzi" style="margin-bottom:8px">
+        <div style="color:#C9A84C;font-size:11px;margin-bottom:4px">EDITORE (opzionale)</div>
+        <input id="paste-editore" type="text" class="field-input" placeholder="Es: Bollati Boringhieri" style="margin-bottom:10px">
+        <button onclick="applyPaste()" class="btn-primary" style="width:100%">✓ Compila campi</button>
       </div>
       <div class="btn-row">
         <button class="btn-secondary" onclick="closeForm()">Annulla</button>
@@ -1095,6 +1100,26 @@ function parsePaste() {
   } else {
     alert('Non trovo il titolo. Prova: Titolo - Autore');
   }
+}
+function applyPaste() {
+  var titolo = document.getElementById('paste-titolo').value.trim();
+  var autore = document.getElementById('paste-autore').value.trim();
+  var editore = document.getElementById('paste-editore').value.trim();
+  if (!titolo) { alert('Inserisci almeno il titolo'); return; }
+  // Converti autore in formato Cognome, Nome
+  if (autore && autore.indexOf(',') < 0) {
+    var parts = autore.trim().split(' ');
+    if (parts.length > 1) {
+      autore = parts[parts.length-1] + ', ' + parts.slice(0,-1).join(' ');
+    }
+  }
+  document.getElementById('f-titolo').value = titolo;
+  if (autore) document.getElementById('f-autore').value = autore;
+  if (editore) document.getElementById('f-editore').value = editore;
+  document.getElementById('paste-form-box').style.display = 'none';
+  document.getElementById('form-banner').innerHTML = 'Dati compilati!';
+  document.getElementById('form-banner').style.background = '#1A3A1A';
+  showNotif('Titolo e autore compilati!');
 }
 function parseFormPaste() {
   var testo = document.getElementById('paste-in-form') ? document.getElementById('paste-in-form').value.trim() : '';
