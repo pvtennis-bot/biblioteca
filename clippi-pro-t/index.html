@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CLIPPI™ PRO-T — Test Campo &amp; Allenamento</title>
+<style>
+  :root { --acc:#ff6a00; --acc2:#ff3b3b; --acc-bg:#2a1000; --senza:#ffcf77; --senza-bg:#2a1e00; }
+  body.theme-green { --acc:#39ff14; --acc2:#22c55e; --acc-bg:#0d2200; --senza:#38bdf8; --senza-bg:#0e2030; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Helvetica Neue',sans-serif; background:#0f0f0f; color:#f0f0f0; min-height:100vh; }
+  .wrap { max-width:480px; margin:0 auto; padding:20px 16px 40px; }
+  .eyebrow { font-size:11px; letter-spacing:3px; color:var(--acc); margin-bottom:12px; }
+  .card { background:#1a1a1a; border-radius:16px; padding:18px; margin-bottom:14px; }
+  .btn-primary { width:100%; padding:16px; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; margin-top:8px; display:block; }
+  .btn-primary:disabled { opacity:.35; }
+  .btn-secondary { width:100%; padding:14px; background:transparent; color:#aaa; border:1.5px solid #2e2e2e; border-radius:12px; font-size:15px; cursor:pointer; margin-top:8px; display:block; }
+  .btn-wa { width:100%; padding:16px; background:#25D366; color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; margin-top:8px; display:block; }
+  input { width:100%; background:#202020; border:1.5px solid #2e2e2e; border-radius:10px; color:#f0f0f0; font-size:15px; padding:12px; font-family:inherit; }
+  textarea { width:100%; background:#202020; border:1.5px solid #2e2e2e; border-radius:10px; color:#f0f0f0; font-size:15px; padding:12px; font-family:inherit; resize:none; height:72px; }
+  .progress-bar { background:#222; border-radius:99px; height:6px; margin-bottom:8px; }
+  .progress-fill { border-radius:99px; height:6px; transition:width .3s; background:linear-gradient(90deg,var(--acc),var(--acc2)); }
+  .badge { display:inline-block; padding:3px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:1px; }
+  .badge-con { background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; }
+  .badge-senza { background:#e5e5e5; color:#555; }
+  .badge-pos { display:inline-block; padding:3px 12px; border-radius:999px; font-size:12px; font-weight:800; background:#ffe600; color:#111; }
+  .banner { border-radius:10px; padding:10px 14px; font-size:13px; font-weight:600; margin-top:10px; }
+  .banner-field { background:var(--acc-bg); color:var(--acc); border:1.5px solid var(--acc); }
+  .banner-net { background:#1a1a2e; color:#818cf8; border:1.5px solid #818cf8; }
+  .rpe-row { display:flex; gap:5px; margin-top:8px; }
+  .rpe-btn { flex:1; padding:12px 0; border-radius:8px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:700; font-size:13px; cursor:pointer; }
+  .level-row { display:flex; gap:8px; margin-top:8px; }
+  .level-btn { flex:1; padding:12px 4px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:600; font-size:12px; cursor:pointer; }
+  .level-btn.active-p { border-color:#22c55e; background:#22c55e; color:#111; }
+  .level-btn.active-i { border-color:#ffe600; background:#ffe600; color:#111; }
+  .level-btn.active-a { border-color:#ef4444; background:#ef4444; color:#fff; }
+  .tag-grid { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .tag-btn { width:100%; padding:12px 14px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#ccc; font-size:14px; cursor:pointer; text-align:left; }
+  .tag-btn.active-con { border-color:var(--acc); background:var(--acc-bg); color:var(--acc); font-weight:600; }
+  .tag-btn.active-senza { border-color:var(--senza); background:var(--senza-bg); color:var(--senza); font-weight:600; }
+  .yn-row { display:flex; gap:8px; margin-top:8px; }
+  .yn-btn { flex:1; padding:13px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#ccc; font-size:15px; font-weight:700; cursor:pointer; text-align:center; }
+  .yn-btn.active-si { border-color:var(--acc); background:var(--acc-bg); color:var(--acc); }
+  .yn-btn.active-no { border-color:#555; background:#2a2a2a; color:#888; }
+  .grip-row { display:grid; grid-template-columns:repeat(6,1fr); gap:4px; margin-top:8px; }
+  .grip-btn { padding:11px 0; border-radius:8px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:700; font-size:13px; cursor:pointer; text-align:center; }
+  .grip-btn.active { border-color:var(--acc); background:var(--acc); color:#fff; }
+  .resp-row { display:flex; gap:8px; margin-top:8px; }
+  .resp-btn { flex:1; padding:13px 6px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#ccc; font-size:13px; font-weight:600; cursor:pointer; text-align:center; }
+  .resp-btn.active { border-color:var(--acc); background:var(--acc-bg); color:var(--acc); }
+  .opt-row { display:flex; gap:8px; flex-wrap:wrap; }
+  .opt-btn { flex:1 1 auto; padding:12px 8px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:600; font-size:13px; cursor:pointer; }
+  .opt-btn.active { border-color:var(--acc); background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; }
+  .summary-row { display:flex; align-items:flex-start; justify-content:space-between; padding:12px 16px; background:#1a1a1a; border-radius:12px; margin-bottom:8px; gap:10px; }
+  .rpe-circle { min-width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; flex-shrink:0; }
+  .screen { display:none; }
+  .screen.active { display:block; }
+  .substep-indicator { display:flex; gap:6px; margin-bottom:16px; }
+  .substep-dot { flex:1; height:4px; border-radius:99px; background:#222; }
+  .substep-dot.done { background:var(--acc); }
+  .substep-dot.current { background:#888; }
+  .step { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; }
+  .step-num { min-width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .step-text { font-size:14px; color:#ccc; line-height:1.6; }
+  .step-text b { color:#f0f0f0; }
+  .reps-box { margin-top:14px; background:#202020; border-radius:10px; padding:12px; text-align:center; }
+  .hidden { display:none; }
+  .hero-accent { background:linear-gradient(135deg,var(--acc),var(--acc2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .theme-toggle { display:flex; gap:4px; background:#1a1a1a; border-radius:99px; padding:4px; margin-bottom:20px; }
+  .th-btn { flex:1; padding:9px 0; border-radius:99px; border:none; font-size:13px; font-weight:700; cursor:pointer; transition:all .2s; }
+
+  /* ===== ALLENAMENTO GUIDATO — nuove regole ===== */
+  .stroke-pick-btn { width:100%; padding:16px; margin-bottom:8px; border-radius:12px; border:2px solid #2e2e2e; background:#1a1a1a; color:#eee; font-size:15px; font-weight:600; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; }
+  .stroke-pick-btn.active { border-color:var(--acc); background:var(--acc-bg); }
+  .ciclo-pill { display:inline-block; padding:4px 14px; border-radius:99px; background:#222; color:#aaa; font-size:12px; font-weight:700; }
+  .phase-banner { text-align:center; padding:22px 0; border-radius:16px; margin:6px 0 14px; }
+  .phase-banner.con { background:var(--acc-bg); border:2px solid var(--acc); }
+  .phase-banner.senza { background:var(--senza-bg); border:2px solid var(--senza); }
+  .phase-label { font-size:13px; letter-spacing:2px; font-weight:800; }
+  .phase-label.con { color:var(--acc); }
+  .phase-label.senza { color:var(--senza); }
+  .rep-count { font-size:64px; font-weight:800; margin:6px 0; line-height:1; }
+  .rep-count.con { color:var(--acc); }
+  .rep-count.senza { color:var(--senza); }
+  .tap-btn { width:100%; padding:26px; border:none; border-radius:16px; font-size:20px; font-weight:800; color:#fff; cursor:pointer; }
+  .tap-btn.con { background:linear-gradient(135deg,var(--acc),var(--acc2)); }
+  .tap-btn.senza { background:linear-gradient(135deg,#666,#444); }
+  .pausa-box { text-align:center; padding:34px 0; }
+  .pausa-ring { font-size:56px; font-weight:800; color:var(--senza); line-height:1; margin:8px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- INTRO -->
+<div id="s-intro" class="screen active">
+  <div style="text-align:center;padding:20px 0 16px">
+    <div class="theme-toggle">
+      <button class="th-btn" id="tb-g" onclick="setTheme('green')">🟢 Verde</button>
+      <button class="th-btn" id="tb-o" onclick="setTheme('orange')">🟠 Arancione</button>
+    </div>
+    <div class="eyebrow" style="text-align:center">CLIPPI™ TOOLKIT</div>
+    <div style="font-size:36px;font-weight:800;letter-spacing:-1px" class="hero-accent">CLIPPI™</div>
+    <div style="font-size:16px;color:#aaa;margin-top:4px">Il Metodo PRO-T™</div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:15px;font-weight:700;margin-bottom:10px">📋 Test Campo</div>
+    <div class="step"><div class="step-num">1</div><div class="step-text">Inserisci <b>nome</b> e <b>livello</b> di chi esegue il test</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Esegui <b>8 serie da 5 colpi</b>: 4 <b style="color:var(--acc)">CON</b> CLIPPI™ e 4 <b style="color:#ddd">SENZA</b></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Per ogni serie: <b>RPE + osservazione</b> → poi <b>grip + respiro</b></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">4 domande finali, poi invia su <b>WhatsApp</b></div></div>
+  </div>
+  <div style="background:#2a2000;border:1.5px solid #ffe600;border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start">
+    <span style="font-size:18px;line-height:1">⚠️</span>
+    <div style="font-size:13px;color:#ffe600;line-height:1.6">
+      <b>Non uscire dall'app durante il test.</b><br>
+      Completa tutte le serie e invia/copia i risultati prima di chiudere — i dati non vengono salvati automaticamente.
+    </div>
+  </div>
+  <button class="btn-primary" onclick="go('s-info')">▶ Inizia test campo</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">🏋️ Allenamento guidato</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">5 protocolli del Metodo PRO-T™ — Contrasto Rapido, 20/80, Progressivo, Velocizzazione, Stabilizzazione — con timer, conteggio e pausa/ripresa automatici.</div>
+  </div>
+  <button class="btn-primary" onclick="trainRenderSetup();go('s-train-setup')">🏋️ Avvia allenamento guidato</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">🔥 Riscaldamento pre-gara</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">Swing a vuoto con CLIPPI™ montato, timer libero. Consentito in riscaldamento — non durante il match: verifica il regolamento del torneo.</div>
+  </div>
+  <button class="btn-primary" onclick="warmRenderSetup();go('s-warm-setup')">🔥 Avvia riscaldamento</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">⚖️ Valutazione bilanciamento</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">Diagnostica per colpo: dove la racchetta beneficerebbe di una modifica permanente. Report da esportare per il tecnico.</div>
+  </div>
+  <button class="btn-primary" onclick="balRenderSetup();go('s-bal-setup')">⚖️ Avvia valutazione</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">🧘 Percezione Cieca</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">A occhi chiusi, 1-2 colpi in slowmotion estrema: l'atleta cerca di percepire (non indovinare) se c'è CLIPPI™, dove e quanti moduli. Propriocezione, metodo ideomotorio, spirito Tai Chi.</div>
+  </div>
+  <button class="btn-primary" onclick="percRenderSetup();go('s-perc-setup')">🧘 Avvia Percezione Cieca</button>
+</div>
+
+<!-- INFO -->
+<div id="s-info" class="screen">
+  <div class="eyebrow">DATI ESECUTORE</div>
+  <div class="card">
+    <label style="display:block;font-size:13px;color:#888;margin-bottom:6px">Nome</label>
+    <input id="nome" type="text" placeholder="es. Mario Rossi">
+    <div style="height:14px"></div>
+    <label style="display:block;font-size:13px;color:#888;margin-bottom:6px">Livello</label>
+    <div class="level-row">
+      <button class="level-btn" onclick="setLevel(this,'Principiante','active-p')">🟢 Principiante</button>
+      <button class="level-btn" onclick="setLevel(this,'Intermedio','active-i')">🟡 Intermedio</button>
+      <button class="level-btn" onclick="setLevel(this,'Pro','active-a')">🔴 Pro</button>
+    </div>
+  </div>
+  <button class="btn-primary" id="btn-info-next" onclick="startDrill()" disabled>Avanti →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- STEP 1 -->
+<div id="s-drill-1" class="screen">
+  <div style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:11px;color:#888" id="d1-counter"></span>
+      <span style="font-size:11px;color:var(--acc)">STEP 1 / 2 — Percezione</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="d1-prog"></div></div>
+    <div class="substep-indicator"><div class="substep-dot current"></div><div class="substep-dot"></div></div>
+  </div>
+  <div class="card" id="d1-main"></div>
+  <div class="card" id="d1-rpe"></div>
+  <div class="card" id="d1-tag"></div>
+  <button class="btn-primary" onclick="goStep2()">Avanti — Dati fisiologici →</button>
+  <button class="btn-secondary" id="d1-back" onclick="prevDrill()">← Serie precedente</button>
+</div>
+
+<!-- STEP 2 -->
+<div id="s-drill-2" class="screen">
+  <div style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:11px;color:#888" id="d2-counter"></span>
+      <span style="font-size:11px;color:var(--acc2)">STEP 2 / 2 — Fisiologia</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="d2-prog"></div></div>
+    <div class="substep-indicator"><div class="substep-dot done"></div><div class="substep-dot current"></div></div>
+  </div>
+  <div class="card" id="d2-header"></div>
+  <div class="card">
+    <div style="font-size:14px;font-weight:600;margin-bottom:4px">Stretta impugnatura percepita?</div>
+    <div class="yn-row">
+      <button class="yn-btn" id="grip-si" onclick="setGripSi(true)">Sì</button>
+      <button class="yn-btn" id="grip-no" onclick="setGripSi(false)">No</button>
+    </div>
+    <div id="grip-detail" class="hidden" style="margin-top:14px">
+      <div style="font-size:13px;color:#aaa">Intensità stretta impugnatura</div>
+      <div style="font-size:11px;color:#555;margin-top:2px">0 = rilassata · 10 = massima tensione</div>
+      <div class="grip-row" id="grip-row"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:14px;font-weight:600;margin-bottom:4px">Respiro percepito?</div>
+    <div class="yn-row">
+      <button class="yn-btn" id="resp-si" onclick="setRespSi(true)">Sì</button>
+      <button class="yn-btn" id="resp-no" onclick="setRespSi(false)">No</button>
+    </div>
+    <div id="resp-detail" class="hidden" style="margin-top:14px">
+      <div style="font-size:13px;color:#aaa;margin-bottom:8px">Tipo di respiro</div>
+      <div class="resp-row" id="resp-row"></div>
+    </div>
+  </div>
+  <button class="btn-primary" id="d2-next" onclick="nextDrill()"></button>
+  <button class="btn-secondary" onclick="go('s-drill-1')">← Torna percezione</button>
+</div>
+
+<!-- FINALI -->
+<div id="s-finali" class="screen">
+  <div class="eyebrow">VALUTAZIONE FINALE</div>
+  <div id="finali-questions"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note libere (opzionale)</div>
+    <textarea id="note-finale" placeholder="impressioni generali, suggerimenti..."></textarea>
+  </div>
+  <button class="btn-primary" onclick="showRiepilogo()">Vedi riepilogo →</button>
+</div>
+
+<!-- RIEPILOGO -->
+<div id="s-riepilogo" class="screen">
+  <div class="eyebrow">RIEPILOGO</div>
+  <div id="riepilogo-name" style="font-size:18px;font-weight:800;margin-bottom:20px"></div>
+  <div id="riepilogo-list"></div>
+  <div class="card" id="riepilogo-finali" style="margin-top:4px"></div>
+  <button class="btn-wa" onclick="sendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="copyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="resetAll()">↺ Nuovo test</button>
+</div>
+
+<!-- TRAIN SETUP -->
+<div id="s-train-setup" class="screen">
+  <div class="eyebrow">ALLENAMENTO GUIDATO</div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Scegli il protocollo</div>
+    <div id="train-proto-list"></div>
+  </div>
+  <div id="train-proto-desc"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Scegli il colpo</div>
+    <div id="train-stroke-list"></div>
+  </div>
+  <div id="train-config-area"></div>
+  <div id="train-livello-area"></div>
+  <button class="btn-primary" id="btn-train-start" onclick="trainStart()" disabled>Inizia allenamento →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- TRAIN RUN -->
+<div id="s-train-run" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span class="ciclo-pill" id="t-ciclo-pill"></span>
+    <span id="t-stroke-badge"></span>
+  </div>
+  <div id="t-phase-area"></div>
+  <button class="btn-secondary" onclick="trainPause()">⏸ Pausa</button>
+</div>
+
+<!-- TRAIN PAUSED -->
+<div id="s-train-paused" class="screen">
+  <div class="eyebrow">IN PAUSA</div>
+  <div class="card" id="t-paused-info"></div>
+  <button class="btn-primary" onclick="trainResume()">▶ Riprendi</button>
+  <button class="btn-secondary" onclick="trainGoFinali()">Concludi qui (con i dati raccolti)</button>
+  <button class="btn-secondary" onclick="trainAbort()">Annulla allenamento (nessun dato)</button>
+</div>
+
+<!-- TRAIN FINALI -->
+<div id="s-train-finali" class="screen">
+  <div class="eyebrow">VALUTAZIONE ALLENAMENTO</div>
+  <div id="train-finali-questions"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note coach/giocatore (opzionale)</div>
+    <textarea id="train-note-finale" placeholder="cosa ha funzionato, cosa correggere..."></textarea>
+  </div>
+  <button class="btn-primary" onclick="trainShowSummaryFinal()">Vedi riepilogo →</button>
+</div>
+
+<!-- TRAIN SUMMARY -->
+<div id="s-train-summary" class="screen">
+  <div class="eyebrow">ALLENAMENTO COMPLETATO</div>
+  <div class="card" id="t-summary-card"></div>
+  <button class="btn-wa" onclick="trainSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="trainCopyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+<!-- WARM SETUP -->
+<div id="s-warm-setup" class="screen">
+  <div class="eyebrow">RISCALDAMENTO PRE-GARA</div>
+  <div class="card">
+    <div style="font-size:13px;color:#888;line-height:1.6">Swing a vuoto (shadow), modulo montato. Consentito in riscaldamento pre-match — non durante il match: verifica il regolamento del torneo/ITF.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Colpo (opzionale)</div>
+    <div id="warm-stroke-list"></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Configurazione CLIPPI</div>
+    <div class="opt-row" id="warm-config-list"></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Durata</div>
+    <div class="opt-row" id="warm-dur-list"></div>
+  </div>
+  <button class="btn-primary" id="btn-warm-start" onclick="warmStart()" disabled>Avvia riscaldamento →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- WARM RUN -->
+<div id="s-warm-run" class="screen">
+  <div id="warm-run-area"></div>
+  <button class="btn-secondary" onclick="warmPause()">⏸ Pausa</button>
+</div>
+
+<!-- WARM PAUSED -->
+<div id="s-warm-paused" class="screen">
+  <div class="eyebrow">RISCALDAMENTO IN PAUSA</div>
+  <div class="card" id="warm-paused-info"></div>
+  <button class="btn-primary" onclick="warmResume()">▶ Riprendi</button>
+  <button class="btn-secondary" onclick="go('s-intro')">✕ Termina riscaldamento</button>
+</div>
+
+<!-- WARM DONE → pre-gara report -->
+<div id="s-warm-done" class="screen">
+  <div class="eyebrow">RISCALDAMENTO COMPLETATO</div>
+  <div class="card" id="warm-done-info"></div>
+  <button class="btn-primary" onclick="warmGoReport()">📋 Compila report pre-gara →</button>
+  <button class="btn-secondary" onclick="warmRenderSetup();go('s-warm-setup')">↺ Nuovo riscaldamento</button>
+  <button class="btn-secondary" onclick="go('s-intro')">Torna alla home</button>
+</div>
+
+<!-- WARM REPORT -->
+<div id="s-warm-report" class="screen">
+  <div class="eyebrow">REPORT PRE-GARA</div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Torneo / partita</div>
+    <input id="wr-torneo" type="text" placeholder="es. Torneo Città di Milano" style="width:100%;background:#1a1a1a;border:1.3px solid #2e2e2e;border-radius:9px;padding:10px 12px;font-size:13px;color:#f0f0f0;margin-bottom:8px">
+    <div style="display:flex;gap:8px">
+      <input id="wr-data" type="date" style="flex:1;background:#1a1a1a;border:1.3px solid #2e2e2e;border-radius:9px;padding:10px 12px;font-size:13px;color:#f0f0f0">
+      <input id="wr-ora" type="time" style="flex:1;background:#1a1a1a;border:1.3px solid #2e2e2e;border-radius:9px;padding:10px 12px;font-size:13px;color:#f0f0f0">
+    </div>
+  </div>
+  <div id="wr-questions"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note libere (opzionale)</div>
+    <textarea id="wr-note" placeholder="osservazioni, sensazioni particolari..."></textarea>
+  </div>
+  <button class="btn-wa" onclick="warmSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="warmCopyReport()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+<!-- BAL SETUP -->
+<div id="s-bal-setup" class="screen">
+  <div class="eyebrow">VALUTAZIONE BILANCIAMENTO</div>
+  <div class="card">
+    <div style="font-size:13px;color:#888;line-height:1.6">Con pallina. Per ogni colpo selezionato, prova CLIPPI™ in testa e al lato rispetto a senza modulo, poi indica dove la racchetta beneficerebbe di una modifica permanente.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Colpi da valutare</div>
+    <div id="bal-stroke-list"></div>
+  </div>
+  <div id="bal-livello-area"></div>
+  <button class="btn-primary" id="btn-bal-start" onclick="balStart()" disabled>Inizia valutazione →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- BAL RUN -->
+<div id="s-bal-run" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span class="ciclo-pill" id="bal-counter-pill"></span>
+  </div>
+  <div id="bal-run-area"></div>
+</div>
+
+<!-- BAL SUMMARY -->
+<div id="s-bal-summary" class="screen">
+  <div class="eyebrow">REPORT BILANCIAMENTO</div>
+  <div id="bal-summary-list"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note per il tecnico (opzionale)</div>
+    <textarea id="bal-note" placeholder="osservazioni generali sulla racchetta..."></textarea>
+  </div>
+  <button class="btn-wa" onclick="balSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="balCopyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+<!-- PERC SETUP -->
+<div id="s-perc-setup" class="screen">
+  <div class="eyebrow">PERCEZIONE CIECA</div>
+  <div class="card">
+    <div style="font-size:13px;color:#888;line-height:1.6">Un operatore (coach o compagno) monta CLIPPI™ in una configurazione nascosta — o nessuna — senza che l'atleta veda. A occhi chiusi, l'atleta esegue 1-2 colpi in slowmotion estrema e cerca di percepire cosa c'è sulla racchetta.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Colpo</div>
+    <div id="perc-stroke-list"></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Numero di round</div>
+    <div class="opt-row" id="perc-rounds-list"></div>
+  </div>
+  <button class="btn-primary" id="btn-perc-start" onclick="percStart()" disabled>Inizia →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- PERC RUN -->
+<div id="s-perc-run" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span class="ciclo-pill" id="perc-counter-pill"></span>
+  </div>
+  <div id="perc-run-area"></div>
+</div>
+
+<!-- PERC SUMMARY -->
+<div id="s-perc-summary" class="screen">
+  <div class="eyebrow">REPORT PERCEZIONE CIECA</div>
+  <div id="perc-summary-list"></div>
+  <button class="btn-wa" onclick="percSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="percCopyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+</div>
+<script>
+var PROTOCOL=[
+  {colpo:"Diritto",  config:"Ore 3+9",     tipo:"CON",   zona:"field"},
+  {colpo:"Diritto",  config:"—",            tipo:"SENZA", zona:"field"},
+  {colpo:"Servizio", config:"Ore 12",       tipo:"CON",   zona:"field"},
+  {colpo:"Servizio", config:"—",            tipo:"SENZA", zona:"field"},
+  {colpo:"Rovescio", config:"Ore 3 (sup.)", tipo:"CON",   zona:"field"},
+  {colpo:"Rovescio", config:"—",            tipo:"SENZA", zona:"field"},
+  {colpo:"Volée",    config:"Ore 3+9",      tipo:"CON",   zona:"net"},
+  {colpo:"Volée",    config:"—",            tipo:"SENZA", zona:"net"}
+];
+var TAGS_CON=["Sento chiaramente la variazione del peso","Colpo più controllato","Gesto più stabile","Più concentrazione sul colpo","Gesto leggermente alterato","Braccio affaticato"];
+var TAGS_SENZA=["Racchetta molto più leggera","Colpo più fluido e veloce","Meno sforzo percepito","Più libertà nel gesto","Nessuna differenza percepita"];
+var RPE_CON=["1","2","3","4","5"];
+var RPE_SENZA=["-3","-2","-1","0","+1"];
+var RESPIRO=["Aperta","Superficiale","Bloccato"];
+var FINALI_Q=[
+  {key:"diff",  label:"Hai sentito differenza CON/SENZA?", opt:["Sì","No","Parziale"]},
+  {key:"dist",  label:"Il peso ha disturbato il gesto?",   opt:["No","Poco","Sì"]},
+  {key:"dopo",  label:"Dopo rimozione il colpo era:",      opt:["Uguale","Più leggero","Molto più leggero"]},
+  {key:"riuso", label:"Riutilizzeresti?",                  opt:["Sì","Forse","No"]}
+];
+
+var cur=0, R=mk(), F={}, lv="";
+
+function mk(){
+  return PROTOCOL.map(function(){
+    return {rpe:null,tag:null,gripSi:null,grip:null,respSi:null,resp:null};
+  });
+}
+
+function setTheme(t){
+  if(t==='green'){
+    document.body.className='theme-green';
+    document.getElementById('tb-g').style.cssText='background:linear-gradient(135deg,#39ff14,#22c55e);color:#111';
+    document.getElementById('tb-o').style.cssText='background:transparent;color:#666';
+  } else {
+    document.body.className='';
+    document.getElementById('tb-o').style.cssText='background:linear-gradient(135deg,#ff6a00,#ff3b3b);color:#fff';
+    document.getElementById('tb-g').style.cssText='background:transparent;color:#666';
+  }
+}
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function setLevel(btn,val,cls){
+  document.querySelectorAll('.level-btn').forEach(function(b){b.className='level-btn';});
+  btn.classList.add(cls);
+  lv=val; chk();
+}
+
+document.getElementById('nome').addEventListener('input',chk);
+function chk(){document.getElementById('btn-info-next').disabled=!document.getElementById('nome').value.trim()||!lv;}
+
+function startDrill(){cur=0;R=mk();s1();go('s-drill-1');}
+
+function s1(){
+  var p=PROTOCOL[cur],r=R[cur],isCon=p.tipo==="CON",isNet=p.zona==="net";
+  document.getElementById('d1-prog').style.width=Math.round((cur/PROTOCOL.length)*100)+'%';
+  document.getElementById('d1-counter').textContent='SERIE '+(cur+1)+' / '+PROTOCOL.length;
+  var pb=p.config!=="—"?'<span class="badge-pos">'+p.config+'</span>':"";
+  var bc=isNet?'banner banner-net':'banner banner-field';
+  var bt=isNet?'📍 A rete — colpo compatto':'📍 Fondocampo — preparazione completa';
+  document.getElementById('d1-main').innerHTML=
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">'+
+      '<span class="badge '+(isCon?'badge-con':'badge-senza')+'">'+p.tipo+'</span>'+pb+
+    '</div>'+
+    '<div style="font-size:28px;font-weight:800">'+p.colpo+'</div>'+
+    '<div style="font-size:13px;color:#888;margin-top:6px">'+(isCon?'Applica CLIPPI™ in posizione '+p.config:'Rimuovi il modulo — stesso colpo')+'</div>'+
+    '<div class="'+bc+'">'+bt+'</div>'+
+    '<div class="reps-box"><span style="font-size:40px;font-weight:800;color:var(--acc)">5</span><span style="font-size:16px;color:#aaa;margin-left:8px">colpi</span></div>';
+  var sc=isCon?RPE_CON:RPE_SENZA;
+  var sub=isCon?'1 = appena percepito · 5 = molto pesante':'-3 = molto più leggero · +1 = invariato';
+  document.getElementById('d1-rpe').innerHTML=
+    '<div style="font-size:13px;color:#aaa">'+(isCon?'Peso percepito':'Leggerezza percepita')+'</div>'+
+    '<div style="font-size:11px;color:#555;margin-top:2px">'+sub+'</div>'+
+    '<div class="rpe-row">'+sc.map(function(l){
+      var act=r.rpe===l;
+      var st=act?'border-color:var(--acc);background:var(--acc);color:#fff;':'';
+      return'<button class="rpe-btn" onclick="sRpe(\''+l+'\')" style="'+st+'">'+l+'</button>';
+    }).join('')+'</div>';
+  var tgs=isCon?TAGS_CON:TAGS_SENZA,ac2=isCon?'active-con':'active-senza';
+  document.getElementById('d1-tag').innerHTML=
+    '<div style="font-size:13px;color:#aaa;margin-bottom:4px">Sensazioni percepite</div>'+
+    '<div class="tag-grid">'+tgs.map(function(t){
+      return'<button class="tag-btn '+(r.tag===t?ac2:'')+'" onclick="sTag(\''+t.replace(/'/g,"\\'")+'\')">'+t+'</button>';
+    }).join('')+'</div>';
+  document.getElementById('d1-back').style.display=cur>0?'block':'none';
+}
+
+function s2(){
+  var p=PROTOCOL[cur],r=R[cur],isCon=p.tipo==="CON";
+  document.getElementById('d2-prog').style.width=Math.round(((cur+0.5)/PROTOCOL.length)*100)+'%';
+  document.getElementById('d2-counter').textContent='SERIE '+(cur+1)+' / '+PROTOCOL.length;
+  var pb=p.config!=="—"?'<span class="badge-pos" style="font-size:11px;padding:2px 8px">'+p.config+'</span>':"";
+  document.getElementById('d2-header').innerHTML=
+    '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+
+      '<span class="badge '+(isCon?'badge-con':'badge-senza')+'">'+p.tipo+'</span>'+pb+
+      '<b style="font-size:18px">'+p.colpo+'</b>'+
+    '</div>';
+  document.getElementById('grip-si').className='yn-btn'+(r.gripSi===true?' active-si':'');
+  document.getElementById('grip-no').className='yn-btn'+(r.gripSi===false?' active-no':'');
+  var gd=document.getElementById('grip-detail');
+  if(r.gripSi===true){
+    gd.classList.remove('hidden');
+    document.getElementById('grip-row').innerHTML=["0","1","2","3","4","5","6","7","8","9","10"].map(function(v){
+      return'<button class="grip-btn'+(r.grip===v?' active':'')+'" onclick="sGrip(\''+v+'\')">'+v+'</button>';
+    }).join('');
+  } else { gd.classList.add('hidden'); }
+  document.getElementById('resp-si').className='yn-btn'+(r.respSi===true?' active-si':'');
+  document.getElementById('resp-no').className='yn-btn'+(r.respSi===false?' active-no':'');
+  var rd=document.getElementById('resp-detail');
+  if(r.respSi===true){
+    rd.classList.remove('hidden');
+    document.getElementById('resp-row').innerHTML=RESPIRO.map(function(v){
+      return'<button class="resp-btn'+(r.resp===v?' active':'')+'" onclick="sResp(\''+v+'\')">'+v+'</button>';
+    }).join('');
+  } else { rd.classList.add('hidden'); }
+  document.getElementById('d2-next').textContent=cur<PROTOCOL.length-1?"Prossima serie →":"Concludi →";
+}
+
+function setGripSi(val){R[cur].gripSi=val;if(!val)R[cur].grip=null;s2();}
+function setRespSi(val){R[cur].respSi=val;if(!val)R[cur].resp=null;s2();}
+function sRpe(v){R[cur].rpe=v;s1();}
+function sTag(v){R[cur].tag=R[cur].tag===v?null:v;s1();}
+function sGrip(v){R[cur].grip=v;s2();}
+function sResp(v){R[cur].resp=v;s2();}
+function goStep2(){s2();go('s-drill-2');}
+function nextDrill(){if(cur<PROTOCOL.length-1){cur++;s1();go('s-drill-1');}else{bF();go('s-finali');}}
+function prevDrill(){if(cur>0){cur--;s1();go('s-drill-1');}}
+
+function bF(){
+  document.getElementById('finali-questions').innerHTML=FINALI_Q.map(function(f){
+    return'<div class="card"><div style="font-size:14px;color:#ddd;margin-bottom:12px;line-height:1.5">'+f.label+'</div>'+
+      '<div class="opt-row">'+f.opt.map(function(o){
+        return'<button class="opt-btn" data-key="'+f.key+'" onclick="sF(this,\''+f.key+'\',\''+o+'\')">'+o+'</button>';
+      }).join('')+'</div></div>';
+  }).join('');
+}
+function sF(btn,key,val){
+  F[key]=val;
+  document.querySelectorAll('.opt-btn[data-key="'+key+'"]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+function showRiepilogo(){
+  var nome=document.getElementById('nome').value.trim();
+  document.getElementById('riepilogo-name').textContent=nome+' · '+lv;
+  document.getElementById('riepilogo-list').innerHTML=PROTOCOL.map(function(p,i){
+    var r=R[i],isCon=p.tipo==="CON";
+    var cc=r.rpe!==null?'var(--acc)':'#2a2a2a',tc=r.rpe!==null?'#fff':'#555';
+    var pb=p.config!=="—"?'<span style="display:inline-block;padding:1px 7px;border-radius:99px;font-size:11px;font-weight:800;background:#ffe600;color:#111;margin-left:6px">'+p.config+'</span>':"";
+    var fis='';
+    if(r.gripSi===true&&r.grip!==null) fis+='✊ Impugn. '+r.grip+'/10';
+    if(r.gripSi===false) fis+='✊ Impugn. non percepita';
+    if(fis&&r.respSi!==null) fis+=' · ';
+    if(r.respSi===true&&r.resp) fis+='🫁 '+r.resp;
+    if(r.respSi===false) fis+='🫁 non percepito';
+    return'<div class="summary-row"><div style="flex:1">'+
+      '<span class="badge '+(isCon?'badge-con':'badge-senza')+'">'+p.tipo+'</span>'+
+      '<b style="margin-left:8px">'+p.colpo+'</b>'+pb+
+      (r.tag?'<div style="font-size:12px;color:#777;margin-top:3px">'+r.tag+'</div>':'')+
+      (fis?'<div style="font-size:11px;color:#555;margin-top:2px">'+fis+'</div>':'')+
+    '</div><div class="rpe-circle" style="background:'+cc+';color:'+tc+'">'+(r.rpe!==null?r.rpe:'—')+'</div></div>';
+  }).join('');
+  var fc=document.getElementById('riepilogo-finali');
+  fc.innerHTML=FINALI_Q.map(function(f){
+    return'<div style="display:flex;justify-content:space-between;margin-bottom:10px">'+
+      '<span style="font-size:13px;color:#888;flex:1">'+f.label+'</span>'+
+      '<span style="font-size:13px;font-weight:700;margin-left:8px">'+(F[f.key]||'—')+'</span></div>';
+  }).join('');
+  var nf=document.getElementById('note-finale').value;
+  if(nf) fc.innerHTML+='<div style="border-top:1px solid #2a2a2a;padding-top:10px;font-size:13px;color:#aaa">'+nf+'</div>';
+  go('s-riepilogo');
+}
+
+function bT(){
+  var nome=document.getElementById('nome').value.trim(),date=new Date().toLocaleDateString('it-IT');
+  var s='CLIPPI™ PRO-T — Test Campo\n'+date+' · '+nome+' · '+lv+'\n\n';
+  PROTOCOL.forEach(function(p,i){
+    var r=R[i],lb=p.tipo==="CON"?"Peso":"Leggerezza";
+    s+=(i+1)+'. '+p.colpo+' '+p.config+' ('+p.tipo+') x5 — '+lb+': '+(r.rpe!==null?r.rpe:'—');
+    if(r.tag) s+=' — '+r.tag;
+    if(r.gripSi===true) s+=' — Impugn.: '+(r.grip!==null?r.grip+'/10':'percepita/nr');
+    if(r.gripSi===false) s+=' — Impugn.: non percepita';
+    if(r.respSi===true) s+=' — Respiro: '+(r.resp||'percepito/nr');
+    if(r.respSi===false) s+=' — Respiro: non percepito';
+    s+='\n';
+  });
+  s+='\nCONCLUSIONI\n';
+  FINALI_Q.forEach(function(f){s+=f.label+' → '+(F[f.key]||'—')+'\n';});
+  var nf=document.getElementById('note-finale').value;
+  if(nf) s+='\nNote: '+nf;
+  return s;
+}
+function copyResults(){
+  var s=bT();
+  if(navigator.clipboard){navigator.clipboard.writeText(s).then(function(){alert('✓ Copiato!');}).catch(function(){fb(s);});}
+  else{fb(s);}
+}
+function fb(t){
+  var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Copiato!');
+}
+function sendWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(bT()),'_blank');}
+function resetAll(){
+  cur=0;R=mk();F={};lv="";
+  document.getElementById('nome').value="";
+  document.querySelectorAll('.level-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('btn-info-next').disabled=true;
+  go('s-intro');
+}
+
+setTheme('orange');
+
+// ============================================================
+// ===== ALLENAMENTO GUIDATO — tutti i protocolli =====
+// ============================================================
+var TRAIN_STROKES=[
+  {nome:"Diritto",  defaultConfig:"Ore 3+9", zona:"field"},
+  {nome:"Servizio", defaultConfig:"Ore 12",  zona:"field"},
+  {nome:"Rovescio", defaultConfig:"Ore 3+9", zona:"field"},
+  {nome:"Volée",    defaultConfig:"Ore 3+9", zona:"net"}
+];
+var TRAIN_CONFIGS=["Ore 12","Ore 3+9","Ore 12+3+9"];
+var TICK_MS=1500; // ritmo del conteggio automatico nel Contrasto Rapido, ms per colpo
+
+var PROTOCOLS_DEF={
+  contrasto:{
+    nome:"Contrasto Rapido 3+7", categoria:"A — Contrasto e Velocizzazione", tipo:"cycles",
+    desc:"3 colpi CON (lenti) → 7 colpi SENZA (piena velocità) → pausa 30″. Tutti i colpi con pallina. Minimo 4, massimo 6 cicli.",
+    usaPickerConfig:true
+  },
+  ottantaVenti:{
+    nome:"20/80 — Protocollo base", categoria:"Base", tipo:"phases",
+    desc:"Il 20% del tempo con modulo crea lo stimolo sensoriale, l'80% senza sfrutta l'effetto contrasto.",
+    usaPickerConfig:true,
+    fasi:[
+      {label:"Attivazione",        tipo:"CON",   modalita:"shadow",       durataMin:1.5,nota:"Shadow swing lenti, 3 serie da 10 ripetizioni."},
+      {label:"Sessione principale",tipo:"SENZA", modalita:"palla",        durataMin:20, nota:"Allenamento normale — il cervello ricorda il peso."},
+      {label:"Rinforzo",           tipo:"CON",   modalita:"palla",        durataMin:2,  nota:"10 colpi con modulo al 60% velocità."},
+      {label:"Chiusura",           tipo:"SENZA", modalita:"palla",        durataMin:20, nota:"Sessione piena — secondo picco di contrasto."}
+    ]
+  },
+  progressivo:{
+    nome:"Progressivo — da 3 moduli a 0", categoria:"B — Destabilizzazione e Esplorazione", tipo:"phases",
+    desc:"Si parte dall'overload massimo e si rimuovono gradualmente i moduli. Richiede alta concentrazione — non adatto a principianti.",
+    usaPickerConfig:false,
+    fasi:[
+      {label:"Fase 1", tipo:"CON",   modalita:"shadow+palla", durataMin:5,  configFase:"Ore 12+3+9 (3 moduli)",        nota:"Shadow + 10 colpi lenti, tutti e 3 i moduli montati."},
+      {label:"Fase 2", tipo:"CON",   modalita:"palla",        durataMin:5,  configFase:"Ore 3+9 (2 moduli)",           nota:"Rimuovi ore 12. 15 colpi."},
+      {label:"Fase 3", tipo:"CON",   modalita:"palla",        durataMin:5,  configFase:"1 modulo laterale (Ore 3 o 9)",nota:"Rimuovi un modulo laterale, resta solo 1."},
+      {label:"Fase 4", tipo:"SENZA", modalita:"palla",        durataMin:15, configFase:"Nessun modulo",                nota:"Rimuovi tutto, sessione libera a piena velocità."}
+    ]
+  },
+  velocizzazione:{
+    nome:"Velocizzazione — accelerazione pura", categoria:"A — Contrasto e Velocizzazione", tipo:"phases",
+    desc:"Dopo swing esplosivi con overload massimo, il sistema neuromuscolare sovra-eroga forza. Usare solo a tecnica di base già solida.",
+    usaPickerConfig:false,
+    fasi:[
+      {label:"Riscaldamento", tipo:"SENZA", modalita:"palla", durataMin:5,  configFase:"Nessun modulo",         nota:"Baseline di velocità."},
+      {label:"Carico",        tipo:"CON",   modalita:"palla", durataMin:8,  configFase:"Ore 12+3+9 (3 moduli)", nota:"20 swing esplosivi a massima velocità."},
+      {label:"Scarico",       tipo:"SENZA", modalita:"palla", durataMin:2,  configFase:"Nessun modulo",         nota:"5 swing lentissimi per resettare il sistema nervoso."},
+      {label:"Sprint",        tipo:"SENZA", modalita:"palla", durataMin:10, configFase:"Nessun modulo",         nota:"Colpi a massima velocità — sovra-erogazione attiva."}
+    ]
+  },
+  stabilizzazione:{
+    nome:"Stabilizzazione — fissaggio tecnico", categoria:"C — Consolidamento Tecnico", tipo:"phases",
+    desc:"Per consolidare un gesto nella memoria motoria a lungo termine. Successo: il gesto con e senza modulo si sentono quasi uguali.",
+    usaPickerConfig:true,
+    fasi:[
+      {label:"Shadow",         tipo:"CON",   modalita:"shadow",       durataMin:10, nota:"Solo shadow — ogni ripetizione deve essere fluida."},
+      {label:"Transizione",    tipo:"CON",   modalita:"shadow+palla", durataMin:2,  nota:"5 shadow → 5 colpi con palla."},
+      {label:"Consolidamento", tipo:"SENZA", modalita:"palla",        durataMin:20, nota:"30 colpi alta qualità."},
+      {label:"Verifica",       tipo:"CON",   modalita:"palla",        durataMin:5,  nota:"Se fluido come senza, la tecnica è entrata."}
+    ]
+  }
+};
+var PROTOCOL_ORDER=["contrasto","ottantaVenti","progressivo","velocizzazione","stabilizzazione"];
+
+var T={protoKey:'contrasto',strokeIdx:null,config:null,livello:null,
+       ciclo:1,faseCiclo:'con',rep:0,counting:false,tickTimer:null,
+       faseIdx:0,secLeft:0,
+       timer:null,pausaLeft:30};
+var TRAIN_FINALI_Q=[
+  {key:"sentito", label:"Hai sentito il contrasto CON/SENZA?",   opt:["Sì, netto","Sì, leggero","No"]},
+  {key:"vant",    label:"Vantaggio principale percepito?",       opt:["Più controllo","Più leggerezza","Più fluidità/velocità","Nessuno"]},
+  {key:"svant",   label:"Svantaggio percepito?",                 opt:["Nessuno","Affaticamento","Fastidio/disturbo","Perdita di ritmo"]},
+  {key:"legg",    label:"Leggerezza percepita dopo rimozione?",  opt:["Uguale","Più leggero","Molto più leggero"]}
+];
+var TF={};
+
+function trainRenderSetup(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+
+  document.getElementById('train-proto-list').innerHTML=PROTOCOL_ORDER.map(function(key){
+    var p=PROTOCOLS_DEF[key], act=T.protoKey===key?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="trainPickProto(\''+key+'\')">'+
+      '<span>'+p.nome+'</span>'+
+      '<span class="badge-pos" style="font-size:10px;padding:2px 8px">'+p.categoria+'</span></button>';
+  }).join('');
+
+  document.getElementById('train-proto-desc').innerHTML=
+    '<div class="card"><div style="font-size:13px;color:#888;line-height:1.6">'+proto.desc+'</div></div>';
+
+  document.getElementById('train-stroke-list').innerHTML=TRAIN_STROKES.map(function(s,i){
+    var act=T.strokeIdx===i?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="trainPickStroke('+i+')">'+
+      '<span>'+s.nome+(s.zona==='net'?' (a rete)':'')+'</span>'+
+      '<span class="badge-pos" style="font-size:11px;padding:2px 8px">'+s.defaultConfig+'</span></button>';
+  }).join('');
+
+  var cfgArea=document.getElementById('train-config-area');
+  if(!proto.usaPickerConfig){
+    cfgArea.innerHTML='<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:6px">Configurazione CLIPPI</div>'+
+      '<div style="font-size:13px;color:#888;line-height:1.6">Definita dal protocollo, fase per fase — varia durante l\'allenamento.</div></div>';
+  } else if(T.strokeIdx===null){
+    cfgArea.innerHTML='';
+  } else {
+    cfgArea.innerHTML='<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:10px">Configurazione CLIPPI</div>'+
+      '<div class="opt-row">'+TRAIN_CONFIGS.map(function(c){
+        return '<button class="opt-btn'+(T.config===c?' active':'')+'" onclick="trainPickConfig(\''+c+'\')">'+c+'</button>';
+      }).join('')+'</div></div>';
+  }
+
+  document.getElementById('train-livello-area').innerHTML=
+    '<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:10px">Livello atleta (opzionale)</div>'+
+    '<div class="level-row">'+
+      '<button class="level-btn'+(T.livello==='Principiante'?' active-p':'')+'" onclick="trainPickLivello(\'Principiante\')">🟢 Principiante</button>'+
+      '<button class="level-btn'+(T.livello==='Intermedio'?' active-i':'')+'" onclick="trainPickLivello(\'Intermedio\')">🟡 Intermedio</button>'+
+      '<button class="level-btn'+(T.livello==='Pro'?' active-a':'')+'" onclick="trainPickLivello(\'Pro\')">🔴 Pro</button>'+
+    '</div></div>';
+
+  var cfgOk = !proto.usaPickerConfig || !!T.config;
+  document.getElementById('btn-train-start').disabled = (T.strokeIdx===null || !cfgOk);
+}
+function trainPickProto(key){
+  T.protoKey=key;
+  T.strokeIdx=null; T.config=null;
+  trainRenderSetup();
+}
+function trainPickStroke(i){
+  T.strokeIdx=i;
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  T.config = proto.usaPickerConfig ? TRAIN_STROKES[i].defaultConfig : null;
+  trainRenderSetup();
+}
+function trainPickConfig(c){ T.config=c; trainRenderSetup(); }
+function trainPickLivello(v){ T.livello=(T.livello===v?null:v); trainRenderSetup(); }
+
+function trainStart(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  go('s-train-run');
+  if(proto.tipo==='cycles'){
+    T.ciclo=1; T.faseCiclo='con'; T.rep=0;
+    trainStartAutoCount();
+  } else {
+    T.faseIdx=0;
+    phaseStartTimer();
+  }
+}
+
+function trainRenderRun(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  if(proto.tipo==='cycles'){ trainRenderRunCycles(); }
+  else { phaseRenderRun(); }
+}
+
+function trainRenderRunCycles(){
+  var s=TRAIN_STROKES[T.strokeIdx];
+  document.getElementById('t-ciclo-pill').textContent='CICLO '+T.ciclo+' / 4–6';
+  document.getElementById('t-stroke-badge').innerHTML=
+    '<b>'+s.nome+'</b> <span class="badge-pos" style="font-size:11px;padding:2px 8px">'+T.config+'</span>';
+  var area=document.getElementById('t-phase-area');
+
+  if(T.faseCiclo==='pausa'){
+    area.innerHTML=
+      '<div class="pausa-box">'+
+        '<div style="font-size:13px;color:#888;letter-spacing:2px;font-weight:700">PAUSA</div>'+
+        '<div class="pausa-ring" id="pausa-num">'+T.pausaLeft+'</div>'+
+        '<div style="font-size:13px;color:#666">secondi prima del prossimo ciclo</div>'+
+      '</div>';
+    return;
+  }
+
+  if(T.faseCiclo==='ask'){
+    area.innerHTML=
+      '<div class="card" style="text-align:center">'+
+        '<div style="font-size:15px;margin-bottom:14px">Hai completato '+(T.ciclo-1)+' cicli. Continuare?</div>'+
+        '<button class="btn-primary" onclick="trainContinueCycle()">Altro ciclo</button>'+
+        '<button class="btn-secondary" onclick="trainGoFinali()">Concludi qui</button>'+
+      '</div>';
+    return;
+  }
+
+  var isCon=T.faseCiclo==='con', tot=isCon?3:7;
+  var actionHtml = T.counting
+    ? '<div style="text-align:center;font-size:12px;color:#666;margin-top:10px;letter-spacing:1px">conteggio automatico…</div>'
+    : '<button class="tap-btn '+(isCon?'con':'senza')+'" onclick="trainConfirmBlock()">Colpo eseguito ✓</button>';
+  area.innerHTML=
+    '<div class="phase-banner '+(isCon?'con':'senza')+'">'+
+      '<div class="phase-label '+(isCon?'con':'senza')+'">'+
+        (isCon?'CON — modulo montato, lenti':'SENZA — modulo rimosso, piena velocità')+
+      '</div>'+
+      '<div class="rep-count '+(isCon?'con':'senza')+'">'+T.rep+' / '+tot+'</div>'+
+      '<div style="font-size:12px;color:#777">con pallina</div>'+
+    '</div>'+
+    actionHtml;
+}
+
+function trainStartAutoCount(keepRep){
+  if(!keepRep){ T.rep=0; }
+  T.counting=true;
+  trainRenderRunCycles();
+  var tot=T.faseCiclo==='con'?3:7;
+  T.tickTimer=setInterval(function(){
+    T.rep++;
+    if(T.rep>=tot){
+      clearInterval(T.tickTimer); T.tickTimer=null;
+      T.counting=false;
+    }
+    trainRenderRunCycles();
+  },TICK_MS);
+}
+
+function trainConfirmBlock(){
+  if(T.faseCiclo==='con'){
+    T.faseCiclo='senza';
+    trainStartAutoCount();
+  } else if(T.faseCiclo==='senza'){
+    trainStartPausa();
+  }
+}
+
+function trainStartPausa(keepLeft){
+  T.faseCiclo='pausa'; if(!keepLeft){ T.pausaLeft=30; }
+  trainRenderRunCycles();
+  T.timer=setInterval(function(){
+    T.pausaLeft--;
+    var el=document.getElementById('pausa-num');
+    if(el) el.textContent=T.pausaLeft;
+    if(T.pausaLeft<=0){
+      clearInterval(T.timer); T.timer=null;
+      trainEndPausa();
+    }
+  },1000);
+}
+
+function trainEndPausa(){
+  if(navigator.vibrate){ try{ navigator.vibrate([60,40,60]); }catch(e){} }
+  T.ciclo++;
+  if(T.ciclo>6){ trainGoFinali(); return; }
+  if(T.ciclo>4){ T.faseCiclo='ask'; trainRenderRunCycles(); return; }
+  trainContinueCycle();
+}
+function trainContinueCycle(){ T.faseCiclo='con'; trainStartAutoCount(); }
+
+// ===== motore a fasi temporizzate (20/80, Progressivo, Velocizzazione, Stabilizzazione) =====
+function phaseStartTimer(keepSec){
+  var proto=PROTOCOLS_DEF[T.protoKey], f=proto.fasi[T.faseIdx];
+  if(!keepSec){ T.secLeft=f.durataMin*60; }
+  phaseRenderRun();
+  T.timer=setInterval(function(){
+    T.secLeft--;
+    if(T.secLeft<=0){ T.secLeft=0; clearInterval(T.timer); T.timer=null; }
+    phaseRenderRun();
+  },1000);
+}
+
+function phaseRenderRun(){
+  var proto=PROTOCOLS_DEF[T.protoKey], f=proto.fasi[T.faseIdx], s=TRAIN_STROKES[T.strokeIdx];
+  var cfgShown = f.configFase || T.config;
+  document.getElementById('t-ciclo-pill').textContent='FASE '+(T.faseIdx+1)+' / '+proto.fasi.length;
+  document.getElementById('t-stroke-badge').innerHTML=
+    '<b>'+s.nome+'</b> <span class="badge-pos" style="font-size:11px;padding:2px 8px">'+cfgShown+'</span>';
+
+  var isCon=f.tipo==='CON';
+  var mm=Math.floor(T.secLeft/60), ss=T.secLeft%60, ssStr=(ss<10?'0':'')+ss;
+  var modNote = f.modalita==='shadow' ? 'a vuoto (shadow)' : f.modalita==='palla' ? 'con pallina' : 'shadow → con pallina';
+  document.getElementById('t-phase-area').innerHTML=
+    '<div class="phase-banner '+(isCon?'con':'senza')+'">'+
+      '<div class="phase-label '+(isCon?'con':'senza')+'">'+f.label.toUpperCase()+' — '+f.tipo+'</div>'+
+      '<div class="rep-count '+(isCon?'con':'senza')+'" style="font-size:48px">'+mm+':'+ssStr+'</div>'+
+      '<div style="font-size:12px;color:#777">'+modNote+'</div>'+
+    '</div>'+
+    '<div class="card" style="font-size:13px;color:#ccc;line-height:1.6">'+f.nota+'</div>'+
+    '<button class="btn-primary" onclick="phaseNext()">Fase completata →</button>';
+}
+
+function phaseNext(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  T.faseIdx++;
+  if(T.faseIdx>=proto.fasi.length){ trainGoFinali(); return; }
+  phaseStartTimer();
+}
+
+// ===== pausa / ripresa / annulla — condivisi tra i due motori =====
+function trainPause(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  if(T.tickTimer){ clearInterval(T.tickTimer); T.tickTimer=null; }
+  trainRenderPausedInfo();
+  go('s-train-paused');
+}
+
+function trainRenderPausedInfo(){
+  var proto=PROTOCOLS_DEF[T.protoKey], s=TRAIN_STROKES[T.strokeIdx], label, cfgShown;
+  if(proto.tipo==='cycles'){
+    var sub =
+      T.faseCiclo==='con'   ? 'CON — colpo '+T.rep+' / 3' :
+      T.faseCiclo==='senza' ? 'SENZA — colpo '+T.rep+' / 7' :
+      T.faseCiclo==='pausa' ? 'pausa tra cicli — '+T.pausaLeft+'″ rimasti' :
+      T.faseCiclo==='ask'   ? 'in attesa di decisione (continuare o concludere)' : '';
+    label='Ciclo '+T.ciclo+' · '+sub;
+    cfgShown=T.config;
+  } else {
+    var f=proto.fasi[T.faseIdx];
+    var mm=Math.floor(T.secLeft/60), ss=T.secLeft%60;
+    label=f.label+' ('+f.tipo+') — '+mm+':'+(ss<10?'0':'')+ss+' rimanenti';
+    cfgShown=f.configFase||T.config;
+  }
+  document.getElementById('t-paused-info').innerHTML=
+    '<div style="font-size:16px;font-weight:800">'+s.nome+' <span class="badge-pos" style="font-size:11px;padding:2px 8px">'+cfgShown+'</span></div>'+
+    '<div style="font-size:13px;color:#aaa;margin-top:8px">'+label+'</div>';
+}
+
+function trainResume(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  go('s-train-run');
+  if(proto.tipo==='cycles'){
+    if((T.faseCiclo==='con'||T.faseCiclo==='senza') && T.counting){ trainStartAutoCount(true); }
+    else if(T.faseCiclo==='pausa'){ trainStartPausa(true); }
+    else { trainRenderRunCycles(); }
+  } else {
+    phaseStartTimer(true);
+  }
+}
+
+function trainAbort(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  if(T.tickTimer){ clearInterval(T.tickTimer); T.tickTimer=null; }
+  go('s-train-setup');
+}
+
+function trainGoFinali(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  if(T.tickTimer){ clearInterval(T.tickTimer); T.tickTimer=null; }
+  TF={};
+  document.getElementById('train-finali-questions').innerHTML=TRAIN_FINALI_Q.map(function(f){
+    return'<div class="card"><div style="font-size:14px;color:#ddd;margin-bottom:12px;line-height:1.5">'+f.label+'</div>'+
+      '<div class="opt-row">'+f.opt.map(function(o){
+        return'<button class="opt-btn" data-tkey="'+f.key+'" onclick="tSF(this,\''+f.key+'\',\''+o+'\')">'+o+'</button>';
+      }).join('')+'</div></div>';
+  }).join('');
+  document.getElementById('train-note-finale').value='';
+  go('s-train-finali');
+}
+function tSF(btn,key,val){
+  TF[key]=val;
+  document.querySelectorAll('.opt-btn[data-tkey="'+key+'"]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+function trainStatsLine(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  if(proto.tipo==='cycles'){
+    var n=T.ciclo-1;
+    return {linea:proto.nome+' — '+n+' cicli completati', totale:'Totale colpi: '+(n*10)+' (tutti con pallina)'};
+  } else {
+    var doneFasi = T.faseIdx>=proto.fasi.length ? proto.fasi.length : T.faseIdx;
+    var minuti=0;
+    for(var i=0;i<doneFasi;i++){ minuti+=proto.fasi[i].durataMin; }
+    return {linea:proto.nome+' — '+doneFasi+' / '+proto.fasi.length+' fasi completate', totale:'Tempo allenamento: ~'+minuti+' min'};
+  }
+}
+
+function trainShowSummaryFinal(){
+  var s=TRAIN_STROKES[T.strokeIdx];
+  var nf=document.getElementById('train-note-finale').value;
+  var stats=trainStatsLine();
+  var fq=TRAIN_FINALI_Q.map(function(f){
+    return'<div style="display:flex;justify-content:space-between;margin-bottom:8px">'+
+      '<span style="font-size:13px;color:#888;flex:1">'+f.label+'</span>'+
+      '<span style="font-size:13px;font-weight:700;margin-left:8px">'+(TF[f.key]||'—')+'</span></div>';
+  }).join('');
+  document.getElementById('t-summary-card').innerHTML=
+    '<div style="font-size:20px;font-weight:800">'+s.nome+' <span class="badge-pos" style="font-size:12px">'+(T.config||'config. variabile')+'</span></div>'+
+    (T.livello?'<div style="font-size:13px;color:#888;margin-top:4px">Livello: '+T.livello+'</div>':'')+
+    '<div style="font-size:14px;color:#aaa;margin-top:8px">'+stats.linea+'</div>'+
+    '<div style="font-size:14px;color:#aaa;margin-top:4px;margin-bottom:14px">'+stats.totale+'</div>'+
+    '<div style="border-top:1px solid #2a2a2a;padding-top:12px">'+fq+'</div>'+
+    (nf?'<div style="border-top:1px solid #2a2a2a;padding-top:10px;margin-top:4px;font-size:13px;color:#aaa">'+nf+'</div>':'');
+  go('s-train-summary');
+}
+
+function trainBuildText(){
+  var s=TRAIN_STROKES[T.strokeIdx], date=new Date().toLocaleDateString('it-IT');
+  var nf=document.getElementById('train-note-finale').value;
+  var stats=trainStatsLine();
+  var t='CLIPPI™ PRO-T — Allenamento Guidato\n'+date+'\n\n'+
+    'Colpo: '+s.nome+' ('+(T.config||'config. variabile per fase')+')\n'+
+    (T.livello?'Livello: '+T.livello+'\n':'')+
+    'Protocollo: '+stats.linea+'\n'+
+    stats.totale+'\n\n'+
+    'VALUTAZIONE\n';
+  TRAIN_FINALI_Q.forEach(function(f){ t+=f.label+' → '+(TF[f.key]||'—')+'\n'; });
+  if(nf) t+='\nNote: '+nf;
+  return t;
+}
+function trainCopyResults(){
+  var t=trainBuildText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
+}
+function trainSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(trainBuildText()),'_blank');
+}
+
+// ============================================================
+// ===== RISCALDAMENTO PRE-GARA =====
+// ============================================================
+var WARM_DURS=[3,5,10];
+var W={strokeIdx:null,config:null,durMin:5,secLeft:0,timer:null};
+
+function warmRenderSetup(){
+  document.getElementById('warm-stroke-list').innerHTML=
+    '<button class="stroke-pick-btn'+(W.strokeIdx===null?' active':'')+'" onclick="warmPickStroke(null)"><span>Generale (tutti i colpi)</span></button>'+
+    TRAIN_STROKES.map(function(s,i){
+      return '<button class="stroke-pick-btn'+(W.strokeIdx===i?' active':'')+'" onclick="warmPickStroke('+i+')"><span>'+s.nome+'</span></button>';
+    }).join('');
+  document.getElementById('warm-config-list').innerHTML=TRAIN_CONFIGS.map(function(c){
+    return '<button class="opt-btn'+(W.config===c?' active':'')+'" onclick="warmPickConfig(\''+c+'\')">'+c+'</button>';
+  }).join('');
+  document.getElementById('warm-dur-list').innerHTML=WARM_DURS.map(function(d){
+    return '<button class="opt-btn'+(W.durMin===d?' active':'')+'" onclick="warmPickDur('+d+')">'+d+' min</button>';
+  }).join('');
+  document.getElementById('btn-warm-start').disabled=!W.config;
+}
+function warmPickStroke(i){ W.strokeIdx=i; warmRenderSetup(); }
+function warmPickConfig(c){ W.config=c; warmRenderSetup(); }
+function warmPickDur(d){ W.durMin=d; warmRenderSetup(); }
+
+function warmLabel(){ return (W.strokeIdx===null?'Generale':TRAIN_STROKES[W.strokeIdx].nome)+' · '+W.config; }
+
+function warmRenderRun(){
+  var mm=Math.floor(W.secLeft/60), ss=W.secLeft%60, ssStr=(ss<10?'0':'')+ss;
+  document.getElementById('warm-run-area').innerHTML=
+    '<div class="phase-banner con">'+
+      '<div class="phase-label con">'+warmLabel()+'</div>'+
+      '<div class="rep-count con" style="font-size:56px">'+mm+':'+ssStr+'</div>'+
+      '<div style="font-size:12px;color:#777">a vuoto (shadow)</div>'+
+    '</div>';
+}
+function warmRunTimer(){
+  warmRenderRun();
+  W.timer=setInterval(function(){
+    W.secLeft--;
+    if(W.secLeft<=0){ W.secLeft=0; clearInterval(W.timer); W.timer=null; warmRenderRun(); warmFinish(); return; }
+    warmRenderRun();
+  },1000);
+}
+function warmStart(){ W.secLeft=W.durMin*60; go('s-warm-run'); warmRunTimer(); }
+function warmResume(){ go('s-warm-run'); warmRunTimer(); }
+var WARM_REPORT_Q=[
+  {key:"fisico",  label:"Come ti senti fisicamente?",    opt:["Ottimo","Bene","Nella norma","Affaticato","Dolorante"]},
+  {key:"mentale", label:"Come ti senti mentalmente?",    opt:["Concentrato","Tranquillo","Teso","Distratto","Stanco"]},
+  {key:"sonno",   label:"Hai dormito bene?",             opt:["Sì","Abbastanza","No"]},
+  {key:"motiv",   label:"Motivazione oggi?",             opt:["Alta","Normale","Bassa"]},
+  {key:"config",  label:"Configurazione pianificata?",   opt:["Ore 12","Ore 3+9","Ore 12+3+9","Nessuna"]}
+];
+var WR={};
+
+function warmFinish(){
+  document.getElementById('warm-done-info').innerHTML=
+    '<div style="font-size:18px;font-weight:800">'+warmLabel()+'</div>'+
+    '<div style="font-size:14px;color:#aaa;margin-top:8px">Riscaldamento completato — '+W.durMin+' min, a vuoto</div>';
+  go('s-warm-done');
+}
+
+function warmGoReport(){
+  WR={};
+  // pre-fill date and time
+  var now=new Date();
+  var dd=String(now.getDate()).padStart(2,'0'), mm=String(now.getMonth()+1).padStart(2,'0'), yyyy=now.getFullYear();
+  var hh=String(now.getHours()).padStart(2,'0'), min=String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('wr-data').value=yyyy+'-'+mm+'-'+dd;
+  document.getElementById('wr-ora').value=hh+':'+min;
+  document.getElementById('wr-torneo').value='';
+  document.getElementById('wr-note').value='';
+  document.getElementById('wr-questions').innerHTML=WARM_REPORT_Q.map(function(q){
+    return '<div class="card"><div style="font-size:14px;color:#ddd;margin-bottom:12px;line-height:1.5">'+q.label+'</div>'+
+      '<div class="opt-row">'+q.opt.map(function(o){
+        return '<button class="opt-btn" data-wrkey="'+q.key+'" onclick="wrPick(this,\''+q.key+'\',\''+o+'\')">'+o+'</button>';
+      }).join('')+'</div></div>';
+  }).join('');
+  go('s-warm-report');
+}
+function wrPick(btn,key,val){
+  WR[key]=val;
+  document.querySelectorAll('.opt-btn[data-wrkey="'+key+'"]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+function warmBuildReport(){
+  var torneo=document.getElementById('wr-torneo').value||'—';
+  var data=document.getElementById('wr-data').value||'';
+  var ora=document.getElementById('wr-ora').value||'';
+  var note=document.getElementById('wr-note').value;
+  // format date italian
+  var dataFmt=data ? data.split('-').reverse().join('/') : '—';
+  var t='CLIPPI™ PRO-T — Report Pre-Gara\n';
+  t+='Torneo/partita: '+torneo+'\n';
+  t+='Data: '+dataFmt+'  Ora: '+(ora||'—')+'\n';
+  t+='Riscaldamento: '+warmLabel()+' — '+W.durMin+' min\n\n';
+  t+='STATO\n';
+  WARM_REPORT_Q.forEach(function(q){ t+=q.label+' → '+(WR[q.key]||'—')+'\n'; });
+  if(note) t+='\nNote: '+note;
+  return t;
+}
+function warmCopyReport(){
+  var t=warmBuildReport();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
+}
+function warmSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(warmBuildReport()),'_blank');
+}
+function warmPause(){
+  if(W.timer){ clearInterval(W.timer); W.timer=null; }
+  var mm=Math.floor(W.secLeft/60), ss=W.secLeft%60;
+  document.getElementById('warm-paused-info').innerHTML=
+    '<div style="font-size:16px;font-weight:800">'+warmLabel()+'</div>'+
+    '<div style="font-size:13px;color:#aaa;margin-top:8px">'+mm+':'+(ss<10?'0':'')+ss+' rimanenti</div>';
+  go('s-warm-paused');
+}
+
+// ============================================================
+// ===== VALUTAZIONE BILANCIAMENTO =====
+// ============================================================
+var BAL_OPTS=["CLIPPI meglio in testa","CLIPPI meglio al lato","Meglio alleggerire la testa","Equilibrata, nessuna modifica"];
+var BAL={selected:[],idx:0,livello:null,answers:{},notes:{}};
+
+function balRenderSetup(){
+  document.getElementById('bal-stroke-list').innerHTML=TRAIN_STROKES.map(function(s,i){
+    var act=BAL.selected.indexOf(i)>=0?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="balToggleStroke('+i+')"><span>'+s.nome+'</span></button>';
+  }).join('');
+  document.getElementById('bal-livello-area').innerHTML=
+    '<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:10px">Livello atleta (opzionale)</div>'+
+    '<div class="level-row">'+
+      '<button class="level-btn'+(BAL.livello==='Principiante'?' active-p':'')+'" onclick="balPickLivello(\'Principiante\')">🟢 Principiante</button>'+
+      '<button class="level-btn'+(BAL.livello==='Intermedio'?' active-i':'')+'" onclick="balPickLivello(\'Intermedio\')">🟡 Intermedio</button>'+
+      '<button class="level-btn'+(BAL.livello==='Pro'?' active-a':'')+'" onclick="balPickLivello(\'Pro\')">🔴 Pro</button>'+
+    '</div></div>';
+  document.getElementById('btn-bal-start').disabled = BAL.selected.length===0;
+}
+function balToggleStroke(i){
+  var p=BAL.selected.indexOf(i);
+  if(p>=0){ BAL.selected.splice(p,1); } else { BAL.selected.push(i); }
+  balRenderSetup();
+}
+function balPickLivello(v){ BAL.livello=(BAL.livello===v?null:v); balRenderSetup(); }
+
+function balStart(){
+  BAL.selected.sort(function(a,b){return a-b;});
+  BAL.idx=0; BAL.answers={}; BAL.notes={};
+  go('s-bal-run');
+  balRenderRun();
+}
+
+function balRenderRun(){
+  var i=BAL.selected[BAL.idx], s=TRAIN_STROKES[i];
+  document.getElementById('bal-counter-pill').textContent='COLPO '+(BAL.idx+1)+' / '+BAL.selected.length;
+  document.getElementById('bal-run-area').innerHTML=
+    '<div class="card">'+
+      '<div style="font-size:22px;font-weight:800">'+s.nome+'</div>'+
+      '<div style="font-size:13px;color:#888;margin-top:6px;line-height:1.6">Con pallina: prova il colpo senza modulo, poi con CLIPPI™ in testa (Ore 12), poi al lato (Ore 3+9). Confronta le sensazioni.</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:10px">Dove beneficerebbe la racchetta di una modifica?</div>'+
+      '<div class="tag-grid">'+BAL_OPTS.map(function(o){
+        return '<button class="tag-btn'+(BAL.answers[i]===o?' active-con':'')+'" onclick="balPickOpt('+i+',\''+o.replace(/'/g,"\\'")+'\')">'+o+'</button>';
+      }).join('')+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:8px">Nota su questo colpo (opzionale)</div>'+
+      '<textarea oninput="BAL.notes['+i+']=this.value" placeholder="osservazioni specifiche...">'+(BAL.notes[i]||'')+'</textarea>'+
+    '</div>'+
+    '<button class="btn-primary" onclick="balNext()" '+(BAL.answers[i]?'':'disabled')+'>'+(BAL.idx<BAL.selected.length-1?'Prossimo colpo →':'Vedi report →')+'</button>'+
+    (BAL.idx>0?'<button class="btn-secondary" onclick="balPrev()">← Colpo precedente</button>':'');
+}
+function balPickOpt(i,o){ BAL.answers[i]=o; balRenderRun(); }
+function balNext(){
+  if(BAL.idx<BAL.selected.length-1){ BAL.idx++; balRenderRun(); }
+  else { balShowSummary(); }
+}
+function balPrev(){ if(BAL.idx>0){ BAL.idx--; balRenderRun(); } }
+
+function balShowSummary(){
+  document.getElementById('bal-summary-list').innerHTML=BAL.selected.map(function(i){
+    var s=TRAIN_STROKES[i];
+    return '<div class="summary-row"><div style="flex:1">'+
+      '<b>'+s.nome+'</b>'+
+      '<div style="font-size:13px;color:#ccc;margin-top:4px">'+(BAL.answers[i]||'—')+'</div>'+
+      (BAL.notes[i]?'<div style="font-size:12px;color:#777;margin-top:3px">'+BAL.notes[i]+'</div>':'')+
+    '</div></div>';
+  }).join('');
+  document.getElementById('bal-note').value='';
+  go('s-bal-summary');
+}
+function balBuildText(){
+  var date=new Date().toLocaleDateString('it-IT');
+  var t='CLIPPI™ PRO-T — Report Bilanciamento Racchetta\n'+date+'\n';
+  if(BAL.livello) t+='Livello atleta: '+BAL.livello+'\n';
+  t+='Valutazione eseguita con pallina\n\n';
+  BAL.selected.forEach(function(i){
+    var s=TRAIN_STROKES[i];
+    t+=s.nome+': '+(BAL.answers[i]||'—')+'\n';
+    if(BAL.notes[i]) t+='  Nota: '+BAL.notes[i]+'\n';
+  });
+  var nf=document.getElementById('bal-note').value;
+  if(nf) t+='\nNote per il tecnico: '+nf;
+  return t;
+}
+function balCopyResults(){
+  var t=balBuildText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
+}
+function balSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(balBuildText()),'_blank');
+}
+
+// ============================================================
+// ===== PERCEZIONE CIECA =====
+// ============================================================
+var PERC_CONFIGS=["Nessuno","Ore 12","Ore 3","Ore 9","Ore 3+9","Ore 12+3","Ore 12+9","Ore 12+3+9"];
+var PERC_ROUNDS_OPTS=[4,6,8];
+var PC={strokeIdx:null,rounds:6,idx:0,log:[],realSel:null,percSel:null};
+
+function percRenderSetup(){
+  document.getElementById('perc-stroke-list').innerHTML=TRAIN_STROKES.map(function(s,i){
+    var act=PC.strokeIdx===i?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="percPickStroke('+i+')"><span>'+s.nome+'</span></button>';
+  }).join('');
+  document.getElementById('perc-rounds-list').innerHTML=PERC_ROUNDS_OPTS.map(function(n){
+    return '<button class="opt-btn'+(PC.rounds===n?' active':'')+'" onclick="percPickRounds('+n+')">'+n+' round</button>';
+  }).join('');
+  document.getElementById('btn-perc-start').disabled = PC.strokeIdx===null;
+}
+function percPickStroke(i){ PC.strokeIdx=i; percRenderSetup(); }
+function percPickRounds(n){ PC.rounds=n; percRenderSetup(); }
+
+function percStart(){
+  PC.idx=0; PC.log=[]; PC.realSel=null; PC.percSel=null;
+  go('s-perc-run');
+  percRenderRun();
+}
+
+function percRenderRun(){
+  var s=TRAIN_STROKES[PC.strokeIdx];
+  document.getElementById('perc-counter-pill').textContent='ROUND '+(PC.idx+1)+' / '+PC.rounds;
+  document.getElementById('perc-run-area').innerHTML=
+    '<div class="card">'+
+      '<div style="font-size:20px;font-weight:800">'+s.nome+'</div>'+
+      '<div style="font-size:13px;color:#888;margin-top:6px;line-height:1.6">A occhi chiusi: 1-2 colpi in slowmotion estrema. L\'atleta cerca di percepire, non indovinare.</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:10px">Configurazione reale (montata dall\'operatore)</div>'+
+      '<div class="opt-row">'+PERC_CONFIGS.map(function(c){
+        return '<button class="opt-btn'+(PC.realSel===c?' active':'')+'" onclick="percPickReal(\''+c+'\')">'+c+'</button>';
+      }).join('')+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:10px">Cosa ha percepito l\'atleta</div>'+
+      '<div class="opt-row">'+PERC_CONFIGS.map(function(c){
+        return '<button class="opt-btn'+(PC.percSel===c?' active':'')+'" onclick="percPickPerc(\''+c+'\')">'+c+'</button>';
+      }).join('')+'</div>'+
+    '</div>'+
+    (function(){
+      var missing=[];
+      if(!PC.realSel) missing.push('configurazione reale');
+      if(!PC.percSel) missing.push('percezione');
+      return missing.length ? '<div style="text-align:center;font-size:13px;color:var(--senza);margin-bottom:8px">Seleziona ancora: '+missing.join(' e ')+'</div>' : '';
+    })()+
+    '<button class="btn-primary" onclick="percNext()" '+((PC.realSel&&PC.percSel)?'':'disabled')+'>'+(PC.idx<PC.rounds-1?'Round completato →':'Vedi report →')+'</button>';
+}
+function percPickReal(c){ PC.realSel=c; percRenderRun(); }
+function percPickPerc(c){ PC.percSel=c; percRenderRun(); }
+function percNext(){
+  PC.log.push({real:PC.realSel, perc:PC.percSel, exact:PC.realSel===PC.percSel,
+    presenza:(PC.realSel==='Nessuno')===(PC.percSel==='Nessuno')});
+  PC.idx++;
+  PC.realSel=null; PC.percSel=null;
+  if(PC.idx>=PC.rounds){ percShowSummary(); return; }
+  percRenderRun();
+}
+
+function percShowSummary(){
+  var s=TRAIN_STROKES[PC.strokeIdx];
+  var exactN=PC.log.filter(function(r){return r.exact;}).length;
+  var presN=PC.log.filter(function(r){return r.presenza;}).length;
+  document.getElementById('perc-summary-list').innerHTML=
+    '<div class="card">'+
+      '<div style="font-size:20px;font-weight:800">'+s.nome+'</div>'+
+      '<div style="font-size:14px;color:#aaa;margin-top:8px">Presenza/assenza percepita correttamente: '+presN+' / '+PC.rounds+'</div>'+
+      '<div style="font-size:14px;color:#aaa;margin-top:4px">Configurazione esatta (posizione e numero): '+exactN+' / '+PC.rounds+'</div>'+
+    '</div>'+
+    PC.log.map(function(r,i){
+      return '<div class="summary-row"><div style="flex:1">'+
+        '<b>Round '+(i+1)+'</b>'+
+        '<div style="font-size:13px;color:#ccc;margin-top:4px">Reale: '+r.real+' · Percepito: '+r.perc+'</div>'+
+      '</div>'+
+      '<div style="font-size:20px">'+(r.exact?'✓':r.presenza?'≈':'✗')+'</div></div>';
+    }).join('');
+  go('s-perc-summary');
+}
+function percBuildText(){
+  var s=TRAIN_STROKES[PC.strokeIdx], date=new Date().toLocaleDateString('it-IT');
+  var exactN=PC.log.filter(function(r){return r.exact;}).length;
+  var presN=PC.log.filter(function(r){return r.presenza;}).length;
+  var t='CLIPPI™ PRO-T — Percezione Cieca\n'+date+'\n\n'+
+    'Colpo: '+s.nome+'\n'+
+    'Round: '+PC.rounds+'\n\n'+
+    'Presenza/assenza corretta: '+presN+' / '+PC.rounds+'\n'+
+    'Configurazione esatta: '+exactN+' / '+PC.rounds+'\n\n'+
+    'DETTAGLIO\n';
+  PC.log.forEach(function(r,i){
+    t+='Round '+(i+1)+' — Reale: '+r.real+' · Percepito: '+r.perc+' · '+(r.exact?'esatto':r.presenza?'presenza corretta, posizione/numero diversi':'non percepito correttamente')+'\n';
+  });
+  return t;
+}
+function percCopyResults(){
+  var t=percBuildText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
+}
+function percSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(percBuildText()),'_blank');
+}
+</script>
+</body>
+</html>
