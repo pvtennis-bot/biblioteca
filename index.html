@@ -2,1583 +2,1387 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#0D0800">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Biblioteca">
-<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiQmlibGlvdGVjYSIsInNob3J0X25hbWUiOiJCaWJsaW90ZWNhIiwic3RhcnRfdXJsIjoiLi9pbmRleC5odG1sIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBEMDgwMCIsInRoZW1lX2NvbG9yIjoiIzBEMDgwMCIsImljb25zIjpbeyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4dWN6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TUM5emRtY2lJSFpwWlhkQ2IzZzlJakFnTUNBMU1USWdOVEV5SWo0S0lDQThJUzB0SUZObWIyNWtieUF0TFQ0S0lDQThjbVZqZENCM2FXUjBhRDBpTlRFeUlpQm9aV2xuYUhROUlqVXhNaUlnY25nOUlqRXhNaUlnWm1sc2JEMGlJekJFTURnd01DSXZQZ29nSUR3aExTMGdRMjl5Ym1salpTQnZjbThnTFMwK0NpQWdQSEpsWTNRZ2VEMGlPQ0lnZVQwaU9DSWdkMmxrZEdnOUlqUTVOaUlnYUdWcFoyaDBQU0kwT1RZaUlISjRQU0l4TURnaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpUMGlJemhDTmpreE5DSWdjM1J5YjJ0bExYZHBaSFJvUFNJMklpOCtDZ29nSUR3aExTMGdVMk5oWm1aaGJHVWdjM1Z3WlhKcGIzSmxJQzB0UGdvZ0lEeHlaV04wSUhnOUlqUXdJaUI1UFNJeE5EQWlJSGRwWkhSb1BTSTBNeklpSUdobGFXZG9kRDBpTWpBaUlISjRQU0kwSWlCbWFXeHNQU0lqTTBFeU1EQTRJaTgrQ2lBZ1BISmxZM1FnZUQwaU5EQWlJSGs5SWpFME1DSWdkMmxrZEdnOUlqUXpNaUlnYUdWcFoyaDBQU0kwSWlCeWVEMGlNaUlnWm1sc2JEMGlJemhDTmpreE5DSXZQZ29LSUNBOElTMHRJRk5qWVdabVlXeGxJR2x1Wm1WeWFXOXlaU0F0TFQ0S0lDQThjbVZqZENCNFBTSTBNQ0lnZVQwaU16UXdJaUIzYVdSMGFEMGlORE15SWlCb1pXbG5hSFE5SWpJd0lpQnllRDBpTkNJZ1ptbHNiRDBpSXpOQk1qQXdPQ0l2UGdvZ0lEeHlaV04wSUhnOUlqUXdJaUI1UFNJek5EQWlJSGRwWkhSb1BTSTBNeklpSUdobGFXZG9kRDBpTkNJZ2NuZzlJaklpSUdacGJHdzlJaU00UWpZNU1UUWlMejRLQ2lBZ1BDRXRMU0JNU1VKU1NTQnpkV3hzYnlCelkyRm1abUZzWlNCemRYQmxjbWx2Y21VZ0xTMCtDaUFnUENFdExTQk1hV0p5YnlBeElISnZjM052SUMwdFBnb2dJRHh5WldOMElIZzlJalV5SWlCNVBTSXhOakFpSUhkcFpIUm9QU0kxTWlJZ2FHVnBaMmgwUFNJeE9EQWlJSEo0UFNJMElpQm1hV3hzUFNJak4wRXhOVEUxSWk4K0NpQWdQSEpsWTNRZ2VEMGlOVElpSUhrOUlqRTJNQ0lnZDJsa2RHZzlJakUwSWlCb1pXbG5hSFE5SWpFNE1DSWdjbmc5SWpRaUlHWnBiR3c5SWlNMVFUQkdNRVlpTHo0S0lDQThjbVZqZENCNFBTSTJOaUlnZVQwaU1Ua3dJaUIzYVdSMGFEMGlNekFpSUdobGFXZG9kRDBpTmlJZ2NuZzlJaklpSUdacGJHdzlJaU5FTkVGR016Y2lJRzl3WVdOcGRIazlJakF1TnlJdlBnb2dJRHh5WldOMElIZzlJalkySWlCNVBTSXlNRFFpSUhkcFpIUm9QU0l5TWlJZ2FHVnBaMmgwUFNJMElpQnllRDBpTWlJZ1ptbHNiRDBpSTBRMFFVWXpOeUlnYjNCaFkybDBlVDBpTUM0MElpOCtDaUFnUEhKbFkzUWdlRDBpTmpZaUlIazlJakl4TkNJZ2QybGtkR2c5SWpJMklpQm9aV2xuYUhROUlqUWlJSEo0UFNJeUlpQm1hV3hzUFNJalJEUkJSak0zSWlCdmNHRmphWFI1UFNJd0xqTWlMejRLQ2lBZ1BDRXRMU0JNYVdKeWJ5QXlJR0pzZFNBdExUNEtJQ0E4Y21WamRDQjRQU0l4TURnaUlIazlJakUyT0NJZ2QybGtkR2c5SWpRMElpQm9aV2xuYUhROUlqRTNNaUlnY25nOUlqUWlJR1pwYkd3OUlpTXhRVEpGTmtJaUx6NEtJQ0E4Y21WamRDQjRQU0l4TURnaUlIazlJakUyT0NJZ2QybGtkR2c5SWpFeUlpQm9aV2xuYUhROUlqRTNNaUlnY25nOUlqUWlJR1pwYkd3OUlpTXhNREZGTkVFaUx6NEtJQ0E4Y21WamRDQjRQU0l4TWpJaUlIazlJakU1TmlJZ2QybGtkR2c5SWpJMElpQm9aV2xuYUhROUlqWWlJSEo0UFNJeUlpQm1hV3hzUFNJalJEUkJSak0zSWlCdmNHRmphWFI1UFNJd0xqWWlMejRLSUNBOGNtVmpkQ0I0UFNJeE1qSWlJSGs5SWpJd09DSWdkMmxrZEdnOUlqRTRJaUJvWldsbmFIUTlJalFpSUhKNFBTSXlJaUJtYVd4c1BTSWpSRFJCUmpNM0lpQnZjR0ZqYVhSNVBTSXdMak0xSWk4K0Nnb2dJRHdoTFMwZ1RHbGljbThnTXlCMlpYSmtaU0JoYkhSdklDMHRQZ29nSUR4eVpXTjBJSGc5SWpFMU5pSWdlVDBpTVRRNElpQjNhV1IwYUQwaU5qQWlJR2hsYVdkb2REMGlNVGt5SWlCeWVEMGlOQ0lnWm1sc2JEMGlJekUyTTBFeU1DSXZQZ29nSUR4eVpXTjBJSGc5SWpFMU5pSWdlVDBpTVRRNElpQjNhV1IwYUQwaU1UWWlJR2hsYVdkb2REMGlNVGt5SWlCeWVEMGlOQ0lnWm1sc2JEMGlJekJGTWpZeE5pSXZQZ29nSUR4eVpXTjBJSGc5SWpFM05DSWdlVDBpTVRjNElpQjNhV1IwYUQwaU16WWlJR2hsYVdkb2REMGlOaUlnY25nOUlqSWlJR1pwYkd3OUlpTkVORUZHTXpjaUlHOXdZV05wZEhrOUlqQXVOelVpTHo0S0lDQThjbVZqZENCNFBTSXhOelFpSUhrOUlqRTVNaUlnZDJsa2RHZzlJakk0SWlCb1pXbG5hSFE5SWpRaUlISjRQU0l5SWlCbWFXeHNQU0lqUkRSQlJqTTNJaUJ2Y0dGamFYUjVQU0l3TGpRaUx6NEtJQ0E4Y21WamRDQjRQU0l4TnpRaUlIazlJakl3TWlJZ2QybGtkR2c5SWpNeUlpQm9aV2xuYUhROUlqUWlJSEo0UFNJeUlpQm1hV3hzUFNJalJEUkJSak0zSWlCdmNHRmphWFI1UFNJd0xqTWlMejRLSUNBOGNtVmpkQ0I0UFNJeE56UWlJSGs5SWpJeE1pSWdkMmxrZEdnOUlqSXdJaUJvWldsbmFIUTlJalFpSUhKNFBTSXlJaUJtYVd4c1BTSWpSRFJCUmpNM0lpQnZjR0ZqYVhSNVBTSXdMaklpTHo0S0NpQWdQQ0V0TFNCTWFXSnlieUEwSUdKdmNtUmxZWFY0SUMwdFBnb2dJRHh5WldOMElIZzlJakl5TUNJZ2VUMGlNVFl5SWlCM2FXUjBhRDBpTkRnaUlHaGxhV2RvZEQwaU1UYzRJaUJ5ZUQwaU5DSWdabWxzYkQwaUl6VkRNVFV6TUNJdlBnb2dJRHh5WldOMElIZzlJakl5TUNJZ2VUMGlNVFl5SWlCM2FXUjBhRDBpTVRNaUlHaGxhV2RvZEQwaU1UYzRJaUJ5ZUQwaU5DSWdabWxzYkQwaUl6UXdNVEF5TUNJdlBnb2dJRHh5WldOMElIZzlJakl6TlNJZ2VUMGlNVGt5SWlCM2FXUjBhRDBpTWpnaUlHaGxhV2RvZEQwaU5pSWdjbmc5SWpJaUlHWnBiR3c5SWlORU5FRkdNemNpSUc5d1lXTnBkSGs5SWpBdU5pSXZQZ29nSUR4eVpXTjBJSGc5SWpJek5TSWdlVDBpTWpBMklpQjNhV1IwYUQwaU1qQWlJR2hsYVdkb2REMGlOQ0lnY25nOUlqSWlJR1pwYkd3OUlpTkVORUZHTXpjaUlHOXdZV05wZEhrOUlqQXVNelVpTHo0S0NpQWdQQ0V0TFNCTWFXSnlieUExSUc5amNtRWdhVzVqYkdsdVlYUnZJQzB0UGdvZ0lEeHlaV04wSUhnOUlqSTNNaUlnZVQwaU1UY3dJaUIzYVdSMGFEMGlORElpSUdobGFXZG9kRDBpTVRjd0lpQnllRDBpTkNJZ1ptbHNiRDBpSXpaQk5FVXhNQ0lnZEhKaGJuTm1iM0p0UFNKeWIzUmhkR1VvTFRRZ01qa3pJREkxTlNraUx6NEtJQ0E4Y21WamRDQjRQU0l5TnpJaUlIazlJakUzTUNJZ2QybGtkR2c5SWpFeElpQm9aV2xuYUhROUlqRTNNQ0lnY25nOUlqUWlJR1pwYkd3OUlpTTBRVE0yTURnaUlIUnlZVzV6Wm05eWJUMGljbTkwWVhSbEtDMDBJREk1TXlBeU5UVXBJaTgrQ2dvZ0lEd2hMUzBnVEdsaWNtOGdOaUJ0WVhKeWIyNWxJQzB0UGdvZ0lEeHlaV04wSUhnOUlqTXlNaUlnZVQwaU1UVTFJaUIzYVdSMGFEMGlOVEFpSUdobGFXZG9kRDBpTVRnMUlpQnllRDBpTkNJZ1ptbHNiRDBpSXpOQk1qQXdPQ0l2UGdvZ0lEeHlaV04wSUhnOUlqTXlNaUlnZVQwaU1UVTFJaUIzYVdSMGFEMGlNVE1pSUdobGFXZG9kRDBpTVRnMUlpQnllRDBpTkNJZ1ptbHNiRDBpSXpJNE1UVXdOU0l2UGdvZ0lEeHlaV04wSUhnOUlqTXpOeUlnZVQwaU1UZzJJaUIzYVdSMGFEMGlNekFpSUdobGFXZG9kRDBpTmlJZ2NuZzlJaklpSUdacGJHdzlJaU5FTkVGR016Y2lJRzl3WVdOcGRIazlJakF1TlNJdlBnb2dJRHh5WldOMElIZzlJak16TnlJZ2VUMGlNakF3SWlCM2FXUjBhRDBpTWpJaUlHaGxhV2RvZEQwaU5DSWdjbmc5SWpJaUlHWnBiR3c5SWlORU5FRkdNemNpSUc5d1lXTnBkSGs5SWpBdU15SXZQZ29LSUNBOElTMHRJRXhwWW5KdklEY2dkbWx2YkdFZ2MyTjFjbThnTFMwK0NpQWdQSEpsWTNRZ2VEMGlNemMySWlCNVBTSXhOalFpSUhkcFpIUm9QU0kwTmlJZ2FHVnBaMmgwUFNJeE56WWlJSEo0UFNJMElpQm1hV3hzUFNJak0wRXhNRFV3SWk4K0NpQWdQSEpsWTNRZ2VEMGlNemMySWlCNVBTSXhOalFpSUhkcFpIUm9QU0l4TWlJZ2FHVnBaMmgwUFNJeE56WWlJSEo0UFNJMElpQm1hV3hzUFNJak1qZ3dRak00SWk4K0NpQWdQSEpsWTNRZ2VEMGlNemt3SWlCNVBTSXhPVFFpSUhkcFpIUm9QU0l5TmlJZ2FHVnBaMmgwUFNJMklpQnllRDBpTWlJZ1ptbHNiRDBpSTBRMFFVWXpOeUlnYjNCaFkybDBlVDBpTUM0MU5TSXZQZ29LSUNBOElTMHRJRXhwWW5KdklEZ2dkbVZ5WkdVZ2IyeHBkbUVnTFMwK0NpQWdQSEpsWTNRZ2VEMGlOREkySWlCNVBTSXhOVGdpSUhkcFpIUm9QU0kxTUNJZ2FHVnBaMmgwUFNJeE9ESWlJSEo0UFNJMElpQm1hV3hzUFNJak1rRXpRVEV3SWk4K0NpQWdQSEpsWTNRZ2VEMGlOREkySWlCNVBTSXhOVGdpSUhkcFpIUm9QU0l4TXlJZ2FHVnBaMmgwUFNJeE9ESWlJSEo0UFNJMElpQm1hV3hzUFNJak1VTXlPREE0SWk4K0NpQWdQSEpsWTNRZ2VEMGlORFF4SWlCNVBTSXhPRGdpSUhkcFpIUm9QU0l6TUNJZ2FHVnBaMmgwUFNJMklpQnllRDBpTWlJZ1ptbHNiRDBpSTBRMFFVWXpOeUlnYjNCaFkybDBlVDBpTUM0MUlpOCtDZ29nSUR3aExTMGdSbWxoYlcxaElHTmhibVJsYkdFZ2FXNGdZbUZ6YzI4Z0xTMCtDaUFnUEhKbFkzUWdlRDBpTWpRd0lpQjVQU0l6T1RBaUlIZHBaSFJvUFNJek1pSWdhR1ZwWjJoMFBTSTRNQ0lnY25nOUlqUWlJR1pwYkd3OUlpTkVPRU00T0RnaUx6NEtJQ0E4Y21WamRDQjRQU0l5TkRBaUlIazlJak01TUNJZ2QybGtkR2c5SWpnaUlHaGxhV2RvZEQwaU9EQWlJSEo0UFNJMElpQm1hV3hzUFNJalFqaEJPRFk0SWk4K0NpQWdQR3hwYm1VZ2VERTlJakkxTmlJZ2VURTlJak01TUNJZ2VESTlJakkxTmlJZ2VUSTlJak0zTWlJZ2MzUnliMnRsUFNJak16TXpJaUJ6ZEhKdmEyVXRkMmxrZEdnOUlqTWlMejRLSUNBOElTMHRJRVpwWVcxdFlTQXRMVDRLSUNBOFpXeHNhWEJ6WlNCamVEMGlNalUySWlCamVUMGlNelUxSWlCeWVEMGlNVGdpSUhKNVBTSXlPQ0lnWm1sc2JEMGlkWEpzS0NObWJHRnRaU2tpTHo0S0lDQThaR1ZtY3o0S0lDQWdJRHh5WVdScFlXeEhjbUZrYVdWdWRDQnBaRDBpWm14aGJXVWlJR040UFNJMU1DVWlJR041UFNJMk1DVWlJSEk5SWpVd0pTSStDaUFnSUNBZ0lEeHpkRzl3SUc5bVpuTmxkRDBpTUNVaUlITjBiM0F0WTI5c2IzSTlJaU5HUmtZMVFUQWlMejRLSUNBZ0lDQWdQSE4wYjNBZ2IyWm1jMlYwUFNJME1DVWlJSE4wYjNBdFkyOXNiM0k5SWlOR1JrRXdNakFpTHo0S0lDQWdJQ0FnUEhOMGIzQWdiMlptYzJWMFBTSXhNREFsSWlCemRHOXdMV052Ykc5eVBTSnlaMkpoS0RJMU5TdzJNQ3d3TERBcElpOCtDaUFnSUNBOEwzSmhaR2xoYkVkeVlXUnBaVzUwUGdvZ0lEd3ZaR1ZtY3o0S0NpQWdQQ0V0TFNCQmJHOXVaU0JqWVc1a1pXeGhJQzB0UGdvZ0lEeHlZV1JwWVd4SGNtRmthV1Z1ZENCcFpEMGlaMnh2ZHlJZ1kzZzlJalV3SlNJZ1kzazlJalV3SlNJZ2NqMGlOVEFsSWo0S0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1DVWlJSE4wYjNBdFkyOXNiM0k5SW5KblltRW9NalUxTERJd01DdzRNQ3d3TGpFNEtTSXZQZ29nSUNBZ1BITjBiM0FnYjJabWMyVjBQU0l4TURBbElpQnpkRzl3TFdOdmJHOXlQU0p5WjJKaEtEQXNNQ3d3TERBcElpOCtDaUFnUEM5eVlXUnBZV3hIY21Ga2FXVnVkRDRLSUNBOFpXeHNhWEJ6WlNCamVEMGlNalUySWlCamVUMGlNell3SWlCeWVEMGlPREFpSUhKNVBTSTJNQ0lnWm1sc2JEMGlkWEpzS0NObmJHOTNLU0l2UGdvOEwzTjJaejRLIiwic2l6ZXMiOiJhbnkiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8IS0tIFNmb25kbyAtLT4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzBEMDgwMCIvPgogIDwhLS0gQ29ybmljZSBvcm8gLS0+CiAgPHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjQ5NiIgaGVpZ2h0PSI0OTYiIHJ4PSIxMDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhCNjkxNCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CgogIDwhLS0gU2NhZmZhbGUgc3VwZXJpb3JlIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIxNDAiIHdpZHRoPSI0MzIiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjM0EyMDA4Ii8+CiAgPHJlY3QgeD0iNDAiIHk9IjE0MCIgd2lkdGg9IjQzMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iIzhCNjkxNCIvPgoKICA8IS0tIFNjYWZmYWxlIGluZmVyaW9yZSAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMzQwIiB3aWR0aD0iNDMyIiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzNBMjAwOCIvPgogIDxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI0MzIiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiM4QjY5MTQiLz4KCiAgPCEtLSBMSUJSSSBzdWxsbyBzY2FmZmFsZSBzdXBlcmlvcmUgLS0+CiAgPCEtLSBMaWJybyAxIHJvc3NvIC0tPgogIDxyZWN0IHg9IjUyIiB5PSIxNjAiIHdpZHRoPSI1MiIgaGVpZ2h0PSIxODAiIHJ4PSI0IiBmaWxsPSIjN0ExNTE1Ii8+CiAgPHJlY3QgeD0iNTIiIHk9IjE2MCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE4MCIgcng9IjQiIGZpbGw9IiM1QTBGMEYiLz4KICA8cmVjdCB4PSI2NiIgeT0iMTkwIiB3aWR0aD0iMzAiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNyIvPgogIDxyZWN0IHg9IjY2IiB5PSIyMDQiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iI0Q0QUYzNyIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iNjYiIHk9IjIxNCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjMiLz4KCiAgPCEtLSBMaWJybyAyIGJsdSAtLT4KICA8cmVjdCB4PSIxMDgiIHk9IjE2OCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjE3MiIgcng9IjQiIGZpbGw9IiMxQTJFNkIiLz4KICA8cmVjdCB4PSIxMDgiIHk9IjE2OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE3MiIgcng9IjQiIGZpbGw9IiMxMDFFNEEiLz4KICA8cmVjdCB4PSIxMjIiIHk9IjE5NiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjYiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjYiLz4KICA8cmVjdCB4PSIxMjIiIHk9IjIwOCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjM1Ii8+CgogIDwhLS0gTGlicm8gMyB2ZXJkZSBhbHRvIC0tPgogIDxyZWN0IHg9IjE1NiIgeT0iMTQ4IiB3aWR0aD0iNjAiIGhlaWdodD0iMTkyIiByeD0iNCIgZmlsbD0iIzE2M0EyMCIvPgogIDxyZWN0IHg9IjE1NiIgeT0iMTQ4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTkyIiByeD0iNCIgZmlsbD0iIzBFMjYxNiIvPgogIDxyZWN0IHg9IjE3NCIgeT0iMTc4IiB3aWR0aD0iMzYiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNzUiLz4KICA8cmVjdCB4PSIxNzQiIHk9IjE5MiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIxNzQiIHk9IjIwMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjMiLz4KICA8cmVjdCB4PSIxNzQiIHk9IjIxMiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjIiLz4KCiAgPCEtLSBMaWJybyA0IGJvcmRlYXV4IC0tPgogIDxyZWN0IHg9IjIyMCIgeT0iMTYyIiB3aWR0aD0iNDgiIGhlaWdodD0iMTc4IiByeD0iNCIgZmlsbD0iIzVDMTUzMCIvPgogIDxyZWN0IHg9IjIyMCIgeT0iMTYyIiB3aWR0aD0iMTMiIGhlaWdodD0iMTc4IiByeD0iNCIgZmlsbD0iIzQwMTAyMCIvPgogIDxyZWN0IHg9IjIzNSIgeT0iMTkyIiB3aWR0aD0iMjgiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjIzNSIgeT0iMjA2IiB3aWR0aD0iMjAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuMzUiLz4KCiAgPCEtLSBMaWJybyA1IG9jcmEgaW5jbGluYXRvIC0tPgogIDxyZWN0IHg9IjI3MiIgeT0iMTcwIiB3aWR0aD0iNDIiIGhlaWdodD0iMTcwIiByeD0iNCIgZmlsbD0iIzZBNEUxMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgMjkzIDI1NSkiLz4KICA8cmVjdCB4PSIyNzIiIHk9IjE3MCIgd2lkdGg9IjExIiBoZWlnaHQ9IjE3MCIgcng9IjQiIGZpbGw9IiM0QTM2MDgiIHRyYW5zZm9ybT0icm90YXRlKC00IDI5MyAyNTUpIi8+CgogIDwhLS0gTGlicm8gNiBtYXJyb25lIC0tPgogIDxyZWN0IHg9IjMyMiIgeT0iMTU1IiB3aWR0aD0iNTAiIGhlaWdodD0iMTg1IiByeD0iNCIgZmlsbD0iIzNBMjAwOCIvPgogIDxyZWN0IHg9IjMyMiIgeT0iMTU1IiB3aWR0aD0iMTMiIGhlaWdodD0iMTg1IiByeD0iNCIgZmlsbD0iIzI4MTUwNSIvPgogIDxyZWN0IHg9IjMzNyIgeT0iMTg2IiB3aWR0aD0iMzAiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjMzNyIgeT0iMjAwIiB3aWR0aD0iMjIiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuMyIvPgoKICA8IS0tIExpYnJvIDcgdmlvbGEgc2N1cm8gLS0+CiAgPHJlY3QgeD0iMzc2IiB5PSIxNjQiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxNzYiIHJ4PSI0IiBmaWxsPSIjM0ExMDUwIi8+CiAgPHJlY3QgeD0iMzc2IiB5PSIxNjQiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNzYiIHJ4PSI0IiBmaWxsPSIjMjgwQjM4Ii8+CiAgPHJlY3QgeD0iMzkwIiB5PSIxOTQiIHdpZHRoPSIyNiIgaGVpZ2h0PSI2IiByeD0iMiIgZmlsbD0iI0Q0QUYzNyIgb3BhY2l0eT0iMC41NSIvPgoKICA8IS0tIExpYnJvIDggdmVyZGUgb2xpdmEgLS0+CiAgPHJlY3QgeD0iNDI2IiB5PSIxNTgiIHdpZHRoPSI1MCIgaGVpZ2h0PSIxODIiIHJ4PSI0IiBmaWxsPSIjMkEzQTEwIi8+CiAgPHJlY3QgeD0iNDI2IiB5PSIxNTgiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxODIiIHJ4PSI0IiBmaWxsPSIjMUMyODA4Ii8+CiAgPHJlY3QgeD0iNDQxIiB5PSIxODgiIHdpZHRoPSIzMCIgaGVpZ2h0PSI2IiByeD0iMiIgZmlsbD0iI0Q0QUYzNyIgb3BhY2l0eT0iMC41Ii8+CgogIDwhLS0gRmlhbW1hIGNhbmRlbGEgaW4gYmFzc28gLS0+CiAgPHJlY3QgeD0iMjQwIiB5PSIzOTAiIHdpZHRoPSIzMiIgaGVpZ2h0PSI4MCIgcng9IjQiIGZpbGw9IiNEOEM4ODgiLz4KICA8cmVjdCB4PSIyNDAiIHk9IjM5MCIgd2lkdGg9IjgiIGhlaWdodD0iODAiIHJ4PSI0IiBmaWxsPSIjQjhBODY4Ii8+CiAgPGxpbmUgeDE9IjI1NiIgeTE9IjM5MCIgeDI9IjI1NiIgeTI9IjM3MiIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8IS0tIEZpYW1tYSAtLT4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMzU1IiByeD0iMTgiIHJ5PSIyOCIgZmlsbD0idXJsKCNmbGFtZSkiLz4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZmxhbWUiIGN4PSI1MCUiIGN5PSI2MCUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkY1QTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI0MCUiIHN0b3AtY29sb3I9IiNGRkEwMjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJyZ2JhKDI1NSw2MCwwLDApIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBBbG9uZSBjYW5kZWxhIC0tPgogIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMjU1LDIwMCw4MCwwLjE4KSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJyZ2JhKDAsMCwwLDApIi8+CiAgPC9yYWRpYWxHcmFkaWVudD4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMzYwIiByeD0iODAiIHJ5PSI2MCIgZmlsbD0idXJsKCNnbG93KSIvPgo8L3N2Zz4K">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8IS0tIFNmb25kbyAtLT4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjExMiIgZmlsbD0iIzBEMDgwMCIvPgogIDwhLS0gQ29ybmljZSBvcm8gLS0+CiAgPHJlY3QgeD0iOCIgeT0iOCIgd2lkdGg9IjQ5NiIgaGVpZ2h0PSI0OTYiIHJ4PSIxMDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhCNjkxNCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CgogIDwhLS0gU2NhZmZhbGUgc3VwZXJpb3JlIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIxNDAiIHdpZHRoPSI0MzIiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjM0EyMDA4Ii8+CiAgPHJlY3QgeD0iNDAiIHk9IjE0MCIgd2lkdGg9IjQzMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iIzhCNjkxNCIvPgoKICA8IS0tIFNjYWZmYWxlIGluZmVyaW9yZSAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMzQwIiB3aWR0aD0iNDMyIiBoZWlnaHQ9IjIwIiByeD0iNCIgZmlsbD0iIzNBMjAwOCIvPgogIDxyZWN0IHg9IjQwIiB5PSIzNDAiIHdpZHRoPSI0MzIiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiM4QjY5MTQiLz4KCiAgPCEtLSBMSUJSSSBzdWxsbyBzY2FmZmFsZSBzdXBlcmlvcmUgLS0+CiAgPCEtLSBMaWJybyAxIHJvc3NvIC0tPgogIDxyZWN0IHg9IjUyIiB5PSIxNjAiIHdpZHRoPSI1MiIgaGVpZ2h0PSIxODAiIHJ4PSI0IiBmaWxsPSIjN0ExNTE1Ii8+CiAgPHJlY3QgeD0iNTIiIHk9IjE2MCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjE4MCIgcng9IjQiIGZpbGw9IiM1QTBGMEYiLz4KICA8cmVjdCB4PSI2NiIgeT0iMTkwIiB3aWR0aD0iMzAiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNyIvPgogIDxyZWN0IHg9IjY2IiB5PSIyMDQiIHdpZHRoPSIyMiIgaGVpZ2h0PSI0IiByeD0iMiIgZmlsbD0iI0Q0QUYzNyIgb3BhY2l0eT0iMC40Ii8+CiAgPHJlY3QgeD0iNjYiIHk9IjIxNCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjMiLz4KCiAgPCEtLSBMaWJybyAyIGJsdSAtLT4KICA8cmVjdCB4PSIxMDgiIHk9IjE2OCIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjE3MiIgcng9IjQiIGZpbGw9IiMxQTJFNkIiLz4KICA8cmVjdCB4PSIxMDgiIHk9IjE2OCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjE3MiIgcng9IjQiIGZpbGw9IiMxMDFFNEEiLz4KICA8cmVjdCB4PSIxMjIiIHk9IjE5NiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjYiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjYiLz4KICA8cmVjdCB4PSIxMjIiIHk9IjIwOCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjM1Ii8+CgogIDwhLS0gTGlicm8gMyB2ZXJkZSBhbHRvIC0tPgogIDxyZWN0IHg9IjE1NiIgeT0iMTQ4IiB3aWR0aD0iNjAiIGhlaWdodD0iMTkyIiByeD0iNCIgZmlsbD0iIzE2M0EyMCIvPgogIDxyZWN0IHg9IjE1NiIgeT0iMTQ4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTkyIiByeD0iNCIgZmlsbD0iIzBFMjYxNiIvPgogIDxyZWN0IHg9IjE3NCIgeT0iMTc4IiB3aWR0aD0iMzYiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNzUiLz4KICA8cmVjdCB4PSIxNzQiIHk9IjE5MiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjQiLz4KICA8cmVjdCB4PSIxNzQiIHk9IjIwMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjMiLz4KICA8cmVjdCB4PSIxNzQiIHk9IjIxMiIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQiIHJ4PSIyIiBmaWxsPSIjRDRBRjM3IiBvcGFjaXR5PSIwLjIiLz4KCiAgPCEtLSBMaWJybyA0IGJvcmRlYXV4IC0tPgogIDxyZWN0IHg9IjIyMCIgeT0iMTYyIiB3aWR0aD0iNDgiIGhlaWdodD0iMTc4IiByeD0iNCIgZmlsbD0iIzVDMTUzMCIvPgogIDxyZWN0IHg9IjIyMCIgeT0iMTYyIiB3aWR0aD0iMTMiIGhlaWdodD0iMTc4IiByeD0iNCIgZmlsbD0iIzQwMTAyMCIvPgogIDxyZWN0IHg9IjIzNSIgeT0iMTkyIiB3aWR0aD0iMjgiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjIzNSIgeT0iMjA2IiB3aWR0aD0iMjAiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuMzUiLz4KCiAgPCEtLSBMaWJybyA1IG9jcmEgaW5jbGluYXRvIC0tPgogIDxyZWN0IHg9IjI3MiIgeT0iMTcwIiB3aWR0aD0iNDIiIGhlaWdodD0iMTcwIiByeD0iNCIgZmlsbD0iIzZBNEUxMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTQgMjkzIDI1NSkiLz4KICA8cmVjdCB4PSIyNzIiIHk9IjE3MCIgd2lkdGg9IjExIiBoZWlnaHQ9IjE3MCIgcng9IjQiIGZpbGw9IiM0QTM2MDgiIHRyYW5zZm9ybT0icm90YXRlKC00IDI5MyAyNTUpIi8+CgogIDwhLS0gTGlicm8gNiBtYXJyb25lIC0tPgogIDxyZWN0IHg9IjMyMiIgeT0iMTU1IiB3aWR0aD0iNTAiIGhlaWdodD0iMTg1IiByeD0iNCIgZmlsbD0iIzNBMjAwOCIvPgogIDxyZWN0IHg9IjMyMiIgeT0iMTU1IiB3aWR0aD0iMTMiIGhlaWdodD0iMTg1IiByeD0iNCIgZmlsbD0iIzI4MTUwNSIvPgogIDxyZWN0IHg9IjMzNyIgeT0iMTg2IiB3aWR0aD0iMzAiIGhlaWdodD0iNiIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuNSIvPgogIDxyZWN0IHg9IjMzNyIgeT0iMjAwIiB3aWR0aD0iMjIiIGhlaWdodD0iNCIgcng9IjIiIGZpbGw9IiNENEFGMzciIG9wYWNpdHk9IjAuMyIvPgoKICA8IS0tIExpYnJvIDcgdmlvbGEgc2N1cm8gLS0+CiAgPHJlY3QgeD0iMzc2IiB5PSIxNjQiIHdpZHRoPSI0NiIgaGVpZ2h0PSIxNzYiIHJ4PSI0IiBmaWxsPSIjM0ExMDUwIi8+CiAgPHJlY3QgeD0iMzc2IiB5PSIxNjQiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNzYiIHJ4PSI0IiBmaWxsPSIjMjgwQjM4Ii8+CiAgPHJlY3QgeD0iMzkwIiB5PSIxOTQiIHdpZHRoPSIyNiIgaGVpZ2h0PSI2IiByeD0iMiIgZmlsbD0iI0Q0QUYzNyIgb3BhY2l0eT0iMC41NSIvPgoKICA8IS0tIExpYnJvIDggdmVyZGUgb2xpdmEgLS0+CiAgPHJlY3QgeD0iNDI2IiB5PSIxNTgiIHdpZHRoPSI1MCIgaGVpZ2h0PSIxODIiIHJ4PSI0IiBmaWxsPSIjMkEzQTEwIi8+CiAgPHJlY3QgeD0iNDI2IiB5PSIxNTgiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxODIiIHJ4PSI0IiBmaWxsPSIjMUMyODA4Ii8+CiAgPHJlY3QgeD0iNDQxIiB5PSIxODgiIHdpZHRoPSIzMCIgaGVpZ2h0PSI2IiByeD0iMiIgZmlsbD0iI0Q0QUYzNyIgb3BhY2l0eT0iMC41Ii8+CgogIDwhLS0gRmlhbW1hIGNhbmRlbGEgaW4gYmFzc28gLS0+CiAgPHJlY3QgeD0iMjQwIiB5PSIzOTAiIHdpZHRoPSIzMiIgaGVpZ2h0PSI4MCIgcng9IjQiIGZpbGw9IiNEOEM4ODgiLz4KICA8cmVjdCB4PSIyNDAiIHk9IjM5MCIgd2lkdGg9IjgiIGhlaWdodD0iODAiIHJ4PSI0IiBmaWxsPSIjQjhBODY4Ii8+CiAgPGxpbmUgeDE9IjI1NiIgeTE9IjM5MCIgeDI9IjI1NiIgeTI9IjM3MiIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8IS0tIEZpYW1tYSAtLT4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMzU1IiByeD0iMTgiIHJ5PSIyOCIgZmlsbD0idXJsKCNmbGFtZSkiLz4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZmxhbWUiIGN4PSI1MCUiIGN5PSI2MCUiIHI9IjUwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNGRkY1QTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI0MCUiIHN0b3AtY29sb3I9IiNGRkEwMjAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJyZ2JhKDI1NSw2MCwwLDApIi8+CiAgICA8L3JhZGlhbEdyYWRpZW50PgogIDwvZGVmcz4KCiAgPCEtLSBBbG9uZSBjYW5kZWxhIC0tPgogIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2xvdyIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9InJnYmEoMjU1LDIwMCw4MCwwLjE4KSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSJyZ2JhKDAsMCwwLDApIi8+CiAgPC9yYWRpYWxHcmFkaWVudD4KICA8ZWxsaXBzZSBjeD0iMjU2IiBjeT0iMzYwIiByeD0iODAiIHJ5PSI2MCIgZmlsbD0idXJsKCNnbG93KSIvPgo8L3N2Zz4K">
-<title>Biblioteca</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>CLIPPI™ PRO-T — Test Campo &amp; Allenamento</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  :root { --acc:#ff6a00; --acc2:#ff3b3b; --acc-bg:#2a1000; --senza:#ffcf77; --senza-bg:#2a1e00; }
+  body.theme-green { --acc:#39ff14; --acc2:#22c55e; --acc-bg:#0d2200; --senza:#38bdf8; --senza-bg:#0e2030; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Helvetica Neue',sans-serif; background:#0f0f0f; color:#f0f0f0; min-height:100vh; }
+  .wrap { max-width:480px; margin:0 auto; padding:20px 16px 40px; }
+  .eyebrow { font-size:11px; letter-spacing:3px; color:var(--acc); margin-bottom:12px; }
+  .card { background:#1a1a1a; border-radius:16px; padding:18px; margin-bottom:14px; }
+  .btn-primary { width:100%; padding:16px; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; margin-top:8px; display:block; }
+  .btn-primary:disabled { opacity:.35; }
+  .btn-secondary { width:100%; padding:14px; background:transparent; color:#aaa; border:1.5px solid #2e2e2e; border-radius:12px; font-size:15px; cursor:pointer; margin-top:8px; display:block; }
+  .btn-wa { width:100%; padding:16px; background:#25D366; color:#fff; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; margin-top:8px; display:block; }
+  input { width:100%; background:#202020; border:1.5px solid #2e2e2e; border-radius:10px; color:#f0f0f0; font-size:15px; padding:12px; font-family:inherit; }
+  textarea { width:100%; background:#202020; border:1.5px solid #2e2e2e; border-radius:10px; color:#f0f0f0; font-size:15px; padding:12px; font-family:inherit; resize:none; height:72px; }
+  .progress-bar { background:#222; border-radius:99px; height:6px; margin-bottom:8px; }
+  .progress-fill { border-radius:99px; height:6px; transition:width .3s; background:linear-gradient(90deg,var(--acc),var(--acc2)); }
+  .badge { display:inline-block; padding:3px 12px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:1px; }
+  .badge-con { background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; }
+  .badge-senza { background:#e5e5e5; color:#555; }
+  .badge-pos { display:inline-block; padding:3px 12px; border-radius:999px; font-size:12px; font-weight:800; background:#ffe600; color:#111; }
+  .banner { border-radius:10px; padding:10px 14px; font-size:13px; font-weight:600; margin-top:10px; }
+  .banner-field { background:var(--acc-bg); color:var(--acc); border:1.5px solid var(--acc); }
+  .banner-net { background:#1a1a2e; color:#818cf8; border:1.5px solid #818cf8; }
+  .rpe-row { display:flex; gap:5px; margin-top:8px; }
+  .rpe-btn { flex:1; padding:12px 0; border-radius:8px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:700; font-size:13px; cursor:pointer; }
+  .level-row { display:flex; gap:8px; margin-top:8px; }
+  .level-btn { flex:1; padding:12px 4px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:600; font-size:12px; cursor:pointer; }
+  .level-btn.active-p { border-color:#22c55e; background:#22c55e; color:#111; }
+  .level-btn.active-i { border-color:#ffe600; background:#ffe600; color:#111; }
+  .level-btn.active-a { border-color:#ef4444; background:#ef4444; color:#fff; }
+  .tag-grid { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+  .tag-btn { width:100%; padding:12px 14px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#ccc; font-size:14px; cursor:pointer; text-align:left; }
+  .tag-btn.active-con { border-color:var(--acc); background:var(--acc-bg); color:var(--acc); font-weight:600; }
+  .tag-btn.active-senza { border-color:var(--senza); background:var(--senza-bg); color:var(--senza); font-weight:600; }
+  .yn-row { display:flex; gap:8px; margin-top:8px; }
+  .yn-btn { flex:1; padding:13px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#ccc; font-size:15px; font-weight:700; cursor:pointer; text-align:center; }
+  .yn-btn.active-si { border-color:var(--acc); background:var(--acc-bg); color:var(--acc); }
+  .yn-btn.active-no { border-color:#555; background:#2a2a2a; color:#888; }
+  .grip-row { display:grid; grid-template-columns:repeat(6,1fr); gap:4px; margin-top:8px; }
+  .grip-btn { padding:11px 0; border-radius:8px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:700; font-size:13px; cursor:pointer; text-align:center; }
+  .grip-btn.active { border-color:var(--acc); background:var(--acc); color:#fff; }
+  .resp-row { display:flex; gap:8px; margin-top:8px; }
+  .resp-btn { flex:1; padding:13px 6px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#ccc; font-size:13px; font-weight:600; cursor:pointer; text-align:center; }
+  .resp-btn.active { border-color:var(--acc); background:var(--acc-bg); color:var(--acc); }
+  .opt-row { display:flex; gap:8px; flex-wrap:wrap; }
+  .opt-btn { flex:1 1 auto; padding:12px 8px; border-radius:10px; border:2px solid #2e2e2e; background:#1a1a1a; color:#aaa; font-weight:600; font-size:13px; cursor:pointer; }
+  .opt-btn.active { border-color:var(--acc); background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; }
+  .summary-row { display:flex; align-items:flex-start; justify-content:space-between; padding:12px 16px; background:#1a1a1a; border-radius:12px; margin-bottom:8px; gap:10px; }
+  .rpe-circle { min-width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; flex-shrink:0; }
+  .screen { display:none; }
+  .screen.active { display:block; }
+  .substep-indicator { display:flex; gap:6px; margin-bottom:16px; }
+  .substep-dot { flex:1; height:4px; border-radius:99px; background:#222; }
+  .substep-dot.done { background:var(--acc); }
+  .substep-dot.current { background:#888; }
+  .step { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; }
+  .step-num { min-width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .step-text { font-size:14px; color:#ccc; line-height:1.6; }
+  .step-text b { color:#f0f0f0; }
+  .reps-box { margin-top:14px; background:#202020; border-radius:10px; padding:12px; text-align:center; }
+  .hidden { display:none; }
+  .hero-accent { background:linear-gradient(135deg,var(--acc),var(--acc2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .theme-toggle { display:flex; gap:4px; background:#1a1a1a; border-radius:99px; padding:4px; margin-bottom:20px; }
+  .th-btn { flex:1; padding:9px 0; border-radius:99px; border:none; font-size:13px; font-weight:700; cursor:pointer; transition:all .2s; }
 
-/* SPLASH SCREEN */
-#splash {
-  position: fixed; inset: 0; z-index: 9999;
-  background: #080400;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  transition: opacity 0.8s ease;
-}
-#splash.fade { opacity: 0; pointer-events: none; }
-#splash canvas { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
-.splash-content {
-  position: relative; z-index: 2;
-  display: flex; flex-direction: column; align-items: center;
-  padding: 30px;
-}
-.splash-icon {
-  width: 110px; height: 110px; border-radius: 24px;
-  background: linear-gradient(160deg, #2A1A00 0%, #0D0800 100%);
-  border: 2px solid #8B6914;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 28px;
-  box-shadow: 0 8px 40px rgba(212,175,55,0.25);
-}
-.splash-title {
-  color: #D4AF37; font-size: 32px; font-style: italic;
-  font-family: Georgia, serif; margin-bottom: 8px;
-  letter-spacing: 0.05em;
-}
-.splash-subtitle {
-  color: #6B5235; font-size: 13px; font-family: Georgia, serif;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  margin-bottom: 50px;
-}
-.splash-loader {
-  width: 48px; height: 2px; background: #2A1800; border-radius: 2px; overflow: hidden;
-}
-.splash-loader-bar {
-  height: 100%; width: 0%; background: #D4AF37; border-radius: 2px;
-  transition: width 1.8s ease;
-}
-body { background: #0D0800; color: #F5E6C8; font-family: Georgia, serif; min-height: 100vh; }
-
-/* TOP BAR */
-.topbar { background: #1A0F00; border-bottom: 1px solid #3A2508; padding: 12px 14px;
-  display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 100; }
-.topbar-title { color: #D4AF37; font-size: 17px; font-style: italic; flex: 1; }
-.btn-add { background: #8B6914; border: none; border-radius: 8px; padding: 9px 14px;
-  color: #fff; font-family: Georgia, serif; font-size: 13px; cursor: pointer; white-space: nowrap; }
-.btn-menu { background: none; border: none; color: #8B6914; font-size: 24px; cursor: pointer; line-height:1; padding:2px 4px; }
-
-/* SIDEBAR */
-.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 199; }
-.sidebar-overlay.open { display: block; }
-.sidebar { position: fixed; left: -290px; top: 0; bottom: 0; width: 270px;
-  background: #120900; border-right: 1px solid #3A2508; z-index: 200;
-  transition: left 0.25s ease; display: flex; flex-direction: column; overflow-y: auto; }
-.sidebar.open { left: 0; }
-.sb-head { padding: 18px 16px; border-bottom: 1px solid #2A1500; display: flex; align-items: center; gap: 10px; }
-.sb-lbl { color: #6B5235; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 14px 16px 6px; }
-.sb-btn { display: flex; justify-content: space-between; align-items: center;
-  padding: 9px 12px; background: transparent; border: none; border-radius: 6px;
-  color: #8B7355; font-family: Georgia, serif; font-size: 13px; cursor: pointer;
-  text-align: left; margin: 2px 8px; width: calc(100% - 16px); }
-.sb-btn:active, .sb-btn.active { background: #3A2508; color: #D4AF37; }
-.sb-badge { background: #1A0F00; border-radius: 10px; padding: 1px 7px; font-size: 11px; color: #6B5235; }
-
-/* BACKUP SEZIONE IN SIDEBAR */
-.sb-backup-btn { display: flex; align-items: center; gap: 10px;
-  padding: 11px 14px; background: #0D0800; border: 1px solid #3A2508; border-radius: 8px;
-  color: #C9A84C; font-family: Georgia, serif; font-size: 13px; cursor: pointer;
-  margin: 4px 8px; width: calc(100% - 16px); text-align: left; }
-.sb-backup-btn:active { background: #1A0F00; }
-.sb-backup-btn .icon { font-size: 18px; flex-shrink: 0; }
-
-/* STATS */
-.stats-row { display: flex; gap: 6px; padding: 8px 12px; border-bottom: 1px solid #1A0F00; flex-wrap: wrap; }
-.stat-chip { background: #1A0F00; border: 1px solid #2A1800; border-radius: 6px;
-  padding: 5px 9px; text-align: center; cursor: pointer; }
-.stat-chip.active { border-color: #8B6914; }
-.stat-chip .num { color: #6B5235; font-size: 14px; font-weight: bold; }
-.stat-chip.active .num { color: #D4AF37; }
-.stat-chip .lbl { color: #4A3210; font-size: 9px; }
-
-/* SEARCH */
-.search-bar { padding: 9px 12px; background: #150B00; border-bottom: 1px solid #2A1A00;
-  display: flex; gap: 8px; align-items: center; }
-.search-input { flex: 1; background: #0D0800; border: 1px solid #3A2508; border-radius: 8px;
-  padding: 9px 13px; color: #F5E6C8; font-family: Georgia, serif; font-size: 14px; outline: none; }
-.sort-tabs { display: flex; gap: 6px; padding: 7px 12px; border-bottom: 1px solid #1A0F00; align-items: center; }
-.sort-btn { padding: 6px 11px; border: 1px solid #3A2508; border-radius: 6px; background: transparent;
-  color: #6B5235; font-family: Georgia, serif; font-size: 11px; cursor: pointer; }
-.sort-btn.active { border-color: #8B6914; background: #3A2508; color: #D4AF37; }
-.filter-badge { margin-left: auto; display: flex; align-items: center; gap: 4px; }
-.filter-tag { background: #3A2508; border: 1px solid #8B6914; border-radius: 12px;
-  padding: 3px 9px; color: #D4AF37; font-size: 11px; }
-
-/* BOOK CARDS */
-.list-area { padding: 11px 12px 90px; }
-.book-card { background: #1A0F00; border: 1px solid #3A2508; border-radius: 8px;
-  display: flex; cursor: pointer; overflow: hidden; margin-bottom: 9px;
-  transition: border-color 0.2s; }
-.book-card:active { border-color: #8B6914; }
-.book-cover-col { width: 68px; flex-shrink: 0; min-height: 96px; overflow: hidden; }
-.book-cover-col img { width: 68px; height: 100%; object-fit: cover; display: block; min-height: 96px; }
-.book-info { flex: 1; padding: 9px 11px; min-width: 0; }
-.book-title { color: #F5E6C8; font-size: 14px; font-weight: bold; margin-bottom: 2px;
-  overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.book-author { color: #C9A84C; font-size: 12px; margin-bottom: 6px;
-  overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.book-meta { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
-.genre-tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; }
-.book-year { color: #6B5235; font-size: 10px; }
-.book-arr { padding: 10px 8px; display: flex; align-items: center; color: #4A3210; font-size: 15px; }
-.empty-state { text-align: center; padding: 55px 20px; color: #4A3210; }
-
-/* MODALI */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-  z-index: 1000; align-items: flex-start; justify-content: center; padding: 12px; overflow-y: auto; }
-.modal-overlay.open { display: flex; }
-.modal-box { background: #1E1209; border: 1px solid #5C3D0E; border-radius: 12px;
-  width: 100%; max-width: 460px; margin-top: 16px; overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.9); }
-.modal-hd { padding: 16px 18px; border-bottom: 1px solid #3A2508;
-  display: flex; justify-content: space-between; align-items: center; }
-.modal-title { color: #D4AF37; font-size: 17px; font-style: italic; }
-.modal-close { background: none; border: none; color: #8B6914; font-size: 22px; cursor: pointer; line-height:1; }
-.modal-body { padding: 16px 18px 20px; }
-
-/* METHOD CARDS */
-.method-card { background: #0D0800; border: 1px solid #4A3210; border-radius: 10px;
-  padding: 14px 16px; display: flex; align-items: center; gap: 14px;
-  cursor: pointer; margin-bottom: 10px; }
-.method-card:active { border-color: #D4AF37; }
-.mc-icon { font-size: 28px; flex-shrink: 0; }
-.mc-title { color: #D4AF37; font-size: 14px; font-weight: bold; margin-bottom: 3px; }
-.mc-sub { color: #8B7355; font-size: 11px; line-height: 1.4; }
-.mc-note { color: #2E6B2E; font-size: 10px; margin-top: 2px; }
-
-/* FORM */
-.field-label { display: block; color: #C9A84C; font-size: 11px; margin-bottom: 4px;
-  margin-top: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
-.field-input { width: 100%; background: #0D0800; border: 1px solid #4A3210; border-radius: 7px;
-  padding: 9px 12px; color: #F5E6C8; font-family: Georgia, serif; font-size: 14px; outline: none; }
-.field-input:focus { border-color: #8B6914; }
-.field-textarea { width: 100%; background: #0D0800; border: 1px solid #4A3210; border-radius: 7px;
-  padding: 9px 12px; color: #F5E6C8; font-family: Georgia, serif; font-size: 14px; outline: none;
-  resize: vertical; min-height: 72px; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.genre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
-.genre-btn { padding: 9px 6px; border: 1px solid #4A3210; border-radius: 7px; background: #0D0800;
-  color: #8B6914; font-family: Georgia, serif; font-size: 12px; cursor: pointer; }
-.genre-btn.sel { border-color: #D4AF37; background: #3A2508; color: #D4AF37; }
-.btn-row { display: flex; gap: 10px; margin-top: 18px; }
-.btn-primary { flex: 1; background: #8B6914; border: none; border-radius: 8px;
-  padding: 13px; color: #fff; font-family: Georgia, serif; font-size: 14px; cursor: pointer; }
-.btn-secondary { flex: 1; background: transparent; border: 1px solid #5C3D0E; border-radius: 8px;
-  padding: 13px; color: #C9A84C; font-family: Georgia, serif; font-size: 14px; cursor: pointer; }
-.btn-danger { background: #2E0808; border: 1px solid #8B2020; border-radius: 8px;
-  padding: 11px 14px; color: #C04040; font-family: Georgia, serif; font-size: 14px; cursor: pointer; }
-
-/* QR */
-.qr-box { background: #1E1209; border: 1px solid #5C3D0E; border-radius: 12px;
-  width: 100%; max-width: 420px; margin-top: 16px; overflow: hidden; }
-#qr-reader { width: 100%; }
-#qr-reader__dashboard_section_swaplink { display: none !important; }
-#qr-reader__camera_permission_button {
-  background: #8B6914 !important; border: none !important; border-radius: 8px !important;
-  padding: 10px 20px !important; color: white !important; font-family: Georgia,serif !important;
-  font-size: 14px !important; cursor: pointer !important; margin: 10px !important; }
-.qr-status { padding: 11px 16px; text-align: center; font-size: 13px; color: #C9A84C; }
-.qr-status.ok { color: #6EC96E; }
-.qr-status.err { color: #E07070; }
-.loading-line { display: none; padding: 12px 16px; text-align: center; color: #C9A84C; font-size: 13px; }
-.spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #4A3210;
-  border-top-color: #D4AF37; border-radius: 50%; animation: spin 0.8s linear infinite;
-  margin-right: 6px; vertical-align: middle; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.scan-wrap { position: relative; }
-.sc { position: absolute; width: 22px; height: 22px; border-color: #D4AF37; border-style: solid; pointer-events: none; z-index: 10; }
-.sc.tl { top:8px; left:8px; border-width:3px 0 0 3px; }
-.sc.tr { top:8px; right:8px; border-width:3px 3px 0 0; }
-.sc.bl { bottom:8px; left:8px; border-width:0 0 3px 3px; }
-.sc.br { bottom:8px; right:8px; border-width:0 3px 3px 0; }
-
-/* DETAIL */
-.detail-wrap { display: none; }
-.detail-wrap.open { display: block; }
-.detail-topbar { background: #1A0F00; border-bottom: 1px solid #3A2508; padding: 12px 14px;
-  display: flex; justify-content: space-between; align-items: center;
-  position: sticky; top: 0; z-index: 50; }
-.detail-back { background: none; border: none; color: #8B6914; font-family: Georgia,serif; font-size: 13px; cursor: pointer; }
-.detail-hero { display: flex; border-bottom: 1px solid #3A2508; }
-.detail-cover { width: 108px; height: 152px; flex-shrink: 0; overflow: hidden; }
-.detail-cover img { width: 108px; height: 152px; object-fit: cover; }
-.detail-info { flex: 1; padding: 14px; }
-.dtitle { color: #F5E6C8; font-size: 17px; font-weight: bold; line-height: 1.3; margin-bottom: 5px; }
-.dauthor { color: #C9A84C; font-size: 14px; margin-bottom: 9px; }
-.tabs { display: flex; border-bottom: 1px solid #3A2508; }
-.tab-btn { flex: 1; padding: 10px 4px; border: none; background: none; color: #6B5235;
-  font-family: Georgia,serif; font-size: 12px; cursor: pointer; border-bottom: 2px solid transparent; }
-.tab-btn.active { color: #D4AF37; border-bottom-color: #D4AF37; }
-.tab-pane { display: none; padding: 16px; }
-.tab-pane.active { display: block; }
-.info-row { display: flex; gap: 8px; margin-bottom: 9px; }
-.ik { color: #6B5235; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; min-width: 70px; flex-shrink: 0; padding-top: 1px; }
-.iv { color: #F5E6C8; font-size: 14px; flex: 1; }
-.text-block { background: #0D0800; border: 1px solid #3A2508; border-radius: 8px;
-  padding: 12px; color: #C9A84C; font-size: 13px; line-height: 1.6; font-style: italic; white-space: pre-wrap; }
-.detail-actions { display: flex; gap: 10px; padding: 0 16px 18px; }
-.btn-edit { flex: 1; background: #3A2508; border: 1px solid #8B6914; border-radius: 8px;
-  padding: 12px; color: #D4AF37; font-family: Georgia,serif; font-size: 14px; cursor: pointer; }
-
-/* GENRE COLORS */
-.gN { background:#8B2FC918;border:1px solid #8B2FC966;color:#9B3FD9; }
-.gS { background:#1A6B3C18;border:1px solid #1A6B3C66;color:#1A8B4C; }
-.gC { background:#8B000018;border:1px solid #8B000066;color:#BB2020; }
-.g9 { background:#C8713718;border:1px solid #C8713766;color:#C87137; }
-.gR { background:#1565C018;border:1px solid #1565C066;color:#1575D0; }
-
-/* NOTIF */
-.notif { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  background: #1A2E1A; border: 1px solid #2E5C2E; border-radius: 8px;
-  padding: 10px 18px; color: #6EC96E; font-size: 13px; z-index: 9999;
-  transition: opacity 0.4s; white-space: nowrap; pointer-events: none; }
-.notif.err { background: #2E1A1A; border-color: #5C2E2E; color: #E07070; }
-.notif.hide { opacity: 0; }
-
-/* IMPORTA BANNER */
-.qr-banner { background: #1A2E1A; border: 1px solid #2E5C2E; border-radius: 7px;
-  padding: 9px 13px; color: #6EC96E; font-size: 12px; margin-bottom: 13px; }
-.error-box { background: #2E1A1A; border: 1px solid #5C2E2E; border-radius: 7px;
-  padding: 9px 13px; color: #E07070; font-size: 12px; margin-top: 8px; display: none; }
-
-/* COVER PLACEHOLDER */
-.cvph { width:100%; height:100%; min-height:96px; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; padding:5px; }
+  /* ===== ALLENAMENTO GUIDATO — nuove regole ===== */
+  .stroke-pick-btn { width:100%; padding:16px; margin-bottom:8px; border-radius:12px; border:2px solid #2e2e2e; background:#1a1a1a; color:#eee; font-size:15px; font-weight:600; cursor:pointer; text-align:left; display:flex; justify-content:space-between; align-items:center; }
+  .stroke-pick-btn.active { border-color:var(--acc); background:var(--acc-bg); }
+  .ciclo-pill { display:inline-block; padding:4px 14px; border-radius:99px; background:#222; color:#aaa; font-size:12px; font-weight:700; }
+  .phase-banner { text-align:center; padding:22px 0; border-radius:16px; margin:6px 0 14px; }
+  .phase-banner.con { background:var(--acc-bg); border:2px solid var(--acc); }
+  .phase-banner.senza { background:var(--senza-bg); border:2px solid var(--senza); }
+  .phase-label { font-size:13px; letter-spacing:2px; font-weight:800; }
+  .phase-label.con { color:var(--acc); }
+  .phase-label.senza { color:var(--senza); }
+  .rep-count { font-size:64px; font-weight:800; margin:6px 0; line-height:1; }
+  .rep-count.con { color:var(--acc); }
+  .rep-count.senza { color:var(--senza); }
+  .tap-btn { width:100%; padding:26px; border:none; border-radius:16px; font-size:20px; font-weight:800; color:#fff; cursor:pointer; }
+  .tap-btn.con { background:linear-gradient(135deg,var(--acc),var(--acc2)); }
+  .tap-btn.senza { background:linear-gradient(135deg,#666,#444); }
+  .pausa-box { text-align:center; padding:34px 0; }
+  .pausa-ring { font-size:56px; font-weight:800; color:var(--senza); line-height:1; margin:8px 0; }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- ══════════ SPLASH SCREEN ══════════ -->
-<div id="splash">
-  <canvas id="splash-canvas"></canvas>
-  <div class="splash-content">
-    <!-- Icona app -->
-    <div class="splash-icon">
-      <svg width="70" height="70" viewBox="0 0 100 100" fill="none">
-        <!-- Scaffale superiore -->
-        <rect x="8" y="22" width="84" height="4" rx="1" fill="#5C3D0E"/>
-        <!-- Scaffale inferiore -->
-        <rect x="8" y="64" width="84" height="4" rx="1" fill="#5C3D0E"/>
-        <!-- Libro 1 - rosso scuro -->
-        <rect x="13" y="26" width="11" height="38" rx="1" fill="#8B1A1A"/>
-        <rect x="13" y="26" width="3" height="38" rx="1" fill="#6B1010"/>
-        <rect x="15" y="32" width="7" height="1.5" fill="#D4AF37" opacity="0.6"/>
-        <rect x="15" y="36" width="5" height="1" fill="#D4AF37" opacity="0.4"/>
-        <!-- Libro 2 - blu -->
-        <rect x="25" y="28" width="9" height="36" rx="1" fill="#1A3A6B"/>
-        <rect x="25" y="28" width="3" height="36" rx="1" fill="#102855"/>
-        <rect x="27" y="34" width="5" height="1.5" fill="#D4AF37" opacity="0.6"/>
-        <!-- Libro 3 - verde scuro, più alto -->
-        <rect x="35" y="23" width="13" height="41" rx="1" fill="#1A4A2A"/>
-        <rect x="35" y="23" width="3" height="41" rx="1" fill="#103520"/>
-        <rect x="37" y="30" width="9" height="1.5" fill="#D4AF37" opacity="0.7"/>
-        <rect x="37" y="34" width="7" height="1" fill="#D4AF37" opacity="0.4"/>
-        <rect x="37" y="37" width="6" height="1" fill="#D4AF37" opacity="0.3"/>
-        <!-- Libro 4 - bordeaux -->
-        <rect x="49" y="26" width="10" height="38" rx="1" fill="#6B1A3A"/>
-        <rect x="49" y="26" width="3" height="38" rx="1" fill="#501030"/>
-        <rect x="51" y="33" width="6" height="1.5" fill="#D4AF37" opacity="0.6"/>
-        <!-- Libro 5 - ocra/oro, inclinato -->
-        <rect x="60" y="30" width="8" height="34" rx="1" fill="#7A5A10" transform="rotate(-3 64 47)"/>
-        <rect x="60" y="30" width="2.5" height="34" rx="1" fill="#5A4008" transform="rotate(-3 64 47)"/>
-        <!-- Libro 6 - marrone scuro -->
-        <rect x="70" y="25" width="11" height="39" rx="1" fill="#4A2A0A"/>
-        <rect x="70" y="25" width="3" height="39" rx="1" fill="#351D05"/>
-        <rect x="72" y="32" width="7" height="1.5" fill="#D4AF37" opacity="0.5"/>
-        <rect x="72" y="36" width="5" height="1" fill="#D4AF37" opacity="0.3"/>
-        <!-- Doratura scaffale -->
-        <rect x="8" y="22" width="84" height="1" rx="0.5" fill="#D4AF37" opacity="0.4"/>
-        <rect x="8" y="64" width="84" height="1" rx="0.5" fill="#D4AF37" opacity="0.4"/>
-      </svg>
+<!-- INTRO -->
+<div id="s-intro" class="screen active">
+  <div style="text-align:center;padding:20px 0 16px">
+    <div class="theme-toggle">
+      <button class="th-btn" id="tb-g" onclick="setTheme('green')">🟢 Verde</button>
+      <button class="th-btn" id="tb-o" onclick="setTheme('orange')">🟠 Arancione</button>
     </div>
-    <div class="splash-title">Biblioteca</div>
-    <div class="splash-subtitle">La tua libreria personale</div>
-    <div class="splash-loader"><div class="splash-loader-bar" id="splash-bar"></div></div>
+    <div class="eyebrow" style="text-align:center">CLIPPI™ TOOLKIT</div>
+    <div style="font-size:36px;font-weight:800;letter-spacing:-1px" class="hero-accent">CLIPPI™</div>
+    <div style="font-size:16px;color:#aaa;margin-top:4px">Il Metodo PRO-T™</div>
   </div>
+
+  <div class="card">
+    <div style="font-size:15px;font-weight:700;margin-bottom:10px">📋 Test Campo</div>
+    <div class="step"><div class="step-num">1</div><div class="step-text">Inserisci <b>nome</b> e <b>livello</b> di chi esegue il test</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-text">Esegui <b>8 serie da 5 colpi</b>: 4 <b style="color:var(--acc)">CON</b> CLIPPI™ e 4 <b style="color:#ddd">SENZA</b></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-text">Per ogni serie: <b>RPE + osservazione</b> → poi <b>grip + respiro</b></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-text">4 domande finali, poi invia su <b>WhatsApp</b></div></div>
+  </div>
+  <div style="background:#2a2000;border:1.5px solid #ffe600;border-radius:12px;padding:12px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start">
+    <span style="font-size:18px;line-height:1">⚠️</span>
+    <div style="font-size:13px;color:#ffe600;line-height:1.6">
+      <b>Non uscire dall'app durante il test.</b><br>
+      Completa tutte le serie e invia/copia i risultati prima di chiudere — i dati non vengono salvati automaticamente.
+    </div>
+  </div>
+  <button class="btn-primary" onclick="go('s-info')">▶ Inizia test campo</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">🏋️ Allenamento guidato</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">5 protocolli del Metodo PRO-T™ — Contrasto Rapido, 20/80, Progressivo, Velocizzazione, Stabilizzazione — con timer, conteggio e pausa/ripresa automatici.</div>
+  </div>
+  <button class="btn-primary" onclick="trainRenderSetup();go('s-train-setup')">🏋️ Avvia allenamento guidato</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">🔥 Riscaldamento pre-gara</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">Swing a vuoto con CLIPPI™ montato, timer libero. Consentito in riscaldamento — non durante il match: verifica il regolamento del torneo.</div>
+  </div>
+  <button class="btn-primary" onclick="warmRenderSetup();go('s-warm-setup')">🔥 Avvia riscaldamento</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">⚖️ Valutazione bilanciamento</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">Diagnostica per colpo: dove la racchetta beneficerebbe di una modifica permanente. Report da esportare per il tecnico.</div>
+  </div>
+  <button class="btn-primary" onclick="balRenderSetup();go('s-bal-setup')">⚖️ Avvia valutazione</button>
+
+  <div class="card" style="margin-top:18px">
+    <div style="font-size:15px;font-weight:700;margin-bottom:6px">🧘 Percezione Cieca</div>
+    <div style="font-size:13px;color:#888;line-height:1.6">A occhi chiusi, 1-2 colpi in slowmotion estrema: l'atleta cerca di percepire (non indovinare) se c'è CLIPPI™, dove e quanti moduli. Propriocezione, lentezza percettiva, spirito Tai Chi.</div>
+  </div>
+  <button class="btn-primary" onclick="percRenderSetup();go('s-perc-setup')">🧘 Avvia Percezione Cieca</button>
 </div>
 
-<!-- ══════════ LIBRARY VIEW ══════════ -->
-<div id="lib-view">
-
-  <!-- Sidebar overlay -->
-  <div class="sidebar-overlay" id="sb-overlay" onclick="closeSB()"></div>
-
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sb-head">
-      <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
-        <rect width="100" height="100" rx="22" fill="#1a0f00"/>
-        <rect x="10" y="70" width="80" height="6" rx="2" fill="#8B6914"/>
-        <rect x="14" y="36" width="10" height="34" rx="1" fill="#C0392B"/>
-        <rect x="25" y="28" width="8" height="42" rx="1" fill="#2980B9"/>
-        <rect x="34" y="40" width="12" height="30" rx="1" fill="#27AE60"/>
-        <rect x="47" y="32" width="9" height="38" rx="1" fill="#8E44AD"/>
-        <rect x="57" y="44" width="11" height="26" rx="1" fill="#E67E22"/>
-      </svg>
-      <div>
-        <div style="color:#D4AF37;font-size:14px;font-style:italic">La mia Libreria</div>
-        <div style="color:#6B5235;font-size:11px" id="sb-count">0 libri</div>
-      </div>
-    </div>
-
-    <div class="sb-lbl">Filtra per genere</div>
-    <button class="sb-btn active" onclick="setGenre('Tutti')"><span>Tutti</span><span class="sb-badge" id="cnt-t">0</span></button>
-    <button class="sb-btn" onclick="setGenre('Narrativa')"><span>Narrativa</span><span class="sb-badge" id="cnt-n">0</span></button>
-    <button class="sb-btn" onclick="setGenre('Saggistica')"><span>Saggistica</span><span class="sb-badge" id="cnt-s">0</span></button>
-    <button class="sb-btn" onclick="setGenre('Classici')"><span>Classici</span><span class="sb-badge" id="cnt-c">0</span></button>
-    <button class="sb-btn" onclick="setGenre(&quot;Classici '900&quot;)"><span>Classici '900</span><span class="sb-badge" id="cnt-9">0</span></button>
-    <button class="sb-btn" onclick="setGenre('Libri Ragazzi')"><span>Libri Ragazzi</span><span class="sb-badge" id="cnt-r">0</span></button>
-
-    <div class="sb-lbl">Ordina</div>
-    <button class="sb-btn active" id="sba-aut" onclick="setSort('autore')"><span>🔤 Autore A→Z</span></button>
-    <button class="sb-btn" id="sba-ann" onclick="setSort('anno')"><span>📅 Anno recente→antico</span></button>
-
-    <!-- BACKUP -->
-    <div class="sb-lbl">Backup libreria</div>
-    <button class="sb-backup-btn" onclick="esporta()">
-      <span class="icon">📤</span>
-      <div>
-        <div style="color:#D4AF37;font-size:13px">Condividi / Salva backup</div>
-        <div style="color:#6B5235;font-size:11px">Apre pannello: OneDrive, WhatsApp, email…</div>
-      </div>
-    </button>
-    <button class="sb-backup-btn" onclick="document.getElementById('import-input').click()">
-      <span class="icon">📥</span>
-      <div>
-        <div style="color:#D4AF37;font-size:13px">Ripristina da file</div>
-        <div style="color:#6B5235;font-size:11px">Carica backup su questo dispositivo</div>
-      </div>
-    </button>
-    <input type="file" id="import-input" accept=".json" style="display:none" onchange="importa(event)">
-    <div style="padding:10px 16px 20px">
-      <div style="color:#4A3210;font-size:10px;line-height:1.5">
-        ℹ️ I libri vengono salvati automaticamente su questo telefono. Usa "Salva su file" per portare la libreria su un altro dispositivo.
-      </div>
+<!-- INFO -->
+<div id="s-info" class="screen">
+  <div class="eyebrow">DATI ESECUTORE</div>
+  <div class="card">
+    <label style="display:block;font-size:13px;color:#888;margin-bottom:6px">Nome</label>
+    <input id="nome" type="text" placeholder="es. Mario Rossi">
+    <div style="height:14px"></div>
+    <label style="display:block;font-size:13px;color:#888;margin-bottom:6px">Livello</label>
+    <div class="level-row">
+      <button class="level-btn" onclick="setLevel(this,'Principiante','active-p')">🟢 Principiante</button>
+      <button class="level-btn" onclick="setLevel(this,'Intermedio','active-i')">🟡 Intermedio</button>
+      <button class="level-btn" onclick="setLevel(this,'Pro','active-a')">🔴 Pro</button>
     </div>
   </div>
-
-  <!-- Top bar -->
-  <div class="topbar">
-    <button class="btn-menu" onclick="openSB()">☰</button>
-    <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
-      <rect width="100" height="100" rx="22" fill="#1a0f00"/>
-      <rect x="10" y="70" width="80" height="6" rx="2" fill="#8B6914"/>
-      <rect x="14" y="36" width="10" height="34" rx="1" fill="#C0392B"/>
-      <rect x="25" y="28" width="8" height="42" rx="1" fill="#2980B9"/>
-      <rect x="34" y="40" width="12" height="30" rx="1" fill="#27AE60"/>
-      <rect x="47" y="32" width="9" height="38" rx="1" fill="#8E44AD"/>
-    </svg>
-    <span class="topbar-title">Biblioteca</span>
-    <button class="btn-add" onclick="openMethod()">+ Aggiungi</button>
-  </div>
-
-  <!-- Stats -->
-  <div class="stats-row" id="stats-row"></div>
-
-  <!-- Search + sort -->
-  <div class="search-bar">
-    <input class="search-input" id="search-inp" placeholder="🔍  Cerca titolo, autore, editore…" oninput="render()">
-    <button id="search-clr" onclick="document.getElementById('search-inp').value='';render()"
-      style="display:none;background:none;border:none;color:#6B5235;font-size:18px;cursor:pointer">✕</button>
-  </div>
-  <div class="sort-tabs">
-    <button class="sort-btn active" id="st-aut" onclick="setSort('autore')">A→Z Autore</button>
-    <button class="sort-btn" id="st-ann" onclick="setSort('anno')">Anno ↓</button>
-    <div class="filter-badge" id="filter-badge" style="display:none">
-      <span class="filter-tag" id="filter-tag-lbl"></span>
-      <button onclick="setGenre('Tutti')" style="background:none;border:none;color:#D4AF37;cursor:pointer;font-size:14px;line-height:1">×</button>
-    </div>
-  </div>
-
-  <!-- Book list -->
-  <div class="list-area" id="book-list"></div>
+  <button class="btn-primary" id="btn-info-next" onclick="startDrill()" disabled>Avanti →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
 </div>
 
-<!-- ══════════ DETAIL VIEW ══════════ -->
-<div id="det-view" class="detail-wrap">
-  <div class="detail-topbar">
-    <button class="detail-back" onclick="closeDetail()">← Libreria</button>
-    <span id="det-date" style="color:#6B5235;font-size:11px"></span>
-  </div>
-  <div class="detail-hero">
-    <div class="detail-cover" id="det-cover"></div>
-    <div class="detail-info">
-      <div class="dtitle" id="det-title"></div>
-      <div class="dauthor" id="det-author"></div>
-      <span id="det-genre"></span>
+<!-- STEP 1 -->
+<div id="s-drill-1" class="screen">
+  <div style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:11px;color:#888" id="d1-counter"></span>
+      <span style="font-size:11px;color:var(--acc)">STEP 1 / 2 — Percezione</span>
     </div>
+    <div class="progress-bar"><div class="progress-fill" id="d1-prog"></div></div>
+    <div class="substep-indicator"><div class="substep-dot current"></div><div class="substep-dot"></div></div>
   </div>
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('info')">📋 Scheda</button>
-    <button class="tab-btn" onclick="switchTab('note')">📝 Note</button>
-    <button class="tab-btn" onclick="switchTab('cit')">💬 Citazioni</button>
-  </div>
-  <div class="tab-pane active" id="tab-info"></div>
-  <div class="tab-pane" id="tab-note"></div>
-  <div class="tab-pane" id="tab-cit"></div>
-  <div class="detail-actions">
-    <button class="btn-edit" onclick="openEdit()">✏️ Modifica</button>
-    <button class="btn-danger" onclick="delBook()">🗑️</button>
-  </div>
+  <div class="card" id="d1-main"></div>
+  <div class="card" id="d1-rpe"></div>
+  <div class="card" id="d1-tag"></div>
+  <button class="btn-primary" onclick="goStep2()">Avanti — Dati fisiologici →</button>
+  <button class="btn-secondary" id="d1-back" onclick="prevDrill()">← Serie precedente</button>
 </div>
 
-<!-- ══════════ MODAL RIPRISTINO ══════════ -->
-<div class="modal-overlay" id="m-restore">
-  <div class="modal-box" style="max-width:400px">
-    <div class="modal-hd">
-      <span class="modal-title">📥 Ripristina Backup</span>
-      <button class="modal-close" onclick="closeRestore()">✕</button>
+<!-- STEP 2 -->
+<div id="s-drill-2" class="screen">
+  <div style="margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <span style="font-size:11px;color:#888" id="d2-counter"></span>
+      <span style="font-size:11px;color:var(--acc2)">STEP 2 / 2 — Fisiologia</span>
     </div>
-    <div class="modal-body">
-
-      <!-- Info backup trovato -->
-      <div style="background:#0D0800;border:1px solid #3A2508;border-radius:10px;padding:14px;margin-bottom:16px">
-        <div style="color:#6B5235;font-size:10px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Backup trovato</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <span style="color:#F5E6C8;font-size:14px" id="rst-libri-backup"></span>
-          <span style="background:#3A2508;border:1px solid #8B6914;border-radius:12px;padding:3px 10px;color:#D4AF37;font-size:11px" id="rst-data-badge"></span>
-        </div>
-        <div style="color:#6B5235;font-size:12px" id="rst-aggiornato"></div>
-      </div>
-
-      <!-- Info libreria attuale -->
-      <div style="background:#0D0800;border:1px solid #3A2508;border-radius:10px;padding:14px;margin-bottom:18px">
-        <div style="color:#6B5235;font-size:10px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Sul telefono ora</div>
-        <div style="color:#F5E6C8;font-size:14px" id="rst-libri-attuali"></div>
-        <div style="color:#6B5235;font-size:12px;margin-top:4px" id="rst-diff"></div>
-      </div>
-
-      <!-- Pulsanti azione -->
-      <div id="rst-btn-aggiorna" style="display:none">
-        <button class="btn-primary" style="width:100%;margin-bottom:10px" onclick="doRestore('sostituisci')">
-          🔄 Aggiorna libreria con il backup
-        </button>
-        <button class="btn-secondary" style="width:100%;margin-bottom:10px" onclick="doRestore('aggiungi')">
-          ➕ Aggiungi solo i libri nuovi
-        </button>
-      </div>
-      <div id="rst-btn-uguale" style="display:none">
-        <div style="background:#1A2E1A;border:1px solid #2E5C2E;border-radius:8px;padding:12px;margin-bottom:14px;color:#6EC96E;font-size:13px;text-align:center">
-          ✓ La libreria è già aggiornata!<br>
-          <span style="font-size:11px;color:#4A7A4A;margin-top:3px;display:block">Nessuna differenza rispetto al backup</span>
-        </div>
-        <button class="btn-secondary" style="width:100%" onclick="doRestore('sostituisci')">
-          Sostituisci comunque
-        </button>
-      </div>
-      <button class="btn-secondary" style="width:100%;margin-top:8px" onclick="closeRestore()">Annulla</button>
+    <div class="progress-bar"><div class="progress-fill" id="d2-prog"></div></div>
+    <div class="substep-indicator"><div class="substep-dot done"></div><div class="substep-dot current"></div></div>
+  </div>
+  <div class="card" id="d2-header"></div>
+  <div class="card">
+    <div style="font-size:14px;font-weight:600;margin-bottom:4px">Stretta impugnatura percepita?</div>
+    <div class="yn-row">
+      <button class="yn-btn" id="grip-si" onclick="setGripSi(true)">Sì</button>
+      <button class="yn-btn" id="grip-no" onclick="setGripSi(false)">No</button>
+    </div>
+    <div id="grip-detail" class="hidden" style="margin-top:14px">
+      <div style="font-size:13px;color:#aaa">Intensità stretta impugnatura</div>
+      <div style="font-size:11px;color:#555;margin-top:2px">0 = rilassata · 10 = massima tensione</div>
+      <div class="grip-row" id="grip-row"></div>
     </div>
   </div>
-</div>
-
-<!-- ══════════ MODAL METODO ══════════ -->
-<div class="modal-overlay" id="m-method">
-  <div class="modal-box">
-    <div class="modal-hd">
-      <span class="modal-title">✦ Aggiungi Libro</span>
-      <button class="modal-close" onclick="closeMethod()">✕</button>
+  <div class="card">
+    <div style="font-size:14px;font-weight:600;margin-bottom:4px">Respiro percepito?</div>
+    <div class="yn-row">
+      <button class="yn-btn" id="resp-si" onclick="setRespSi(true)">Sì</button>
+      <button class="yn-btn" id="resp-no" onclick="setRespSi(false)">No</button>
     </div>
-    <div class="modal-body">
-      <p style="color:#8B7355;font-size:13px;margin-bottom:16px">Come vuoi inserire il libro?</p>
-      <div class="method-card" onclick="startQR()">
-        <span class="mc-icon">📷</span>
-        <div>
-          <div class="mc-title">Scansiona Barcode</div>
-          <div class="mc-sub">Fotocamera → codice ISBN sul retro del libro</div>
-          <div style="color:#5C3D20;font-size:10px;margin-top:2px">Richiede permesso fotocamera</div>
-        </div>
-      </div>
-      <div class="method-card" onclick="openIsbnModal()">
-        <span class="mc-icon">🔢</span>
-        <div>
-          <div class="mc-title">Cerca per ISBN</div>
-          <div class="mc-sub">Digita il codice ISBN → dati automatici dal web</div>
-          <div class="mc-note">✓ Funziona sempre, senza fotocamera</div>
-        </div>
-      </div>
-      <div class="method-card" onclick="openForm(null,'manual')" style="margin-bottom:0">
-        <span class="mc-icon">✍️</span>
-        <div>
-          <div class="mc-title">Inserimento Manuale</div>
-          <div class="mc-sub">Compila tutti i campi a mano</div>
-        </div>
-      </div>
+    <div id="resp-detail" class="hidden" style="margin-top:14px">
+      <div style="font-size:13px;color:#aaa;margin-bottom:8px">Tipo di respiro</div>
+      <div class="resp-row" id="resp-row"></div>
     </div>
   </div>
+  <button class="btn-primary" id="d2-next" onclick="nextDrill()"></button>
+  <button class="btn-secondary" onclick="go('s-drill-1')">← Torna percezione</button>
 </div>
 
-<!-- ══════════ MODAL QR ══════════ -->
-<div class="modal-overlay" id="m-qr">
-  <div class="qr-box">
-    <div class="modal-hd">
-      <span class="modal-title">📷 Scansiona ISBN</span>
-      <button class="modal-close" onclick="closeQR()">✕</button>
-    </div>
-    <div class="scan-wrap">
-      <div id="qr-reader"></div>
-      <div class="sc tl"></div><div class="sc tr"></div>
-      <div class="sc bl"></div><div class="sc br"></div>
-    </div>
-    <div class="qr-status" id="qr-st">📸 Inquadra il barcode ISBN sul libro…</div>
-    <div class="loading-line" id="qr-load"><span class="spinner"></span>Ricerca dati libro…</div>
-    <div style="padding:0 14px 14px;display:flex;gap:10px">
-      <button class="btn-secondary" onclick="closeQR()">Annulla</button>
-      <button class="btn-secondary" onclick="closeQR();openIsbnModal()">🔢 Digita ISBN</button>
+<!-- FINALI -->
+<div id="s-finali" class="screen">
+  <div class="eyebrow">VALUTAZIONE FINALE</div>
+  <div id="finali-questions"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note libere (opzionale)</div>
+    <textarea id="note-finale" placeholder="impressioni generali, suggerimenti..."></textarea>
+  </div>
+  <button class="btn-primary" onclick="showRiepilogo()">Vedi riepilogo →</button>
+</div>
+
+<!-- RIEPILOGO -->
+<div id="s-riepilogo" class="screen">
+  <div class="eyebrow">RIEPILOGO</div>
+  <div id="riepilogo-name" style="font-size:18px;font-weight:800;margin-bottom:20px"></div>
+  <div id="riepilogo-list"></div>
+  <div class="card" id="riepilogo-finali" style="margin-top:4px"></div>
+  <button class="btn-wa" onclick="sendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="copyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="resetAll()">↺ Nuovo test</button>
+</div>
+
+<!-- TRAIN SETUP -->
+<div id="s-train-setup" class="screen">
+  <div class="eyebrow">ALLENAMENTO GUIDATO</div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Scegli il protocollo</div>
+    <div id="train-proto-list"></div>
+  </div>
+  <div id="train-proto-desc"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Scegli il colpo</div>
+    <div id="train-stroke-list"></div>
+  </div>
+  <div id="train-config-area"></div>
+  <div id="train-livello-area"></div>
+  <button class="btn-primary" id="btn-train-start" onclick="trainStart()" disabled>Inizia allenamento →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- TRAIN RUN -->
+<div id="s-train-run" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span class="ciclo-pill" id="t-ciclo-pill"></span>
+    <span id="t-stroke-badge"></span>
+  </div>
+  <div id="t-phase-area"></div>
+  <button class="btn-secondary" onclick="trainPause()">⏸ Pausa</button>
+</div>
+
+<!-- TRAIN PAUSED -->
+<div id="s-train-paused" class="screen">
+  <div class="eyebrow">IN PAUSA</div>
+  <div class="card" id="t-paused-info"></div>
+  <button class="btn-primary" onclick="trainResume()">▶ Riprendi</button>
+  <button class="btn-secondary" onclick="trainGoFinali()">Concludi qui (con i dati raccolti)</button>
+  <button class="btn-secondary" onclick="trainAbort()">Annulla allenamento (nessun dato)</button>
+</div>
+
+<!-- TRAIN FINALI -->
+<div id="s-train-finali" class="screen">
+  <div class="eyebrow">VALUTAZIONE ALLENAMENTO</div>
+  <div id="train-finali-questions"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note coach/giocatore (opzionale)</div>
+    <textarea id="train-note-finale" placeholder="cosa ha funzionato, cosa correggere..."></textarea>
+  </div>
+  <button class="btn-primary" onclick="trainShowSummaryFinal()">Vedi riepilogo →</button>
+</div>
+
+<!-- TRAIN SUMMARY -->
+<div id="s-train-summary" class="screen">
+  <div class="eyebrow">ALLENAMENTO COMPLETATO</div>
+  <div class="card" id="t-summary-card"></div>
+  <button class="btn-wa" onclick="trainSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="trainCopyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+<!-- WARM SETUP -->
+<div id="s-warm-setup" class="screen">
+  <div class="eyebrow">RISCALDAMENTO PRE-GARA</div>
+  <div class="card">
+    <div style="font-size:13px;color:#888;line-height:1.6">Swing a vuoto (shadow), modulo montato. Consentito in riscaldamento pre-match — non durante il match: verifica il regolamento del torneo/ITF.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Colpo (opzionale)</div>
+    <div id="warm-stroke-list"></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Configurazione CLIPPI</div>
+    <div class="opt-row" id="warm-config-list"></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Durata</div>
+    <div class="opt-row" id="warm-dur-list"></div>
+  </div>
+  <button class="btn-primary" id="btn-warm-start" onclick="warmStart()" disabled>Avvia riscaldamento →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- WARM RUN -->
+<div id="s-warm-run" class="screen">
+  <div id="warm-run-area"></div>
+  <button class="btn-secondary" onclick="warmPause()">⏸ Pausa</button>
+</div>
+
+<!-- WARM PAUSED -->
+<div id="s-warm-paused" class="screen">
+  <div class="eyebrow">RISCALDAMENTO IN PAUSA</div>
+  <div class="card" id="warm-paused-info"></div>
+  <button class="btn-primary" onclick="warmResume()">▶ Riprendi</button>
+  <button class="btn-secondary" onclick="go('s-intro')">✕ Termina riscaldamento</button>
+</div>
+
+<!-- WARM DONE → pre-gara report -->
+<div id="s-warm-done" class="screen">
+  <div class="eyebrow">RISCALDAMENTO COMPLETATO</div>
+  <div class="card" id="warm-done-info"></div>
+  <button class="btn-primary" onclick="warmGoReport()">📋 Compila report pre-gara →</button>
+  <button class="btn-secondary" onclick="warmRenderSetup();go('s-warm-setup')">↺ Nuovo riscaldamento</button>
+  <button class="btn-secondary" onclick="go('s-intro')">Torna alla home</button>
+</div>
+
+<!-- WARM REPORT -->
+<div id="s-warm-report" class="screen">
+  <div class="eyebrow">REPORT PRE-GARA</div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Torneo / partita</div>
+    <input id="wr-torneo" type="text" placeholder="es. Torneo Città di Milano" style="width:100%;background:#1a1a1a;border:1.3px solid #2e2e2e;border-radius:9px;padding:10px 12px;font-size:13px;color:#f0f0f0;margin-bottom:8px">
+    <div style="display:flex;gap:8px">
+      <input id="wr-data" type="date" style="flex:1;background:#1a1a1a;border:1.3px solid #2e2e2e;border-radius:9px;padding:10px 12px;font-size:13px;color:#f0f0f0">
+      <input id="wr-ora" type="time" style="flex:1;background:#1a1a1a;border:1.3px solid #2e2e2e;border-radius:9px;padding:10px 12px;font-size:13px;color:#f0f0f0">
     </div>
   </div>
-</div>
-
-<!-- ══════════ MODAL ISBN ══════════ -->
-<div class="modal-overlay" id="m-isbn">
-  <div class="modal-box" style="max-width:380px">
-    <div class="modal-hd">
-      <span class="modal-title">🔢 Cerca per ISBN</span>
-      <button class="modal-close" onclick="closeIsbn()">✕</button>
-    </div>
-    <div class="modal-body">
-      <p style="color:#8B7355;font-size:13px;margin-bottom:14px;line-height:1.5">
-        Trova il numero ISBN sul retro del libro (sotto il barcode) e digitalo qui:
-      </p>
-      <div style="background:#0D0800;border:1px solid #3A2508;border-radius:8px;padding:12px;margin-bottom:14px">
-        <div style="color:#6B5235;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Esempio</div>
-        <div style="color:#C9A84C;font-size:13px">978-88-452-9448-2</div>
-        <div style="color:#4A3210;font-size:11px;margin-top:3px">oppure senza trattini: 9788845294482</div>
-      </div>
-      <label class="field-label">Codice ISBN</label>
-      <input class="field-input" id="isbn-inp" placeholder="978-88-…"
-        style="font-size:16px;letter-spacing:0.04em" type="tel"
-        onkeydown="if(event.key==='Enter')doISBN()">
-      <div class="error-box" id="isbn-err"></div>
-      <div class="loading-line" id="isbn-load" style="margin-top:10px"><span class="spinner"></span>Ricerca in corso…</div>
-      <div class="btn-row">
-        <button class="btn-secondary" onclick="closeIsbn()">Annulla</button>
-        <button class="btn-primary" onclick="doISBN()">🔍 Cerca</button>
-      </div>
-      <div id="paste-section" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid #3A2508">
-        <div style="color:#C9A84C;font-size:12px;margin-bottom:8px">Incolla testo da Google Lens o IBS:</div>
-        <textarea id="paste-input" class="field-textarea" placeholder="Incolla qui il testo copiato..." style="min-height:80px"></textarea>
-        <button class="btn-primary" onclick="parsePaste()" style="width:100%;margin-top:8px">Estrai titolo e autore</button>
-      </div>
-    </div>
+  <div id="wr-questions"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note libere (opzionale)</div>
+    <textarea id="wr-note" placeholder="osservazioni, sensazioni particolari..."></textarea>
   </div>
+  <button class="btn-wa" onclick="warmSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="warmCopyReport()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
 </div>
 
-<!-- ══════════ MODAL FORM ══════════ -->
-<div class="modal-overlay" id="m-form">
-  <div class="modal-box">
-    <div class="modal-hd">
-      <span class="modal-title" id="form-title">✍️ Nuovo Libro</span>
-      <button class="modal-close" onclick="closeForm()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="qr-banner" id="form-banner" style="display:none">
-        ✓ Dati trovati automaticamente — aggiungi genere, note e citazioni
-      </div>
-      <input type="hidden" id="f-id">
-      <label class="field-label">Titolo *</label>
-      <input class="field-input" id="f-titolo" placeholder="Titolo del libro">
-      <label class="field-label">Autore</label>
-      <input class="field-input" id="f-autore" placeholder="Cognome, Nome">
-      <div class="grid2">
-        <div><label class="field-label">Editore</label>
-          <input class="field-input" id="f-editore" placeholder="Editore"></div>
-        <div><label class="field-label">Anno</label>
-          <input class="field-input" id="f-anno" placeholder="2024"></div>
-      </div>
-      <div class="grid2">
-        <div><label class="field-label">Pagine</label>
-          <input class="field-input" id="f-pagine" placeholder="320" type="number"></div>
-        <div><label class="field-label">ISBN</label>
-          <input class="field-input" id="f-isbn" placeholder="978-88-…"></div>
-      </div>
-      <label class="field-label">Genere</label>
-      <div class="genre-grid">
-        <button class="genre-btn" onclick="pickGenre('Narrativa')">Narrativa</button>
-        <button class="genre-btn" onclick="pickGenre('Saggistica')">Saggistica</button>
-        <button class="genre-btn" onclick="pickGenre('Classici')">Classici</button>
-        <button class="genre-btn" onclick="pickGenre(&quot;Classici '900&quot;)">Classici '900</button>
-        <button class="genre-btn" onclick="pickGenre('Libri Ragazzi')" style="grid-column:span 2">Libri Ragazzi</button>
-      </div>
-      <input type="hidden" id="f-genere">
-      <label class="field-label">Copertina</label>
-      <button class="btn-secondary" style="width:100%;padding:9px;margin-top:4px" onclick="document.getElementById('cover-inp').click()">
-        📷 Carica immagine copertina
-      </button>
-      <input type="file" id="cover-inp" accept="image/*" style="display:none" onchange="loadCover(event)">
-      <div id="cover-preview-wrap" style="margin-top:8px;display:none">
-        <img id="cover-preview-img" style="width:70px;height:98px;object-fit:cover;border-radius:4px">
-        <button onclick="removeCover()" style="background:none;border:none;color:#C04040;cursor:pointer;font-size:11px;margin-left:8px;vertical-align:top">✕ Rimuovi</button>
-      </div>
-      <input type="hidden" id="f-cover">
-      <label class="field-label">Note personali</label>
-      <textarea class="field-textarea" id="f-note" placeholder="Pensieri, commenti, dove l'hai trovato…"></textarea>
-      <label class="field-label">Citazioni preferite</label>
-      <textarea class="field-textarea" id="f-cit" placeholder="&quot;Una citazione memorabile…&quot;"></textarea>
-      <div id="paste-form-box" style="display:block;background:#1A2E1A;border:1px solid #2E5C2E;border-radius:8px;padding:12px;margin-top:14px">
-        <div style="color:#90EE90;font-size:12px;margin-bottom:10px">📋 Incolla il testo da Google Lens o IBS — poi correggi se necessario:</div>
-        <textarea id="paste-raw" class="field-textarea" placeholder="Incolla qui il testo copiato..." style="min-height:60px;margin-bottom:10px"></textarea>
-        <button onclick="smartParse()" class="btn-secondary" style="width:100%;margin-bottom:10px">🔍 Estrai — poi controlla i campi!</button>
-        <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">1. TITOLO — controlla e correggi se necessario!</div>
-        <input id="paste-titolo" type="text" class="field-input" placeholder="Titolo del libro" style="margin-bottom:8px">
-        <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">2. AUTORE</div>
-        <input id="paste-autore" type="text" class="field-input" placeholder="Nome Cognome" style="margin-bottom:8px">
-        <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">3. EDITORE</div>
-        <input id="paste-editore" type="text" class="field-input" placeholder="Editore" style="margin-bottom:8px">
-        <div style="display:flex;gap:8px;margin-bottom:10px">
-          <div style="flex:1">
-            <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">4. ANNO</div>
-            <input id="paste-anno" type="number" class="field-input" placeholder="2025">
-          </div>
-          <div style="flex:1">
-            <div style="color:#C9A84C;font-size:11px;margin-bottom:3px">5. PAGINE</div>
-            <input id="paste-pagine" type="number" class="field-input" placeholder="320">
-          </div>
-        </div>
-        <div style="color:#C9A84C;font-size:11px;margin-bottom:6px">6. GENERE</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          <button onclick="setPasteGenere('Narrativa')" id="pg-Narrativa" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Narrativa</button>
-          <button onclick="setPasteGenere('Saggistica')" id="pg-Saggistica" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Saggistica</button>
-          <button onclick="setPasteGenere('Classici')" id="pg-Classici" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Classici</button>
-          <button onclick="setPasteGenere('Classici 900')" id="pg-Classici900" class="btn-secondary" style="flex:1;min-width:calc(50% - 3px);padding:7px 4px;font-size:12px">Classici '900</button>
-          <button onclick="setPasteGenere('Libri Ragazzi')" id="pg-LibriRagazzi" class="btn-secondary" style="width:100%;padding:7px 4px;font-size:12px">Libri Ragazzi</button>
-        </div>
-        <button onclick="applyPaste()" class="btn-primary" style="width:100%">✓ Compila campi</button>
-      </div>
-      <div class="btn-row">
-        <button class="btn-secondary" onclick="closeForm()">Annulla</button>
-        <button class="btn-primary" id="f-save-btn" onclick="saveBook()">Aggiungi alla libreria</button>
-      </div>
-    </div>
+<!-- BAL SETUP -->
+<div id="s-bal-setup" class="screen">
+  <div class="eyebrow">VALUTAZIONE BILANCIAMENTO</div>
+  <div class="card">
+    <div style="font-size:13px;color:#888;line-height:1.6">Con pallina. Per ogni colpo selezionato, prova CLIPPI™ in testa e al lato rispetto a senza modulo, poi indica dove la racchetta beneficerebbe di una modifica permanente.</div>
   </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Colpi da valutare</div>
+    <div id="bal-stroke-list"></div>
+  </div>
+  <div id="bal-livello-area"></div>
+  <button class="btn-primary" id="btn-bal-start" onclick="balStart()" disabled>Inizia valutazione →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
 </div>
 
-<!-- NOTIFICA -->
-<div class="notif hide" id="notif"></div>
+<!-- BAL RUN -->
+<div id="s-bal-run" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span class="ciclo-pill" id="bal-counter-pill"></span>
+  </div>
+  <div id="bal-run-area"></div>
+</div>
 
+<!-- BAL SUMMARY -->
+<div id="s-bal-summary" class="screen">
+  <div class="eyebrow">REPORT BILANCIAMENTO</div>
+  <div id="bal-summary-list"></div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:8px">Note per il tecnico (opzionale)</div>
+    <textarea id="bal-note" placeholder="osservazioni generali sulla racchetta..."></textarea>
+  </div>
+  <button class="btn-wa" onclick="balSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="balCopyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+<!-- PERC SETUP -->
+<div id="s-perc-setup" class="screen">
+  <div class="eyebrow">PERCEZIONE CIECA</div>
+  <div class="card">
+    <div style="font-size:13px;color:#888;line-height:1.6">Un operatore (coach o compagno) monta CLIPPI™ in una configurazione nascosta — o nessuna — senza che l'atleta veda. A occhi chiusi, l'atleta esegue 1-2 colpi in slowmotion estrema e cerca di percepire cosa c'è sulla racchetta.</div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Colpo</div>
+    <div id="perc-stroke-list"></div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;color:#aaa;margin-bottom:10px">Numero di round</div>
+    <div class="opt-row" id="perc-rounds-list"></div>
+  </div>
+  <button class="btn-primary" id="btn-perc-start" onclick="percStart()" disabled>Inizia →</button>
+  <button class="btn-secondary" onclick="go('s-intro')">← Indietro</button>
+</div>
+
+<!-- PERC RUN -->
+<div id="s-perc-run" class="screen">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <span class="ciclo-pill" id="perc-counter-pill"></span>
+  </div>
+  <div id="perc-run-area"></div>
+</div>
+
+<!-- PERC SUMMARY -->
+<div id="s-perc-summary" class="screen">
+  <div class="eyebrow">REPORT PERCEZIONE CIECA</div>
+  <div id="perc-summary-list"></div>
+  <button class="btn-wa" onclick="percSendWhatsApp()">💬 Invia su WhatsApp</button>
+  <button class="btn-primary" onclick="percCopyResults()">📋 Copia testo</button>
+  <button class="btn-secondary" onclick="go('s-intro')">↺ Torna alla home</button>
+</div>
+
+</div>
 <script>
-// ═══════════════════════════════════════════════════
-// DATI & STATO
-// ═══════════════════════════════════════════════════
-const STORAGE_KEY = 'biblioteca_v1';
-const GENERI = ["Narrativa","Saggistica","Classici","Classici '900","Libri Ragazzi"];
-const GCLS = {"Narrativa":"gN","Saggistica":"gS","Classici":"gC","Classici '900":"g9","Libri Ragazzi":"gR"};
-const GCOL = {"Narrativa":"#8B2FC9","Saggistica":"#1A6B3C","Classici":"#8B0000","Classici '900":"#C87137","Libri Ragazzi":"#1565C0"};
+var PROTOCOL=[
+  {colpo:"Diritto",  config:"Ore 3+9",     tipo:"CON",   zona:"field"},
+  {colpo:"Diritto",  config:"—",            tipo:"SENZA", zona:"field"},
+  {colpo:"Servizio", config:"Ore 12",       tipo:"CON",   zona:"field"},
+  {colpo:"Servizio", config:"—",            tipo:"SENZA", zona:"field"},
+  {colpo:"Rovescio", config:"Ore 3 (sup.)", tipo:"CON",   zona:"field"},
+  {colpo:"Rovescio", config:"—",            tipo:"SENZA", zona:"field"},
+  {colpo:"Volée",    config:"Ore 3+9",      tipo:"CON",   zona:"net"},
+  {colpo:"Volée",    config:"—",            tipo:"SENZA", zona:"net"}
+];
+var TAGS_CON=["Sento chiaramente la variazione del peso","Colpo più controllato","Gesto più stabile","Più concentrazione sul colpo","Gesto leggermente alterato","Braccio affaticato"];
+var TAGS_SENZA=["Racchetta molto più leggera","Colpo più fluido e veloce","Meno sforzo percepito","Più libertà nel gesto","Nessuna differenza percepita"];
+var RPE_CON=["1","2","3","4","5"];
+var RPE_SENZA=["-3","-2","-1","0","+1"];
+var RESPIRO=["Aperta","Superficiale","Bloccato"];
+var FINALI_Q=[
+  {key:"diff",  label:"Hai sentito differenza CON/SENZA?", opt:["Sì","No","Parziale"]},
+  {key:"dist",  label:"Il peso ha disturbato il gesto?",   opt:["No","Poco","Sì"]},
+  {key:"dopo",  label:"Dopo rimozione il colpo era:",      opt:["Uguale","Più leggero","Molto più leggero"]},
+  {key:"riuso", label:"Riutilizzeresti?",                  opt:["Sì","Forse","No"]}
+];
 
-let books = [];
-let sortBy = 'autore';
-let genreFilter = 'Tutti';
-let currentId = null;
-let html5QR = null;
-let formMode = 'add';
-let formQR = false;
+var cur=0, R=mk(), F={}, lv="";
 
-// ═══════════════════════════════════════════════════
-// PERSISTENZA — salva/carica dal telefono automaticamente
-// ═══════════════════════════════════════════════════
-function salva() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(books)); } catch(e) {}
-}
-function carica() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) books = JSON.parse(raw);
-  } catch(e) { books = []; }
-  if (!books.length) books = demoBooks();
-}
-
-// ═══════════════════════════════════════════════════
-// ESPORTA / IMPORTA (backup su file)
-// ═══════════════════════════════════════════════════
-async function esporta() {
-  const data = new Date().toISOString().split('T')[0];
-  const payload = { versione: 1, data, libri: books };
-  const json = JSON.stringify(payload, null, 2);
-  const filename = `biblioteca_${data}.json`;
-  const blob = new Blob([json], { type: 'application/json' });
-
-  // Android Chrome: apre il pannello di condivisione nativo
-  if (navigator.share && navigator.canShare) {
-    try {
-      const file = new File([blob], filename, { type: 'application/json' });
-      if (navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: 'Backup Biblioteca',
-          text: `${books.length} libri catalogati — ${data}`
-        });
-        closeSB();
-        showNotif(`📤 Condiviso: ${books.length} libri`);
-        return;
-      }
-    } catch(e) {
-      if (e.name === 'AbortError') { closeSB(); return; }
-    }
-  }
-  // Fallback: scarica nei Download
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.click();
-  URL.revokeObjectURL(url);
-  closeSB();
-  showNotif(`📤 Salvato nei Download: ${books.length} libri`);
-}
-
-// Dati backup temporanei
-let _backupData = null;
-
-function importa(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const data = JSON.parse(e.target.result);
-      const libri = data.libri || data;
-      if (!Array.isArray(libri)) throw new Error('Formato non valido');
-      _backupData = { libri, data: data.data || '?' };
-      mostraRestore();
-    } catch(err) {
-      showNotif('⚠️ File non valido', true);
-    }
-  };
-  reader.readAsText(file);
-  event.target.value = '';
-  closeSB();
-}
-
-function mostraRestore() {
-  const { libri, data } = _backupData;
-
-  // Formatta data backup
-  let dataLeggibile = data;
-  try {
-    const p = data.split('-');
-    if (p.length === 3) dataLeggibile = `${p[2]}/${p[1]}/${p[0]}`;
-  } catch(e){}
-
-  // Badge data
-  document.getElementById('rst-data-badge').textContent = `📅 ${dataLeggibile}`;
-  document.getElementById('rst-libri-backup').textContent = `${libri.length} ${libri.length===1?'libro':'libri'} nel backup`;
-
-  // Calcola differenze
-  const existingKeys = new Set(books.map(b => b.isbn || b.titolo));
-  const nuovi = libri.filter(b => !existingKeys.has(b.isbn || b.titolo));
-  const mancanti = books.filter(b => {
-    const k = b.isbn || b.titolo;
-    return !libri.some(lb => (lb.isbn || lb.titolo) === k);
+function mk(){
+  return PROTOCOL.map(function(){
+    return {rpe:null,tag:null,gripSi:null,grip:null,respSi:null,resp:null};
   });
+}
 
-  // Info libreria attuale
-  document.getElementById('rst-libri-attuali').textContent =
-    `${books.length} ${books.length===1?'libro':'libri'} salvati`;
-
-  // Messaggio aggiornamento
-  if (nuovi.length === 0 && mancanti.length === 0) {
-    document.getElementById('rst-aggiornato').textContent = 'Identico alla libreria attuale';
-    document.getElementById('rst-diff').textContent = '';
-    document.getElementById('rst-btn-aggiorna').style.display = 'none';
-    document.getElementById('rst-btn-uguale').style.display = 'block';
+function setTheme(t){
+  if(t==='green'){
+    document.body.className='theme-green';
+    document.getElementById('tb-g').style.cssText='background:linear-gradient(135deg,#39ff14,#22c55e);color:#111';
+    document.getElementById('tb-o').style.cssText='background:transparent;color:#666';
   } else {
-    let msg = '';
-    if (nuovi.length > 0) msg += `+${nuovi.length} libri nuovi nel backup`;
-    if (mancanti.length > 0) msg += (msg?'  ·  ':'') + `${mancanti.length} solo sul telefono`;
-    document.getElementById('rst-aggiornato').textContent = msg;
-    let diffMsg = '';
-    if (nuovi.length > 0) diffMsg = `Il backup ha ${nuovi.length} ${nuovi.length===1?'libro':'libri'} che non hai ancora`;
-    else diffMsg = 'Il backup è meno aggiornato del telefono';
-    document.getElementById('rst-diff').textContent = diffMsg;
-    document.getElementById('rst-btn-aggiorna').style.display = 'block';
-    document.getElementById('rst-btn-uguale').style.display = 'none';
-  }
-
-  document.getElementById('m-restore').classList.add('open');
-}
-
-function closeRestore() {
-  document.getElementById('m-restore').classList.remove('open');
-  _backupData = null;
-}
-
-function doRestore(modo) {
-  if (!_backupData) return;
-  const { libri } = _backupData;
-  if (modo === 'sostituisci') {
-    books = libri;
-    salva(); render(); closeRestore();
-    showNotif(`📥 Libreria aggiornata: ${books.length} libri`);
-  } else {
-    const existingKeys = new Set(books.map(b => b.isbn || b.titolo));
-    let aggiunti = 0;
-    libri.forEach(b => {
-      if (!existingKeys.has(b.isbn || b.titolo)) { books.push(b); aggiunti++; }
-    });
-    salva(); render(); closeRestore();
-    showNotif(aggiunti > 0 ? `📥 Aggiunti ${aggiunti} libri nuovi` : '✓ Nessun libro nuovo da aggiungere');
+    document.body.className='';
+    document.getElementById('tb-o').style.cssText='background:linear-gradient(135deg,#ff6a00,#ff3b3b);color:#fff';
+    document.getElementById('tb-g').style.cssText='background:transparent;color:#666';
   }
 }
 
-// ═══════════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════════
-function coverHTML(b, w, h) {
-  if (b.copertina) {
-    return `<img src="${b.copertina}" style="width:${w}px;height:${h}px;object-fit:cover;display:block" onerror="this.style.display='none'">`;
-  }
-  const col = GCOL[b.genere] || '#4A3728';
-  return `<div class="cvph" style="background:linear-gradient(160deg,${col} 0%,#1a0f00 100%);width:${w}px;height:${h}px">
-    <div style="font-size:${w<80?18:26}px;margin-bottom:3px">📖</div>
-    <div style="color:#D4AF37;font-size:9px;font-style:italic;text-align:center;line-height:1.3;
-      overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;">${b.titolo||''}</div>
-  </div>`;
-}
-
-function filtered() {
-  const q = document.getElementById('search-inp').value.toLowerCase();
-  return books.filter(b => {
-    const ms = !q || (b.titolo||'').toLowerCase().includes(q) ||
-      (b.autore||'').toLowerCase().includes(q) || (b.editore||'').toLowerCase().includes(q);
-    const mg = genreFilter === 'Tutti' || b.genere === genreFilter;
-    return ms && mg;
-  }).sort((a,b) => sortBy === 'autore'
-    ? (a.autore||'zzz').localeCompare(b.autore||'zzz','it')
-    : (b.anno||'0').localeCompare(a.anno||'0'));
-}
-
-function render() {
-  const q = document.getElementById('search-inp').value;
-  document.getElementById('search-clr').style.display = q ? 'block' : 'none';
-  const list = filtered();
-  const el = document.getElementById('book-list');
-  if (!list.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div style="font-size:44px;margin-bottom:12px">📚</div>
-      <p>${books.length===0 ? 'La tua libreria è vuota' : 'Nessun libro trovato'}</p>
-      <p style="font-size:12px;margin-top:4px">${books.length===0 ? 'Premi "+ Aggiungi" per iniziare' : 'Prova un\'altra ricerca'}</p>
-    </div>`;
-  } else {
-    el.innerHTML = list.map(b => {
-      const gc = GCLS[b.genere] || '';
-      return `<div class="book-card" onclick="openDetail(${b.id})">
-        <div class="book-cover-col">${coverHTML(b,68,96)}</div>
-        <div class="book-info">
-          <div class="book-title">${esc(b.titolo)}</div>
-          <div class="book-author">${esc(b.autore||'Autore sconosciuto')}</div>
-          <div class="book-meta">
-            ${b.genere ? `<span class="genre-tag ${gc}">${b.genere}</span>` : ''}
-            ${b.anno ? `<span class="book-year">${b.anno}</span>` : ''}
-            ${b.pagine ? `<span class="book-year">${b.pagine} pp.</span>` : ''}
-          </div>
-        </div>
-        <div class="book-arr">›</div>
-      </div>`;
-    }).join('');
-  }
-  renderStats();
-}
-
-function renderStats() {
-  const cnt = {};
-  GENERI.forEach(g => cnt[g] = books.filter(b => b.genere===g).length);
-  document.getElementById('sb-count').textContent = `${books.length} ${books.length===1?'libro':'libri'} catalogati`;
-  document.getElementById('cnt-t').textContent = books.length;
-  document.getElementById('cnt-n').textContent = cnt['Narrativa']||0;
-  document.getElementById('cnt-s').textContent = cnt['Saggistica']||0;
-  document.getElementById('cnt-c').textContent = cnt['Classici']||0;
-  document.getElementById('cnt-9').textContent = cnt["Classici '900"]||0;
-  document.getElementById('cnt-r').textContent = cnt['Libri Ragazzi']||0;
-
-  // stats chips
-  let html = `<div class="stat-chip ${genreFilter==='Tutti'?'active':''}" onclick="setGenre('Tutti')"><div class="num">${books.length}</div><div class="lbl">Tutti</div></div>`;
-  const abbr = {"Narrativa":"Narrativa","Saggistica":"Saggist.","Classici":"Classici","Classici '900":"Cl.'900","Libri Ragazzi":"Ragazzi"};
-  GENERI.forEach(g => {
-    if(cnt[g]>0) html += `<div class="stat-chip ${genreFilter===g?'active':''}" onclick="setGenre('${esc(g)}')"><div class="num">${cnt[g]}</div><div class="lbl">${abbr[g]}</div></div>`;
-  });
-  document.getElementById('stats-row').innerHTML = html;
-
-  const fb = document.getElementById('filter-badge');
-  if (genreFilter !== 'Tutti') {
-    fb.style.display = 'flex';
-    document.getElementById('filter-tag-lbl').textContent = genreFilter;
-  } else { fb.style.display = 'none'; }
-}
-
-function setSort(s) {
-  sortBy = s;
-  document.getElementById('st-aut').classList.toggle('active', s==='autore');
-  document.getElementById('st-ann').classList.toggle('active', s==='anno');
-  document.getElementById('sba-aut').classList.toggle('active', s==='autore');
-  document.getElementById('sba-ann').classList.toggle('active', s==='anno');
-  render();
-}
-
-function setGenre(g) {
-  genreFilter = g;
-  document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
-  closeSB(); render();
-}
-
-function esc(s) {
-  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// ═══════════════════════════════════════════════════
-// SIDEBAR
-// ═══════════════════════════════════════════════════
-function openSB() {
-  document.getElementById('sidebar').classList.add('open');
-  document.getElementById('sb-overlay').classList.add('open');
-}
-function closeSB() {
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sb-overlay').classList.remove('open');
-}
-
-// ═══════════════════════════════════════════════════
-// DETAIL
-// ═══════════════════════════════════════════════════
-function openDetail(id) {
-  const b = books.find(x => x.id===id);
-  if(!b) return;
-  currentId = id;
-  document.getElementById('lib-view').style.display = 'none';
-  document.getElementById('det-view').classList.add('open');
-  document.getElementById('det-date').textContent = `aggiunto ${b.dataAggiunta||''}`;
-  document.getElementById('det-cover').innerHTML = coverHTML(b,108,152);
-  document.getElementById('det-title').textContent = b.titolo||'';
-  document.getElementById('det-author').textContent = b.autore||'Autore sconosciuto';
-  const gc = GCLS[b.genere]||'';
-  document.getElementById('det-genre').innerHTML = b.genere ?
-    `<span class="genre-tag ${gc}" style="font-size:11px;padding:3px 10px">${b.genere}</span>` : '';
-  // tabs
-  let info = '';
-  if(b.editore) info += irow('Editore',b.editore);
-  if(b.anno) info += irow('Anno',b.anno);
-  if(b.pagine) info += irow('Pagine',`${b.pagine} pagine`);
-  if(b.isbn) info += irow('ISBN',b.isbn);
-  if(!info) info = `<div style="color:#4A3210;text-align:center;padding:20px;font-size:13px">Nessun dato bibliografico</div>`;
-  document.getElementById('tab-info').innerHTML = info;
-  document.getElementById('tab-note').innerHTML = b.note ?
-    `<div class="text-block">${esc(b.note)}</div>` :
-    `<div style="color:#4A3210;text-align:center;padding:20px;font-size:13px">Nessuna nota</div>`;
-  document.getElementById('tab-cit').innerHTML = b.citazioni ?
-    `<div class="text-block">❝ ${esc(b.citazioni)}</div>` :
-    `<div style="color:#4A3210;text-align:center;padding:20px;font-size:13px">Nessuna citazione</div>`;
-  switchTab('info');
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-function irow(k,v) {
-  return `<div class="info-row"><span class="ik">${k}</span><span class="iv">${esc(v)}</span></div>`;
+
+function setLevel(btn,val,cls){
+  document.querySelectorAll('.level-btn').forEach(function(b){b.className='level-btn';});
+  btn.classList.add(cls);
+  lv=val; chk();
 }
-function closeDetail() {
-  document.getElementById('det-view').classList.remove('open');
-  document.getElementById('lib-view').style.display='';
-  currentId = null;
+
+document.getElementById('nome').addEventListener('input',chk);
+function chk(){document.getElementById('btn-info-next').disabled=!document.getElementById('nome').value.trim()||!lv;}
+
+function startDrill(){cur=0;R=mk();s1();go('s-drill-1');}
+
+function s1(){
+  var p=PROTOCOL[cur],r=R[cur],isCon=p.tipo==="CON",isNet=p.zona==="net";
+  document.getElementById('d1-prog').style.width=Math.round((cur/PROTOCOL.length)*100)+'%';
+  document.getElementById('d1-counter').textContent='SERIE '+(cur+1)+' / '+PROTOCOL.length;
+  var pb=p.config!=="—"?'<span class="badge-pos">'+p.config+'</span>':"";
+  var bc=isNet?'banner banner-net':'banner banner-field';
+  var bt=isNet?'📍 A rete — colpo compatto':'📍 Fondocampo — preparazione completa';
+  document.getElementById('d1-main').innerHTML=
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap">'+
+      '<span class="badge '+(isCon?'badge-con':'badge-senza')+'">'+p.tipo+'</span>'+pb+
+    '</div>'+
+    '<div style="font-size:28px;font-weight:800">'+p.colpo+'</div>'+
+    '<div style="font-size:13px;color:#888;margin-top:6px">'+(isCon?'Applica CLIPPI™ in posizione '+p.config:'Rimuovi il modulo — stesso colpo')+'</div>'+
+    '<div class="'+bc+'">'+bt+'</div>'+
+    '<div class="reps-box"><span style="font-size:40px;font-weight:800;color:var(--acc)">5</span><span style="font-size:16px;color:#aaa;margin-left:8px">colpi</span></div>';
+  var sc=isCon?RPE_CON:RPE_SENZA;
+  var sub=isCon?'1 = appena percepito · 5 = molto pesante':'-3 = molto più leggero · +1 = invariato';
+  document.getElementById('d1-rpe').innerHTML=
+    '<div style="font-size:13px;color:#aaa">'+(isCon?'Peso percepito':'Leggerezza percepita')+'</div>'+
+    '<div style="font-size:11px;color:#555;margin-top:2px">'+sub+'</div>'+
+    '<div class="rpe-row">'+sc.map(function(l){
+      var act=r.rpe===l;
+      var st=act?'border-color:var(--acc);background:var(--acc);color:#fff;':'';
+      return'<button class="rpe-btn" onclick="sRpe(\''+l+'\')" style="'+st+'">'+l+'</button>';
+    }).join('')+'</div>';
+  var tgs=isCon?TAGS_CON:TAGS_SENZA,ac2=isCon?'active-con':'active-senza';
+  document.getElementById('d1-tag').innerHTML=
+    '<div style="font-size:13px;color:#aaa;margin-bottom:4px">Sensazioni percepite</div>'+
+    '<div class="tag-grid">'+tgs.map(function(t){
+      return'<button class="tag-btn '+(r.tag===t?ac2:'')+'" onclick="sTag(\''+t.replace(/'/g,"\\'")+'\')">'+t+'</button>';
+    }).join('')+'</div>';
+  document.getElementById('d1-back').style.display=cur>0?'block':'none';
 }
-function switchTab(t) {
-  ['info','note','cit'].forEach(x => {
-    document.getElementById(`tab-${x}`).classList.toggle('active', x===t);
+
+function s2(){
+  var p=PROTOCOL[cur],r=R[cur],isCon=p.tipo==="CON";
+  document.getElementById('d2-prog').style.width=Math.round(((cur+0.5)/PROTOCOL.length)*100)+'%';
+  document.getElementById('d2-counter').textContent='SERIE '+(cur+1)+' / '+PROTOCOL.length;
+  var pb=p.config!=="—"?'<span class="badge-pos" style="font-size:11px;padding:2px 8px">'+p.config+'</span>':"";
+  document.getElementById('d2-header').innerHTML=
+    '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+
+      '<span class="badge '+(isCon?'badge-con':'badge-senza')+'">'+p.tipo+'</span>'+pb+
+      '<b style="font-size:18px">'+p.colpo+'</b>'+
+    '</div>';
+  document.getElementById('grip-si').className='yn-btn'+(r.gripSi===true?' active-si':'');
+  document.getElementById('grip-no').className='yn-btn'+(r.gripSi===false?' active-no':'');
+  var gd=document.getElementById('grip-detail');
+  if(r.gripSi===true){
+    gd.classList.remove('hidden');
+    document.getElementById('grip-row').innerHTML=["0","1","2","3","4","5","6","7","8","9","10"].map(function(v){
+      return'<button class="grip-btn'+(r.grip===v?' active':'')+'" onclick="sGrip(\''+v+'\')">'+v+'</button>';
+    }).join('');
+  } else { gd.classList.add('hidden'); }
+  document.getElementById('resp-si').className='yn-btn'+(r.respSi===true?' active-si':'');
+  document.getElementById('resp-no').className='yn-btn'+(r.respSi===false?' active-no':'');
+  var rd=document.getElementById('resp-detail');
+  if(r.respSi===true){
+    rd.classList.remove('hidden');
+    document.getElementById('resp-row').innerHTML=RESPIRO.map(function(v){
+      return'<button class="resp-btn'+(r.resp===v?' active':'')+'" onclick="sResp(\''+v+'\')">'+v+'</button>';
+    }).join('');
+  } else { rd.classList.add('hidden'); }
+  document.getElementById('d2-next').textContent=cur<PROTOCOL.length-1?"Prossima serie →":"Concludi →";
+}
+
+function setGripSi(val){R[cur].gripSi=val;if(!val)R[cur].grip=null;s2();}
+function setRespSi(val){R[cur].respSi=val;if(!val)R[cur].resp=null;s2();}
+function sRpe(v){R[cur].rpe=v;s1();}
+function sTag(v){R[cur].tag=R[cur].tag===v?null:v;s1();}
+function sGrip(v){R[cur].grip=v;s2();}
+function sResp(v){R[cur].resp=v;s2();}
+function goStep2(){s2();go('s-drill-2');}
+function nextDrill(){if(cur<PROTOCOL.length-1){cur++;s1();go('s-drill-1');}else{bF();go('s-finali');}}
+function prevDrill(){if(cur>0){cur--;s1();go('s-drill-1');}}
+
+function bF(){
+  document.getElementById('finali-questions').innerHTML=FINALI_Q.map(function(f){
+    return'<div class="card"><div style="font-size:14px;color:#ddd;margin-bottom:12px;line-height:1.5">'+f.label+'</div>'+
+      '<div class="opt-row">'+f.opt.map(function(o){
+        return'<button class="opt-btn" data-key="'+f.key+'" onclick="sF(this,\''+f.key+'\',\''+o+'\')">'+o+'</button>';
+      }).join('')+'</div></div>';
+  }).join('');
+}
+function sF(btn,key,val){
+  F[key]=val;
+  document.querySelectorAll('.opt-btn[data-key="'+key+'"]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+function showRiepilogo(){
+  var nome=document.getElementById('nome').value.trim();
+  document.getElementById('riepilogo-name').textContent=nome+' · '+lv;
+  document.getElementById('riepilogo-list').innerHTML=PROTOCOL.map(function(p,i){
+    var r=R[i],isCon=p.tipo==="CON";
+    var cc=r.rpe!==null?'var(--acc)':'#2a2a2a',tc=r.rpe!==null?'#fff':'#555';
+    var pb=p.config!=="—"?'<span style="display:inline-block;padding:1px 7px;border-radius:99px;font-size:11px;font-weight:800;background:#ffe600;color:#111;margin-left:6px">'+p.config+'</span>':"";
+    var fis='';
+    if(r.gripSi===true&&r.grip!==null) fis+='✊ Impugn. '+r.grip+'/10';
+    if(r.gripSi===false) fis+='✊ Impugn. non percepita';
+    if(fis&&r.respSi!==null) fis+=' · ';
+    if(r.respSi===true&&r.resp) fis+='🫁 '+r.resp;
+    if(r.respSi===false) fis+='🫁 non percepito';
+    return'<div class="summary-row"><div style="flex:1">'+
+      '<span class="badge '+(isCon?'badge-con':'badge-senza')+'">'+p.tipo+'</span>'+
+      '<b style="margin-left:8px">'+p.colpo+'</b>'+pb+
+      (r.tag?'<div style="font-size:12px;color:#777;margin-top:3px">'+r.tag+'</div>':'')+
+      (fis?'<div style="font-size:11px;color:#555;margin-top:2px">'+fis+'</div>':'')+
+    '</div><div class="rpe-circle" style="background:'+cc+';color:'+tc+'">'+(r.rpe!==null?r.rpe:'—')+'</div></div>';
+  }).join('');
+  var fc=document.getElementById('riepilogo-finali');
+  fc.innerHTML=FINALI_Q.map(function(f){
+    return'<div style="display:flex;justify-content:space-between;margin-bottom:10px">'+
+      '<span style="font-size:13px;color:#888;flex:1">'+f.label+'</span>'+
+      '<span style="font-size:13px;font-weight:700;margin-left:8px">'+(F[f.key]||'—')+'</span></div>';
+  }).join('');
+  var nf=document.getElementById('note-finale').value;
+  if(nf) fc.innerHTML+='<div style="border-top:1px solid #2a2a2a;padding-top:10px;font-size:13px;color:#aaa">'+nf+'</div>';
+  go('s-riepilogo');
+}
+
+function bT(){
+  var nome=document.getElementById('nome').value.trim(),date=new Date().toLocaleDateString('it-IT');
+  var s='CLIPPI™ PRO-T — Test Campo\n'+date+' · '+nome+' · '+lv+'\n\n';
+  PROTOCOL.forEach(function(p,i){
+    var r=R[i],lb=p.tipo==="CON"?"Peso":"Leggerezza";
+    s+=(i+1)+'. '+p.colpo+' '+p.config+' ('+p.tipo+') x5 — '+lb+': '+(r.rpe!==null?r.rpe:'—');
+    if(r.tag) s+=' — '+r.tag;
+    if(r.gripSi===true) s+=' — Impugn.: '+(r.grip!==null?r.grip+'/10':'percepita/nr');
+    if(r.gripSi===false) s+=' — Impugn.: non percepita';
+    if(r.respSi===true) s+=' — Respiro: '+(r.resp||'percepito/nr');
+    if(r.respSi===false) s+=' — Respiro: non percepito';
+    s+='\n';
   });
-  document.querySelectorAll('.tab-btn').forEach((b,i) =>
-    b.classList.toggle('active', ['info','note','cit'][i]===t));
+  s+='\nCONCLUSIONI\n';
+  FINALI_Q.forEach(function(f){s+=f.label+' → '+(F[f.key]||'—')+'\n';});
+  var nf=document.getElementById('note-finale').value;
+  if(nf) s+='\nNote: '+nf;
+  return s;
 }
-function delBook() {
-  if(!confirm('Eliminare questo libro dalla libreria?')) return;
-  books = books.filter(b => b.id!==currentId);
-  salva(); closeDetail(); render();
-  showNotif('Libro eliminato');
+function copyResults(){
+  var s=bT();
+  if(navigator.clipboard){navigator.clipboard.writeText(s).then(function(){alert('✓ Copiato!');}).catch(function(){fb(s);});}
+  else{fb(s);}
 }
-
-// ═══════════════════════════════════════════════════
-// MODAL METODO
-// ═══════════════════════════════════════════════════
-function openMethod() { document.getElementById('m-method').classList.add('open'); }
-function closeMethod() { document.getElementById('m-method').classList.remove('open'); }
-
-// ═══════════════════════════════════════════════════
-// QR SCANNER
-// ═══════════════════════════════════════════════════
-async function startQR() {
-  closeMethod();
-  document.getElementById('m-qr').classList.add('open');
-  document.getElementById('qr-st').textContent = '📸 Inquadra il barcode ISBN sul libro…';
-  document.getElementById('qr-st').className = 'qr-status';
-  document.getElementById('qr-load').style.display = 'none';
-  if(!html5QR) html5QR = new Html5Qrcode("qr-reader");
-  try {
-    await html5QR.start(
-      { facingMode:"environment" },
-      { fps:10, qrbox:{width:260,height:110} },
-      onScan, ()=>{}
-    );
-  } catch(e) {
-    document.getElementById('qr-st').textContent = '⚠️ Fotocamera non disponibile — usa "Digita ISBN"';
-    document.getElementById('qr-st').className = 'qr-status err';
-  }
+function fb(t){
+  var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('✓ Copiato!');
 }
-async function onScan(val) {
-  const clean = val.replace(/[^0-9X]/gi,'');
-  if(clean.length!==13 && clean.length!==10) return;
-  try { await html5QR.stop(); } catch(e){}
-  document.getElementById('qr-st').textContent = `✓ ISBN trovato: ${clean}`;
-  document.getElementById('qr-st').className = 'qr-status ok';
-  document.getElementById('qr-load').style.display = 'block';
-  try {
-    const data = await fetchISBN(clean);
-    document.getElementById('qr-load').style.display = 'none';
-    closeQR(); openForm(data,'qr');
-  } catch(e) {
-    document.getElementById('qr-load').style.display = 'none';
-    document.getElementById('qr-st').textContent = `ISBN ${clean} — nessun dato online. Inserisci manualmente.`;
-    document.getElementById('qr-st').className = 'qr-status err';
-    setTimeout(()=>{ closeQR(); openForm({isbn:clean},'qr'); }, 2000);
-  }
-}
-async function closeQR() {
-  if(html5QR) try { await html5QR.stop(); } catch(e){}
-  document.getElementById('m-qr').classList.remove('open');
+function sendWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(bT()),'_blank');}
+function resetAll(){
+  cur=0;R=mk();F={};lv="";
+  document.getElementById('nome').value="";
+  document.querySelectorAll('.level-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('btn-info-next').disabled=true;
+  go('s-intro');
 }
 
-// ═══════════════════════════════════════════════════
-// ISBN LOOKUP
-// ═══════════════════════════════════════════════════
-function openIsbnModal() {
-  closeMethod();
-  document.getElementById('isbn-inp').value = '';
-  document.getElementById('isbn-err').style.display = 'none';
-  document.getElementById('isbn-load').style.display = 'none';
-  document.getElementById('m-isbn').classList.add('open');
-  setTimeout(()=>document.getElementById('isbn-inp').focus(), 200);
-}
-function closeIsbn() { document.getElementById('m-isbn').classList.remove('open'); }
+setTheme('orange');
 
-async function doISBN() {
-  var clean = document.getElementById('isbn-inp').value.replace(/[^0-9X]/gi,'');
-  if(clean.length < 10) { showIsbnErr('Inserisci almeno 10 cifre'); return; }
-  document.getElementById('isbn-err').style.display = 'none';
-  document.getElementById('paste-section').style.display = 'none';
-  var loadEl = document.getElementById('isbn-load');
-  loadEl.innerHTML = '<span class="spinner"></span>Ricerca libro in corso...';
-  loadEl.style.display = 'block';
-  try {
-    var data = await fetchISBN(clean);
-    loadEl.style.display = 'none';
-    loadEl.innerHTML = '<span class="spinner"></span>Ricerca in corso...';
-    closeIsbn();
-    openForm(data, 'qr');
-    if (!data.titolo) {
-      var ibsC = 'https://www.ibs.it/images/' + clean + '_0_0_536_0_75.jpg';
-      var lensU = 'https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(ibsC);
-      var ibsU = 'https://www.ibs.it/search/?ts=as&query=' + clean;
-      var ban = document.getElementById('form-banner');
-      ban.innerHTML = 'Copertina trovata! Apri <a href="' + lensU + '" target="_blank" style="color:#90EE90;font-weight:bold;text-decoration:underline">Google Lens</a> o <a href="' + ibsU + '" target="_blank" style="color:#90EE90;font-weight:bold;text-decoration:underline">IBS.it</a>, copia il testo e incollalo nel campo verde qui sotto';
-      ban.style.display = 'block';
-      setTimeout(function(){
-        var box = document.getElementById('paste-form-box');
-        if(box) box.style.display = 'block';
-      }, 300);
-    }
-  } catch(e) {
-    loadEl.style.display = 'none';
-    loadEl.innerHTML = '<span class="spinner"></span>Ricerca in corso...';
-    document.getElementById('paste-section').style.display = 'block';
-    showIsbnErr('Nessun dato trovato online.', clean);
+// ============================================================
+// ===== ALLENAMENTO GUIDATO — tutti i protocolli =====
+// ============================================================
+var TRAIN_STROKES=[
+  {nome:"Diritto",  defaultConfig:"Ore 3+9", zona:"field"},
+  {nome:"Servizio", defaultConfig:"Ore 12",  zona:"field"},
+  {nome:"Rovescio", defaultConfig:"Ore 3+9", zona:"field"},
+  {nome:"Volée",    defaultConfig:"Ore 3+9", zona:"net"}
+];
+var TRAIN_CONFIGS=["Ore 12","Ore 3+9","Ore 12+3+9"];
+var TICK_MS=1500; // ritmo del conteggio automatico nel Contrasto Rapido, ms per colpo
+
+var PROTOCOLS_DEF={
+  contrasto:{
+    nome:"Contrasto Rapido 3+7", categoria:"A — Contrasto e Velocizzazione", tipo:"cycles",
+    desc:"3 colpi CON (lenti) → 7 colpi SENZA (piena velocità) → pausa 30″. Tutti i colpi con pallina. Minimo 4, massimo 6 cicli.",
+    usaPickerConfig:true
+  },
+  ottantaVenti:{
+    nome:"20/80 — Protocollo base", categoria:"Base", tipo:"phases",
+    desc:"Il 20% del tempo con modulo crea lo stimolo sensoriale, l'80% senza sfrutta l'effetto contrasto.",
+    usaPickerConfig:true,
+    fasi:[
+      {label:"Attivazione",        tipo:"CON",   modalita:"shadow",       durataMin:1.5,nota:"Shadow swing lenti, 3 serie da 10 ripetizioni."},
+      {label:"Sessione principale",tipo:"SENZA", modalita:"palla",        durataMin:20, nota:"Allenamento normale — il cervello ricorda il peso."},
+      {label:"Rinforzo",           tipo:"CON",   modalita:"palla",        durataMin:2,  nota:"10 colpi con modulo al 60% velocità."},
+      {label:"Chiusura",           tipo:"SENZA", modalita:"palla",        durataMin:20, nota:"Sessione piena — secondo picco di contrasto."}
+    ]
+  },
+  progressivo:{
+    nome:"Progressivo — da 3 moduli a 0", categoria:"B — Destabilizzazione e Esplorazione", tipo:"phases",
+    desc:"Si parte dall'overload massimo e si rimuovono gradualmente i moduli. Richiede alta concentrazione — non adatto a principianti.",
+    usaPickerConfig:false,
+    fasi:[
+      {label:"Fase 1", tipo:"CON",   modalita:"shadow+palla", durataMin:5,  configFase:"Ore 12+3+9 (3 moduli)",        nota:"Shadow + 10 colpi lenti, tutti e 3 i moduli montati."},
+      {label:"Fase 2", tipo:"CON",   modalita:"palla",        durataMin:5,  configFase:"Ore 3+9 (2 moduli)",           nota:"Rimuovi ore 12. 15 colpi."},
+      {label:"Fase 3", tipo:"CON",   modalita:"palla",        durataMin:5,  configFase:"1 modulo laterale (Ore 3 o 9)",nota:"Rimuovi un modulo laterale, resta solo 1."},
+      {label:"Fase 4", tipo:"SENZA", modalita:"palla",        durataMin:15, configFase:"Nessun modulo",                nota:"Rimuovi tutto, sessione libera a piena velocità."}
+    ]
+  },
+  velocizzazione:{
+    nome:"Velocizzazione — accelerazione pura", categoria:"A — Contrasto e Velocizzazione", tipo:"phases",
+    desc:"Dopo swing esplosivi con overload massimo, il sistema neuromuscolare sovra-eroga forza. Usare solo a tecnica di base già solida.",
+    usaPickerConfig:false,
+    fasi:[
+      {label:"Riscaldamento", tipo:"SENZA", modalita:"palla", durataMin:5,  configFase:"Nessun modulo",         nota:"Baseline di velocità."},
+      {label:"Carico",        tipo:"CON",   modalita:"palla", durataMin:8,  configFase:"Ore 12+3+9 (3 moduli)", nota:"20 swing esplosivi a massima velocità."},
+      {label:"Scarico",       tipo:"SENZA", modalita:"palla", durataMin:2,  configFase:"Nessun modulo",         nota:"5 swing lentissimi per resettare il sistema nervoso."},
+      {label:"Sprint",        tipo:"SENZA", modalita:"palla", durataMin:10, configFase:"Nessun modulo",         nota:"Colpi a massima velocità — sovra-erogazione attiva."}
+    ]
+  },
+  stabilizzazione:{
+    nome:"Stabilizzazione — fissaggio tecnico", categoria:"C — Consolidamento Tecnico", tipo:"phases",
+    desc:"Per consolidare un gesto nella memoria motoria a lungo termine. Successo: il gesto con e senza modulo si sentono quasi uguali.",
+    usaPickerConfig:true,
+    fasi:[
+      {label:"Shadow",         tipo:"CON",   modalita:"shadow",       durataMin:10, nota:"Solo shadow — ogni ripetizione deve essere fluida."},
+      {label:"Transizione",    tipo:"CON",   modalita:"shadow+palla", durataMin:2,  nota:"5 shadow → 5 colpi con palla."},
+      {label:"Consolidamento", tipo:"SENZA", modalita:"palla",        durataMin:20, nota:"30 colpi alta qualità."},
+      {label:"Verifica",       tipo:"CON",   modalita:"palla",        durataMin:5,  nota:"Se fluido come senza, la tecnica è entrata."}
+    ]
   }
-}
-function parsePaste() {
-  var testo = document.getElementById('paste-input').value.trim();
-  if (!testo) return;
-  var titolo = '', autore = '', editore = '', anno = '', pagine = '';
-  var m;
-  var lines = testo.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>1;});
-  for(var i=0;i<lines.length;i++){
-    var l=lines[i];
-    if(!titolo && /[Tt]itolo/.test(l)) { m=l.match(/:\s*(.+)/); if(m) titolo=m[1].trim(); }
-    if(!autore && /[Aa]utor/.test(l)) { m=l.match(/:\s*(.+)/); if(m) autore=m[1].trim(); }
-    if(!editore && /[Ee]ditore/.test(l)) { m=l.match(/:\s*(.+)/); if(m) editore=m[1].trim(); }
-    if(!anno) { m=l.match(/[Aa]nno[^\d]*(\d{4})/); if(m) anno=m[1]; }
-    if(!pagine) { m=l.match(/[Pp]agine[^\d]*(\d+)/); if(m) pagine=m[1]; }
-  }
-  if (!titolo && lines.length>0) {
-    m = lines[0].match(/^([^-]+)\s*-\s*(.+)$/);
-    if(m){ titolo=m[1].trim(); if(!autore) autore=m[2].replace(/[Ll]ibro/g,'').replace(/\|.*/,'').trim(); }
-    else titolo=lines[0];
-    if(!autore && lines[1]) autore=lines[1];
-  }
-  if (titolo) {
-    var isbn = document.getElementById('isbn-inp').value.replace(/[^0-9X]/gi,'');
-    var cover = 'https://www.ibs.it/images/' + isbn + '_0_0_536_0_75.jpg';
-    closeIsbn();
-    openForm({titolo:titolo,autore:autore,editore:editore,anno:anno,pagine:pagine,isbn:isbn,copertina:cover},'qr');
-    showNotif('Dati estratti dal testo!');
+};
+var PROTOCOL_ORDER=["contrasto","ottantaVenti","progressivo","velocizzazione","stabilizzazione"];
+
+var T={protoKey:'contrasto',strokeIdx:null,config:null,livello:null,
+       ciclo:1,faseCiclo:'con',rep:0,counting:false,tickTimer:null,
+       faseIdx:0,secLeft:0,
+       timer:null,pausaLeft:30};
+var TRAIN_FINALI_Q=[
+  {key:"sentito", label:"Hai sentito il contrasto CON/SENZA?",   opt:["Sì, netto","Sì, leggero","No"]},
+  {key:"vant",    label:"Vantaggio principale percepito?",       opt:["Più controllo","Più leggerezza","Più fluidità/velocità","Nessuno"]},
+  {key:"svant",   label:"Svantaggio percepito?",                 opt:["Nessuno","Affaticamento","Fastidio/disturbo","Perdita di ritmo"]},
+  {key:"legg",    label:"Leggerezza percepita dopo rimozione?",  opt:["Uguale","Più leggero","Molto più leggero"]}
+];
+var TF={};
+
+function trainRenderSetup(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+
+  document.getElementById('train-proto-list').innerHTML=PROTOCOL_ORDER.map(function(key){
+    var p=PROTOCOLS_DEF[key], act=T.protoKey===key?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="trainPickProto(\''+key+'\')">'+
+      '<span>'+p.nome+'</span>'+
+      '<span class="badge-pos" style="font-size:10px;padding:2px 8px">'+p.categoria+'</span></button>';
+  }).join('');
+
+  document.getElementById('train-proto-desc').innerHTML=
+    '<div class="card"><div style="font-size:13px;color:#888;line-height:1.6">'+proto.desc+'</div></div>';
+
+  document.getElementById('train-stroke-list').innerHTML=TRAIN_STROKES.map(function(s,i){
+    var act=T.strokeIdx===i?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="trainPickStroke('+i+')">'+
+      '<span>'+s.nome+(s.zona==='net'?' (a rete)':'')+'</span>'+
+      '<span class="badge-pos" style="font-size:11px;padding:2px 8px">'+s.defaultConfig+'</span></button>';
+  }).join('');
+
+  var cfgArea=document.getElementById('train-config-area');
+  if(!proto.usaPickerConfig){
+    cfgArea.innerHTML='<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:6px">Configurazione CLIPPI</div>'+
+      '<div style="font-size:13px;color:#888;line-height:1.6">Definita dal protocollo, fase per fase — varia durante l\'allenamento.</div></div>';
+  } else if(T.strokeIdx===null){
+    cfgArea.innerHTML='';
   } else {
-    alert('Non trovo il titolo. Prova: Titolo - Autore');
+    cfgArea.innerHTML='<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:10px">Configurazione CLIPPI</div>'+
+      '<div class="opt-row">'+TRAIN_CONFIGS.map(function(c){
+        return '<button class="opt-btn'+(T.config===c?' active':'')+'" onclick="trainPickConfig(\''+c+'\')">'+c+'</button>';
+      }).join('')+'</div></div>';
+  }
+
+  document.getElementById('train-livello-area').innerHTML=
+    '<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:10px">Livello atleta (opzionale)</div>'+
+    '<div class="level-row">'+
+      '<button class="level-btn'+(T.livello==='Principiante'?' active-p':'')+'" onclick="trainPickLivello(\'Principiante\')">🟢 Principiante</button>'+
+      '<button class="level-btn'+(T.livello==='Intermedio'?' active-i':'')+'" onclick="trainPickLivello(\'Intermedio\')">🟡 Intermedio</button>'+
+      '<button class="level-btn'+(T.livello==='Pro'?' active-a':'')+'" onclick="trainPickLivello(\'Pro\')">🔴 Pro</button>'+
+    '</div></div>';
+
+  var cfgOk = !proto.usaPickerConfig || !!T.config;
+  document.getElementById('btn-train-start').disabled = (T.strokeIdx===null || !cfgOk);
+}
+function trainPickProto(key){
+  T.protoKey=key;
+  T.strokeIdx=null; T.config=null;
+  trainRenderSetup();
+}
+function trainPickStroke(i){
+  T.strokeIdx=i;
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  T.config = proto.usaPickerConfig ? TRAIN_STROKES[i].defaultConfig : null;
+  trainRenderSetup();
+}
+function trainPickConfig(c){ T.config=c; trainRenderSetup(); }
+function trainPickLivello(v){ T.livello=(T.livello===v?null:v); trainRenderSetup(); }
+
+function trainStart(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  go('s-train-run');
+  if(proto.tipo==='cycles'){
+    T.ciclo=1; T.faseCiclo='con'; T.rep=0;
+    trainStartAutoCount();
+  } else {
+    T.faseIdx=0;
+    phaseStartTimer();
   }
 }
-function smartParse() {
-  var testo = document.getElementById('paste-raw').value.trim();
-  if (!testo) return;
-  var lines = testo.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>1;});
-  var titolo = '', autore = '', editore = '';
-  // Prima cerca pattern espliciti
-  for (var i=0; i<lines.length; i++) {
-    var l = lines[i];
-    if (/^[Tt]itolo/.test(l)) { var m=l.match(/:\s*(.+)/); if(m) titolo=m[1].trim(); }
-    else if (/^[Aa]utor/.test(l)) { var m=l.match(/:\s*(.+)/); if(m) autore=m[1].trim(); }
-    else if (/^[Ee]ditor/.test(l)) { var m=l.match(/:\s*(.+)/); if(m) editore=m[1].trim(); }
+
+function trainRenderRun(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  if(proto.tipo==='cycles'){ trainRenderRunCycles(); }
+  else { phaseRenderRun(); }
+}
+
+function trainRenderRunCycles(){
+  var s=TRAIN_STROKES[T.strokeIdx];
+  document.getElementById('t-ciclo-pill').textContent='CICLO '+T.ciclo+' / 4–6';
+  document.getElementById('t-stroke-badge').innerHTML=
+    '<b>'+s.nome+'</b> <span class="badge-pos" style="font-size:11px;padding:2px 8px">'+T.config+'</span>';
+  var area=document.getElementById('t-phase-area');
+
+  if(T.faseCiclo==='pausa'){
+    area.innerHTML=
+      '<div class="pausa-box">'+
+        '<div style="font-size:13px;color:#888;letter-spacing:2px;font-weight:700">PAUSA</div>'+
+        '<div class="pausa-ring" id="pausa-num">'+T.pausaLeft+'</div>'+
+        '<div style="font-size:13px;color:#666">secondi prima del prossimo ciclo</div>'+
+      '</div>';
+    return;
   }
-  // Ordine tipico copertine italiane: AUTORE - TITOLO - EDITORE
-  if (!autore && lines[0]) autore = lines[0];
-  if (!titolo && lines[1]) titolo = lines[1];
-  if (!editore && lines[2]) editore = lines[2];
-  // Prova anche pattern "Titolo - Autore"
-  if (!autore && titolo && titolo.indexOf(' - ') > 0) {
-    var parts = titolo.split(' - ');
-    titolo = parts[0].trim();
-    autore = parts[1].trim();
-    if (parts[2]) editore = parts[2].replace(/\|.*/,'').trim();
+
+  if(T.faseCiclo==='ask'){
+    area.innerHTML=
+      '<div class="card" style="text-align:center">'+
+        '<div style="font-size:15px;margin-bottom:14px">Hai completato '+(T.ciclo-1)+' cicli. Continuare?</div>'+
+        '<button class="btn-primary" onclick="trainContinueCycle()">Altro ciclo</button>'+
+        '<button class="btn-secondary" onclick="trainGoFinali()">Concludi qui</button>'+
+      '</div>';
+    return;
   }
-  document.getElementById('paste-titolo').value = titolo;
-  document.getElementById('paste-autore').value = autore;
-  document.getElementById('paste-editore').value = editore;
-  if (document.getElementById('paste-anno')) {
-    var annoM = testo.match(/[Aa]nno[^\d]*(\d{4})/); 
-    if(annoM) document.getElementById('paste-anno').value = annoM[1];
-    var pagM = testo.match(/[Pp]agine[^\d]*(\d+)/);
-    if(pagM) document.getElementById('paste-pagine').value = pagM[1];
+
+  var isCon=T.faseCiclo==='con', tot=isCon?3:7;
+  var actionHtml = T.counting
+    ? '<div style="text-align:center;font-size:12px;color:#666;margin-top:10px;letter-spacing:1px">conteggio automatico…</div>'
+    : '<button class="tap-btn '+(isCon?'con':'senza')+'" onclick="trainConfirmBlock()">Colpo eseguito ✓</button>';
+  area.innerHTML=
+    '<div class="phase-banner '+(isCon?'con':'senza')+'">'+
+      '<div class="phase-label '+(isCon?'con':'senza')+'">'+
+        (isCon?'CON — modulo montato, lenti':'SENZA — modulo rimosso, piena velocità')+
+      '</div>'+
+      '<div class="rep-count '+(isCon?'con':'senza')+'">'+T.rep+' / '+tot+'</div>'+
+      '<div style="font-size:12px;color:#777">con pallina</div>'+
+    '</div>'+
+    actionHtml;
+}
+
+function trainStartAutoCount(keepRep){
+  if(!keepRep){ T.rep=0; }
+  T.counting=true;
+  trainRenderRunCycles();
+  var tot=T.faseCiclo==='con'?3:7;
+  T.tickTimer=setInterval(function(){
+    T.rep++;
+    if(T.rep>=tot){
+      clearInterval(T.tickTimer); T.tickTimer=null;
+      T.counting=false;
+    }
+    trainRenderRunCycles();
+  },TICK_MS);
+}
+
+function trainConfirmBlock(){
+  if(T.faseCiclo==='con'){
+    T.faseCiclo='senza';
+    trainStartAutoCount();
+  } else if(T.faseCiclo==='senza'){
+    trainStartPausa();
   }
 }
-var _pasteGenere = '';
-function setPasteGenere(g) {
-  _pasteGenere = g;
-  ['Narrativa','Saggistica','Classici','Classici900','LibriRagazzi'].forEach(function(id){
-    var el = document.getElementById('pg-'+id);
-    if(el) el.style.background = '';
+
+function trainStartPausa(keepLeft){
+  T.faseCiclo='pausa'; if(!keepLeft){ T.pausaLeft=30; }
+  trainRenderRunCycles();
+  T.timer=setInterval(function(){
+    T.pausaLeft--;
+    var el=document.getElementById('pausa-num');
+    if(el) el.textContent=T.pausaLeft;
+    if(T.pausaLeft<=0){
+      clearInterval(T.timer); T.timer=null;
+      trainEndPausa();
+    }
+  },1000);
+}
+
+function trainEndPausa(){
+  if(navigator.vibrate){ try{ navigator.vibrate([60,40,60]); }catch(e){} }
+  T.ciclo++;
+  if(T.ciclo>6){ trainGoFinali(); return; }
+  if(T.ciclo>4){ T.faseCiclo='ask'; trainRenderRunCycles(); return; }
+  trainContinueCycle();
+}
+function trainContinueCycle(){ T.faseCiclo='con'; trainStartAutoCount(); }
+
+// ===== motore a fasi temporizzate (20/80, Progressivo, Velocizzazione, Stabilizzazione) =====
+function phaseStartTimer(keepSec){
+  var proto=PROTOCOLS_DEF[T.protoKey], f=proto.fasi[T.faseIdx];
+  if(!keepSec){ T.secLeft=f.durataMin*60; }
+  phaseRenderRun();
+  T.timer=setInterval(function(){
+    T.secLeft--;
+    if(T.secLeft<=0){ T.secLeft=0; clearInterval(T.timer); T.timer=null; }
+    phaseRenderRun();
+  },1000);
+}
+
+function phaseRenderRun(){
+  var proto=PROTOCOLS_DEF[T.protoKey], f=proto.fasi[T.faseIdx], s=TRAIN_STROKES[T.strokeIdx];
+  var cfgShown = f.configFase || T.config;
+  document.getElementById('t-ciclo-pill').textContent='FASE '+(T.faseIdx+1)+' / '+proto.fasi.length;
+  document.getElementById('t-stroke-badge').innerHTML=
+    '<b>'+s.nome+'</b> <span class="badge-pos" style="font-size:11px;padding:2px 8px">'+cfgShown+'</span>';
+
+  var isCon=f.tipo==='CON';
+  var mm=Math.floor(T.secLeft/60), ss=T.secLeft%60, ssStr=(ss<10?'0':'')+ss;
+  var modNote = f.modalita==='shadow' ? 'a vuoto (shadow)' : f.modalita==='palla' ? 'con pallina' : 'shadow → con pallina';
+  document.getElementById('t-phase-area').innerHTML=
+    '<div class="phase-banner '+(isCon?'con':'senza')+'">'+
+      '<div class="phase-label '+(isCon?'con':'senza')+'">'+f.label.toUpperCase()+' — '+f.tipo+'</div>'+
+      '<div class="rep-count '+(isCon?'con':'senza')+'" style="font-size:48px">'+mm+':'+ssStr+'</div>'+
+      '<div style="font-size:12px;color:#777">'+modNote+'</div>'+
+    '</div>'+
+    '<div class="card" style="font-size:13px;color:#ccc;line-height:1.6">'+f.nota+'</div>'+
+    '<button class="btn-primary" onclick="phaseNext()">Fase completata →</button>';
+}
+
+function phaseNext(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  T.faseIdx++;
+  if(T.faseIdx>=proto.fasi.length){ trainGoFinali(); return; }
+  phaseStartTimer();
+}
+
+// ===== pausa / ripresa / annulla — condivisi tra i due motori =====
+function trainPause(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  if(T.tickTimer){ clearInterval(T.tickTimer); T.tickTimer=null; }
+  trainRenderPausedInfo();
+  go('s-train-paused');
+}
+
+function trainRenderPausedInfo(){
+  var proto=PROTOCOLS_DEF[T.protoKey], s=TRAIN_STROKES[T.strokeIdx], label, cfgShown;
+  if(proto.tipo==='cycles'){
+    var sub =
+      T.faseCiclo==='con'   ? 'CON — colpo '+T.rep+' / 3' :
+      T.faseCiclo==='senza' ? 'SENZA — colpo '+T.rep+' / 7' :
+      T.faseCiclo==='pausa' ? 'pausa tra cicli — '+T.pausaLeft+'″ rimasti' :
+      T.faseCiclo==='ask'   ? 'in attesa di decisione (continuare o concludere)' : '';
+    label='Ciclo '+T.ciclo+' · '+sub;
+    cfgShown=T.config;
+  } else {
+    var f=proto.fasi[T.faseIdx];
+    var mm=Math.floor(T.secLeft/60), ss=T.secLeft%60;
+    label=f.label+' ('+f.tipo+') — '+mm+':'+(ss<10?'0':'')+ss+' rimanenti';
+    cfgShown=f.configFase||T.config;
+  }
+  document.getElementById('t-paused-info').innerHTML=
+    '<div style="font-size:16px;font-weight:800">'+s.nome+' <span class="badge-pos" style="font-size:11px;padding:2px 8px">'+cfgShown+'</span></div>'+
+    '<div style="font-size:13px;color:#aaa;margin-top:8px">'+label+'</div>';
+}
+
+function trainResume(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  go('s-train-run');
+  if(proto.tipo==='cycles'){
+    if((T.faseCiclo==='con'||T.faseCiclo==='senza') && T.counting){ trainStartAutoCount(true); }
+    else if(T.faseCiclo==='pausa'){ trainStartPausa(true); }
+    else { trainRenderRunCycles(); }
+  } else {
+    phaseStartTimer(true);
+  }
+}
+
+function trainAbort(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  if(T.tickTimer){ clearInterval(T.tickTimer); T.tickTimer=null; }
+  go('s-train-setup');
+}
+
+function trainGoFinali(){
+  if(T.timer){ clearInterval(T.timer); T.timer=null; }
+  if(T.tickTimer){ clearInterval(T.tickTimer); T.tickTimer=null; }
+  TF={};
+  document.getElementById('train-finali-questions').innerHTML=TRAIN_FINALI_Q.map(function(f){
+    return'<div class="card"><div style="font-size:14px;color:#ddd;margin-bottom:12px;line-height:1.5">'+f.label+'</div>'+
+      '<div class="opt-row">'+f.opt.map(function(o){
+        return'<button class="opt-btn" data-tkey="'+f.key+'" onclick="tSF(this,\''+f.key+'\',\''+o+'\')">'+o+'</button>';
+      }).join('')+'</div></div>';
+  }).join('');
+  document.getElementById('train-note-finale').value='';
+  go('s-train-finali');
+}
+function tSF(btn,key,val){
+  TF[key]=val;
+  document.querySelectorAll('.opt-btn[data-tkey="'+key+'"]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+function trainStatsLine(){
+  var proto=PROTOCOLS_DEF[T.protoKey];
+  if(proto.tipo==='cycles'){
+    var n=T.ciclo-1;
+    return {linea:proto.nome+' — '+n+' cicli completati', totale:'Totale colpi: '+(n*10)+' (tutti con pallina)'};
+  } else {
+    var doneFasi = T.faseIdx>=proto.fasi.length ? proto.fasi.length : T.faseIdx;
+    var minuti=0;
+    for(var i=0;i<doneFasi;i++){ minuti+=proto.fasi[i].durataMin; }
+    return {linea:proto.nome+' — '+doneFasi+' / '+proto.fasi.length+' fasi completate', totale:'Tempo allenamento: ~'+minuti+' min'};
+  }
+}
+
+function trainShowSummaryFinal(){
+  var s=TRAIN_STROKES[T.strokeIdx];
+  var nf=document.getElementById('train-note-finale').value;
+  var stats=trainStatsLine();
+  var fq=TRAIN_FINALI_Q.map(function(f){
+    return'<div style="display:flex;justify-content:space-between;margin-bottom:8px">'+
+      '<span style="font-size:13px;color:#888;flex:1">'+f.label+'</span>'+
+      '<span style="font-size:13px;font-weight:700;margin-left:8px">'+(TF[f.key]||'—')+'</span></div>';
+  }).join('');
+  document.getElementById('t-summary-card').innerHTML=
+    '<div style="font-size:20px;font-weight:800">'+s.nome+' <span class="badge-pos" style="font-size:12px">'+(T.config||'config. variabile')+'</span></div>'+
+    (T.livello?'<div style="font-size:13px;color:#888;margin-top:4px">Livello: '+T.livello+'</div>':'')+
+    '<div style="font-size:14px;color:#aaa;margin-top:8px">'+stats.linea+'</div>'+
+    '<div style="font-size:14px;color:#aaa;margin-top:4px;margin-bottom:14px">'+stats.totale+'</div>'+
+    '<div style="border-top:1px solid #2a2a2a;padding-top:12px">'+fq+'</div>'+
+    (nf?'<div style="border-top:1px solid #2a2a2a;padding-top:10px;margin-top:4px;font-size:13px;color:#aaa">'+nf+'</div>':'');
+  go('s-train-summary');
+}
+
+function trainBuildText(){
+  var s=TRAIN_STROKES[T.strokeIdx], date=new Date().toLocaleDateString('it-IT');
+  var nf=document.getElementById('train-note-finale').value;
+  var stats=trainStatsLine();
+  var t='CLIPPI™ PRO-T — Allenamento Guidato\n'+date+'\n\n'+
+    'Colpo: '+s.nome+' ('+(T.config||'config. variabile per fase')+')\n'+
+    (T.livello?'Livello: '+T.livello+'\n':'')+
+    'Protocollo: '+stats.linea+'\n'+
+    stats.totale+'\n\n'+
+    'VALUTAZIONE\n';
+  TRAIN_FINALI_Q.forEach(function(f){ t+=f.label+' → '+(TF[f.key]||'—')+'\n'; });
+  if(nf) t+='\nNote: '+nf;
+  return t;
+}
+function trainCopyResults(){
+  var t=trainBuildText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
+}
+function trainSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(trainBuildText()),'_blank');
+}
+
+// ============================================================
+// ===== RISCALDAMENTO PRE-GARA =====
+// ============================================================
+var WARM_DURS=[3,5,10];
+var W={strokeIdx:null,config:null,durMin:5,secLeft:0,timer:null};
+
+function warmRenderSetup(){
+  document.getElementById('warm-stroke-list').innerHTML=
+    '<button class="stroke-pick-btn'+(W.strokeIdx===null?' active':'')+'" onclick="warmPickStroke(null)"><span>Generale (tutti i colpi)</span></button>'+
+    TRAIN_STROKES.map(function(s,i){
+      return '<button class="stroke-pick-btn'+(W.strokeIdx===i?' active':'')+'" onclick="warmPickStroke('+i+')"><span>'+s.nome+'</span></button>';
+    }).join('');
+  document.getElementById('warm-config-list').innerHTML=TRAIN_CONFIGS.map(function(c){
+    return '<button class="opt-btn'+(W.config===c?' active':'')+'" onclick="warmPickConfig(\''+c+'\')">'+c+'</button>';
+  }).join('');
+  document.getElementById('warm-dur-list').innerHTML=WARM_DURS.map(function(d){
+    return '<button class="opt-btn'+(W.durMin===d?' active':'')+'" onclick="warmPickDur('+d+')">'+d+' min</button>';
+  }).join('');
+  document.getElementById('btn-warm-start').disabled=!W.config;
+}
+function warmPickStroke(i){ W.strokeIdx=i; warmRenderSetup(); }
+function warmPickConfig(c){ W.config=c; warmRenderSetup(); }
+function warmPickDur(d){ W.durMin=d; warmRenderSetup(); }
+
+function warmLabel(){ return (W.strokeIdx===null?'Generale':TRAIN_STROKES[W.strokeIdx].nome)+' · '+W.config; }
+
+function warmRenderRun(){
+  var mm=Math.floor(W.secLeft/60), ss=W.secLeft%60, ssStr=(ss<10?'0':'')+ss;
+  document.getElementById('warm-run-area').innerHTML=
+    '<div class="phase-banner con">'+
+      '<div class="phase-label con">'+warmLabel()+'</div>'+
+      '<div class="rep-count con" style="font-size:56px">'+mm+':'+ssStr+'</div>'+
+      '<div style="font-size:12px;color:#777">a vuoto (shadow)</div>'+
+    '</div>';
+}
+function warmRunTimer(){
+  warmRenderRun();
+  W.timer=setInterval(function(){
+    W.secLeft--;
+    if(W.secLeft<=0){ W.secLeft=0; clearInterval(W.timer); W.timer=null; warmRenderRun(); warmFinish(); return; }
+    warmRenderRun();
+  },1000);
+}
+function warmStart(){ W.secLeft=W.durMin*60; go('s-warm-run'); warmRunTimer(); }
+function warmResume(){ go('s-warm-run'); warmRunTimer(); }
+var WARM_REPORT_Q=[
+  {key:"fisico",  label:"Come ti senti fisicamente?",    opt:["Ottimo","Bene","Nella norma","Affaticato","Dolorante"]},
+  {key:"mentale", label:"Come ti senti mentalmente?",    opt:["Concentrato","Tranquillo","Teso","Distratto","Stanco"]},
+  {key:"sonno",   label:"Hai dormito bene?",             opt:["Sì","Abbastanza","No"]},
+  {key:"motiv",   label:"Motivazione oggi?",             opt:["Alta","Normale","Bassa"]},
+  {key:"config",  label:"Configurazione pianificata?",   opt:["Ore 12","Ore 3+9","Ore 12+3+9","Nessuna"]}
+];
+var WR={};
+
+function warmFinish(){
+  document.getElementById('warm-done-info').innerHTML=
+    '<div style="font-size:18px;font-weight:800">'+warmLabel()+'</div>'+
+    '<div style="font-size:14px;color:#aaa;margin-top:8px">Riscaldamento completato — '+W.durMin+' min, a vuoto</div>';
+  go('s-warm-done');
+}
+
+function warmGoReport(){
+  WR={};
+  // pre-fill date and time
+  var now=new Date();
+  var dd=String(now.getDate()).padStart(2,'0'), mm=String(now.getMonth()+1).padStart(2,'0'), yyyy=now.getFullYear();
+  var hh=String(now.getHours()).padStart(2,'0'), min=String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('wr-data').value=yyyy+'-'+mm+'-'+dd;
+  document.getElementById('wr-ora').value=hh+':'+min;
+  document.getElementById('wr-torneo').value='';
+  document.getElementById('wr-note').value='';
+  document.getElementById('wr-questions').innerHTML=WARM_REPORT_Q.map(function(q){
+    return '<div class="card"><div style="font-size:14px;color:#ddd;margin-bottom:12px;line-height:1.5">'+q.label+'</div>'+
+      '<div class="opt-row">'+q.opt.map(function(o){
+        return '<button class="opt-btn" data-wrkey="'+q.key+'" onclick="wrPick(this,\''+q.key+'\',\''+o+'\')">'+o+'</button>';
+      }).join('')+'</div></div>';
+  }).join('');
+  go('s-warm-report');
+}
+function wrPick(btn,key,val){
+  WR[key]=val;
+  document.querySelectorAll('.opt-btn[data-wrkey="'+key+'"]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+
+function warmBuildReport(){
+  var torneo=document.getElementById('wr-torneo').value||'—';
+  var data=document.getElementById('wr-data').value||'';
+  var ora=document.getElementById('wr-ora').value||'';
+  var note=document.getElementById('wr-note').value;
+  // format date italian
+  var dataFmt=data ? data.split('-').reverse().join('/') : '—';
+  var t='CLIPPI™ PRO-T — Report Pre-Gara\n';
+  t+='Torneo/partita: '+torneo+'\n';
+  t+='Data: '+dataFmt+'  Ora: '+(ora||'—')+'\n';
+  t+='Riscaldamento: '+warmLabel()+' — '+W.durMin+' min\n\n';
+  t+='STATO\n';
+  WARM_REPORT_Q.forEach(function(q){ t+=q.label+' → '+(WR[q.key]||'—')+'\n'; });
+  if(note) t+='\nNote: '+note;
+  return t;
+}
+function warmCopyReport(){
+  var t=warmBuildReport();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
+}
+function warmSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(warmBuildReport()),'_blank');
+}
+function warmPause(){
+  if(W.timer){ clearInterval(W.timer); W.timer=null; }
+  var mm=Math.floor(W.secLeft/60), ss=W.secLeft%60;
+  document.getElementById('warm-paused-info').innerHTML=
+    '<div style="font-size:16px;font-weight:800">'+warmLabel()+'</div>'+
+    '<div style="font-size:13px;color:#aaa;margin-top:8px">'+mm+':'+(ss<10?'0':'')+ss+' rimanenti</div>';
+  go('s-warm-paused');
+}
+
+// ============================================================
+// ===== VALUTAZIONE BILANCIAMENTO =====
+// ============================================================
+var BAL_OPTS=["CLIPPI meglio in testa","CLIPPI meglio al lato","Meglio alleggerire la testa","Equilibrata, nessuna modifica"];
+var BAL={selected:[],idx:0,livello:null,answers:{},notes:{}};
+
+function balRenderSetup(){
+  document.getElementById('bal-stroke-list').innerHTML=TRAIN_STROKES.map(function(s,i){
+    var act=BAL.selected.indexOf(i)>=0?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="balToggleStroke('+i+')"><span>'+s.nome+'</span></button>';
+  }).join('');
+  document.getElementById('bal-livello-area').innerHTML=
+    '<div class="card"><div style="font-size:13px;color:#aaa;margin-bottom:10px">Livello atleta (opzionale)</div>'+
+    '<div class="level-row">'+
+      '<button class="level-btn'+(BAL.livello==='Principiante'?' active-p':'')+'" onclick="balPickLivello(\'Principiante\')">🟢 Principiante</button>'+
+      '<button class="level-btn'+(BAL.livello==='Intermedio'?' active-i':'')+'" onclick="balPickLivello(\'Intermedio\')">🟡 Intermedio</button>'+
+      '<button class="level-btn'+(BAL.livello==='Pro'?' active-a':'')+'" onclick="balPickLivello(\'Pro\')">🔴 Pro</button>'+
+    '</div></div>';
+  document.getElementById('btn-bal-start').disabled = BAL.selected.length===0;
+}
+function balToggleStroke(i){
+  var p=BAL.selected.indexOf(i);
+  if(p>=0){ BAL.selected.splice(p,1); } else { BAL.selected.push(i); }
+  balRenderSetup();
+}
+function balPickLivello(v){ BAL.livello=(BAL.livello===v?null:v); balRenderSetup(); }
+
+function balStart(){
+  BAL.selected.sort(function(a,b){return a-b;});
+  BAL.idx=0; BAL.answers={}; BAL.notes={};
+  go('s-bal-run');
+  balRenderRun();
+}
+
+function balRenderRun(){
+  var i=BAL.selected[BAL.idx], s=TRAIN_STROKES[i];
+  document.getElementById('bal-counter-pill').textContent='COLPO '+(BAL.idx+1)+' / '+BAL.selected.length;
+  document.getElementById('bal-run-area').innerHTML=
+    '<div class="card">'+
+      '<div style="font-size:22px;font-weight:800">'+s.nome+'</div>'+
+      '<div style="font-size:13px;color:#888;margin-top:6px;line-height:1.6">Con pallina: prova il colpo senza modulo, poi con CLIPPI™ in testa (Ore 12), poi al lato (Ore 3+9). Confronta le sensazioni.</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:10px">Dove beneficerebbe la racchetta di una modifica?</div>'+
+      '<div class="tag-grid">'+BAL_OPTS.map(function(o){
+        return '<button class="tag-btn'+(BAL.answers[i]===o?' active-con':'')+'" onclick="balPickOpt('+i+',\''+o.replace(/'/g,"\\'")+'\')">'+o+'</button>';
+      }).join('')+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:8px">Nota su questo colpo (opzionale)</div>'+
+      '<textarea oninput="BAL.notes['+i+']=this.value" placeholder="osservazioni specifiche...">'+(BAL.notes[i]||'')+'</textarea>'+
+    '</div>'+
+    '<button class="btn-primary" onclick="balNext()" '+(BAL.answers[i]?'':'disabled')+'>'+(BAL.idx<BAL.selected.length-1?'Prossimo colpo →':'Vedi report →')+'</button>'+
+    (BAL.idx>0?'<button class="btn-secondary" onclick="balPrev()">← Colpo precedente</button>':'');
+}
+function balPickOpt(i,o){ BAL.answers[i]=o; balRenderRun(); }
+function balNext(){
+  if(BAL.idx<BAL.selected.length-1){ BAL.idx++; balRenderRun(); }
+  else { balShowSummary(); }
+}
+function balPrev(){ if(BAL.idx>0){ BAL.idx--; balRenderRun(); } }
+
+function balShowSummary(){
+  document.getElementById('bal-summary-list').innerHTML=BAL.selected.map(function(i){
+    var s=TRAIN_STROKES[i];
+    return '<div class="summary-row"><div style="flex:1">'+
+      '<b>'+s.nome+'</b>'+
+      '<div style="font-size:13px;color:#ccc;margin-top:4px">'+(BAL.answers[i]||'—')+'</div>'+
+      (BAL.notes[i]?'<div style="font-size:12px;color:#777;margin-top:3px">'+BAL.notes[i]+'</div>':'')+
+    '</div></div>';
+  }).join('');
+  document.getElementById('bal-note').value='';
+  go('s-bal-summary');
+}
+function balBuildText(){
+  var date=new Date().toLocaleDateString('it-IT');
+  var t='CLIPPI™ PRO-T — Report Bilanciamento Racchetta\n'+date+'\n';
+  if(BAL.livello) t+='Livello atleta: '+BAL.livello+'\n';
+  t+='Valutazione eseguita con pallina\n\n';
+  BAL.selected.forEach(function(i){
+    var s=TRAIN_STROKES[i];
+    t+=s.nome+': '+(BAL.answers[i]||'—')+'\n';
+    if(BAL.notes[i]) t+='  Nota: '+BAL.notes[i]+'\n';
   });
-  var idMap = {'Narrativa':'Narrativa','Saggistica':'Saggistica','Classici':'Classici','Classici 900':'Classici900','Libri Ragazzi':'LibriRagazzi'};
-  var el = document.getElementById('pg-'+(idMap[g]||g));
-  if(el) el.style.background = '#8B6914';
+  var nf=document.getElementById('bal-note').value;
+  if(nf) t+='\nNote per il tecnico: '+nf;
+  return t;
 }
-function applyPaste() {
-  var titolo = document.getElementById('paste-titolo').value.trim();
-  var autore = document.getElementById('paste-autore').value.trim();
-  var editore = document.getElementById('paste-editore').value.trim();
-  if (!titolo) { alert('Inserisci almeno il titolo'); return; }
-  // Converti autore in formato Cognome, Nome
-  if (autore && autore.indexOf(',') < 0) {
-    var parts = autore.trim().split(' ');
-    if (parts.length > 1) {
-      autore = parts[parts.length-1] + ', ' + parts.slice(0,-1).join(' ');
-    }
-  }
-  var anno = document.getElementById('paste-anno') ? document.getElementById('paste-anno').value.trim() : '';
-  var pagine = document.getElementById('paste-pagine') ? document.getElementById('paste-pagine').value.trim() : '';
-  document.getElementById('f-titolo').value = titolo;
-  if (autore) document.getElementById('f-autore').value = autore;
-  if (editore) document.getElementById('f-editore').value = editore;
-  if (anno) document.getElementById('f-anno').value = anno;
-  if (pagine) document.getElementById('f-pagine').value = pagine;
-  // Applica genere se selezionato
-  if (_pasteGenere) {
-    document.querySelectorAll('.genre-btn').forEach(function(b){ b.classList.remove('sel'); });
-    document.querySelectorAll('.genre-btn').forEach(function(b){
-      if(b.textContent.trim() === _pasteGenere || b.dataset.g === _pasteGenere) b.classList.add('sel');
-    });
-    _pasteGenere = '';
-  }
-  document.getElementById('paste-form-box').style.display = 'none';
-  document.getElementById('form-banner').innerHTML = 'Dati compilati!';
-  document.getElementById('form-banner').style.background = '#1A3A1A';
-  showNotif('Titolo e autore compilati!');
+function balCopyResults(){
+  var t=balBuildText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
 }
-function parseFormPaste() {
-  var testo = document.getElementById('paste-in-form') ? document.getElementById('paste-in-form').value.trim() : '';
-  if (!testo) { alert('Incolla prima il testo'); return; }
-  var titolo = '', autore = '', editore = '', anno = '', pagine = '';
-  var m;
-  var lines = testo.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length>1;});
-  for(var i=0;i<lines.length;i++){
-    var l=lines[i];
-    if(!titolo && /[Tt]itolo/.test(l)) { m=l.match(/[:\s]\s*(.+)/); if(m) titolo=m[1].trim(); }
-    if(!autore && /[Aa]utor/.test(l)) { m=l.match(/[:\s]\s*(.+)/); if(m) autore=m[1].trim(); }
-    if(!editore && /[Ee]ditore/.test(l)) { m=l.match(/[:\s]\s*(.+)/); if(m) editore=m[1].trim(); }
-    if(!anno) { m=l.match(/[Aa]nno[^\d]*(\d{4})/); if(m) anno=m[1]; }
-    if(!pagine) { m=l.match(/[Pp]agine[^\d]*(\d+)/); if(m) pagine=m[1]; }
-  }
-  if (!titolo && lines.length>0) {
-    m = lines[0].match(/^([^-]+)\s*-\s*(.+)$/);
-    if(m){ titolo=m[1].trim(); if(!autore) autore=m[2].replace(/Libro/gi,'').trim(); }
-    else titolo=lines[0];
-    if(!autore && lines[1]) autore=lines[1];
-  }
-  if (titolo) {
-    document.getElementById('f-titolo').value = titolo;
-    if(autore) document.getElementById('f-autore').value = autore;
-    if(editore) document.getElementById('f-editore').value = editore;
-    if(anno) document.getElementById('f-anno').value = anno;
-    if(pagine) document.getElementById('f-pagine').value = pagine;
-    var ban = document.getElementById('form-banner');
-    ban.innerHTML = 'Dati estratti con successo!';
-    ban.style.background = '#1A3A1A';
-    showNotif('Titolo e autore compilati!');
-  } else {
-    alert('Non trovo il titolo. Incolla il testo completo dalla pagina del libro.');
-  }
-}
-function showIsbnErr(msg, isbnCode) {
-  var el = document.getElementById('isbn-err');
-  var btn = isbnCode ? '<br><br><a href="https://www.ibs.it/search/?ts=as&query=' + isbnCode + '" target="_blank" style="display:inline-block;background:#8B6914;border-radius:7px;padding:9px 16px;color:#fff;font-family:Georgia,serif;font-size:13px;text-decoration:none">Cerca su IBS.it</a>' : '';
-  el.innerHTML = '&#9888; ' + msg + btn;
-  el.style.display = 'block';
+function balSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(balBuildText()),'_blank');
 }
 
-async function fetchISBN(isbn) {
-  var clean = isbn.replace(/[^0-9X]/gi,'');
-  var ibs = 'https://www.ibs.it/images/'+clean+'_0_0_536_0_75.jpg';
-  function fa(authors){ return (authors||[]).map(function(a){var p=(a||'').trim().split(' ');return p.length>1?p[p.length-1]+', '+p.slice(0,-1).join(' '):a;}).join('; '); }
-  try {
-    var r1=await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+clean+'&langRestrict=it&country=IT');
-    var j1=await r1.json(); var v1=j1.items&&j1.items[0]&&j1.items[0].volumeInfo;
-    if(v1&&v1.title){var ig=v1.imageLinks||{};var cv=ig.extraLarge||ig.large||ig.medium||ig.thumbnail||ibs;if(cv!==ibs)cv=cv.replace('http://','https://').replace('zoom=1','zoom=3');return{titolo:v1.title,autore:fa(v1.authors),editore:v1.publisher||'',anno:((v1.publishedDate||'').match(/\d{4}/)||[''])[0],pagine:v1.pageCount?String(v1.pageCount):'',isbn:clean,copertina:cv};}
-  }catch(e1){}
-  try {
-    var r2=await fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:'+clean);
-    var j2=await r2.json(); var v2=j2.items&&j2.items[0]&&j2.items[0].volumeInfo;
-    if(v2&&v2.title){var ig2=v2.imageLinks||{};var cv2=ig2.extraLarge||ig2.large||ig2.medium||ig2.thumbnail||ibs;if(cv2!==ibs)cv2=cv2.replace('http://','https://').replace('zoom=1','zoom=3');return{titolo:v2.title,autore:fa(v2.authors),editore:v2.publisher||'',anno:((v2.publishedDate||'').match(/\d{4}/)||[''])[0],pagine:v2.pageCount?String(v2.pageCount):'',isbn:clean,copertina:cv2};}
-  }catch(e2){}
-  try {
-    var r3=await fetch('https://openlibrary.org/search.json?isbn='+clean+'&limit=1&fields=title,author_name,publisher,first_publish_year,number_of_pages_median,cover_i');
-    var j3=await r3.json(); var d3=j3.docs&&j3.docs[0];
-    if(d3&&d3.title){var cv3=d3.cover_i?'https://covers.openlibrary.org/b/id/'+d3.cover_i+'-L.jpg':ibs;return{titolo:d3.title,autore:fa(d3.author_name),editore:(d3.publisher||[])[0]||'',anno:d3.first_publish_year?String(d3.first_publish_year):'',pagine:d3.number_of_pages_median?String(d3.number_of_pages_median):'',isbn:clean,copertina:cv3};}
-  }catch(e3){}
-  try {
-    var r4=await fetch('https://openlibrary.org/api/books?bibkeys=ISBN:'+clean+'&format=json&jscmd=data');
-    var j4=await r4.json(); var d4=j4['ISBN:'+clean];
-    if(d4&&d4.title){var a4=(d4.authors||[]).map(function(a){var p=(a.name||'').trim().split(' ');return p.length>1?p[p.length-1]+', '+p.slice(0,-1).join(' '):a.name;}).join('; ');var cv4=(d4.cover&&(d4.cover.large||d4.cover.medium))||ibs;return{titolo:d4.title,autore:a4,editore:(d4.publishers||[]).map(function(p){return p.name;}).join(', '),anno:((d4.publish_date||'').match(/\d{4}/)||[''])[0],pagine:d4.number_of_pages?String(d4.number_of_pages):'',isbn:clean,copertina:cv4};}
-  }catch(e4){}
-  return{titolo:'',autore:'',editore:'',anno:'',pagine:'',isbn:clean,copertina:ibs};
+// ============================================================
+// ===== PERCEZIONE CIECA =====
+// ============================================================
+var PERC_CONFIGS=["Nessuno","Ore 12","Ore 3","Ore 9","Ore 3+9","Ore 12+3","Ore 12+9","Ore 12+3+9"];
+var PERC_ROUNDS_OPTS=[4,6,8];
+var PC={strokeIdx:null,rounds:6,idx:0,log:[],realSel:null,percSel:null};
+
+function percRenderSetup(){
+  document.getElementById('perc-stroke-list').innerHTML=TRAIN_STROKES.map(function(s,i){
+    var act=PC.strokeIdx===i?' active':'';
+    return '<button class="stroke-pick-btn'+act+'" onclick="percPickStroke('+i+')"><span>'+s.nome+'</span></button>';
+  }).join('');
+  document.getElementById('perc-rounds-list').innerHTML=PERC_ROUNDS_OPTS.map(function(n){
+    return '<button class="opt-btn'+(PC.rounds===n?' active':'')+'" onclick="percPickRounds('+n+')">'+n+' round</button>';
+  }).join('');
+  document.getElementById('btn-perc-start').disabled = PC.strokeIdx===null;
+}
+function percPickStroke(i){ PC.strokeIdx=i; percRenderSetup(); }
+function percPickRounds(n){ PC.rounds=n; percRenderSetup(); }
+
+function percStart(){
+  PC.idx=0; PC.log=[]; PC.realSel=null; PC.percSel=null;
+  go('s-perc-run');
+  percRenderRun();
 }
 
-// ═══════════════════════════════════════════════════
-// FORM
-// ═══════════════════════════════════════════════════
-function openForm(data, mode) {
-  formMode = 'add'; formQR = (mode==='qr');
-  document.getElementById('form-title').textContent = mode==='qr' ? '📷 Dati da ISBN' : '✍️ Nuovo Libro';
-  document.getElementById('form-banner').style.display = formQR ? 'block' : 'none';
-  document.getElementById('f-save-btn').textContent = 'Aggiungi alla libreria';
-  document.getElementById('f-id').value = '';
-  document.getElementById('f-titolo').value = data?.titolo||'';
-  document.getElementById('f-autore').value = data?.autore||'';
-  document.getElementById('f-editore').value = data?.editore||'';
-  document.getElementById('f-anno').value = data?.anno||'';
-  document.getElementById('f-pagine').value = data?.pagine||'';
-  document.getElementById('f-isbn').value = data?.isbn||'';
-  document.getElementById('f-note').value = '';
-  document.getElementById('f-cit').value = '';
-  document.getElementById('f-genere').value = '';
-  document.getElementById('f-cover').value = data?.copertina||'';
-  document.querySelectorAll('.genre-btn').forEach(b=>b.classList.remove('sel'));
-  if(data?.copertina) {
-    document.getElementById('cover-preview-img').src = data.copertina;
-    document.getElementById('cover-preview-wrap').style.display = 'block';
-  } else {
-    document.getElementById('cover-preview-wrap').style.display = 'none';
-  }
-  closeMethod(); closeIsbn();
-  document.getElementById('m-form').classList.add('open');
+function percRenderRun(){
+  var s=TRAIN_STROKES[PC.strokeIdx];
+  document.getElementById('perc-counter-pill').textContent='ROUND '+(PC.idx+1)+' / '+PC.rounds;
+  document.getElementById('perc-run-area').innerHTML=
+    '<div class="card">'+
+      '<div style="font-size:20px;font-weight:800">'+s.nome+'</div>'+
+      '<div style="font-size:13px;color:#888;margin-top:6px;line-height:1.6">A occhi chiusi: 1-2 colpi in slowmotion estrema. L\'atleta cerca di percepire, non indovinare.</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:10px">Configurazione reale (montata dall\'operatore)</div>'+
+      '<div class="opt-row">'+PERC_CONFIGS.map(function(c){
+        return '<button class="opt-btn'+(PC.realSel===c?' active':'')+'" onclick="percPickReal(\''+c+'\')">'+c+'</button>';
+      }).join('')+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<div style="font-size:13px;color:#aaa;margin-bottom:10px">Cosa ha percepito l\'atleta</div>'+
+      '<div class="opt-row">'+PERC_CONFIGS.map(function(c){
+        return '<button class="opt-btn'+(PC.percSel===c?' active':'')+'" onclick="percPickPerc(\''+c+'\')">'+c+'</button>';
+      }).join('')+'</div>'+
+    '</div>'+
+    (function(){
+      var missing=[];
+      if(!PC.realSel) missing.push('configurazione reale');
+      if(!PC.percSel) missing.push('percezione');
+      return missing.length ? '<div style="text-align:center;font-size:13px;color:var(--senza);margin-bottom:8px">Seleziona ancora: '+missing.join(' e ')+'</div>' : '';
+    })()+
+    '<button class="btn-primary" onclick="percNext()" '+((PC.realSel&&PC.percSel)?'':'disabled')+'>'+(PC.idx<PC.rounds-1?'Round completato →':'Vedi report →')+'</button>';
+}
+function percPickReal(c){ PC.realSel=c; percRenderRun(); }
+function percPickPerc(c){ PC.percSel=c; percRenderRun(); }
+function percNext(){
+  PC.log.push({real:PC.realSel, perc:PC.percSel, exact:PC.realSel===PC.percSel,
+    presenza:(PC.realSel==='Nessuno')===(PC.percSel==='Nessuno')});
+  PC.idx++;
+  PC.realSel=null; PC.percSel=null;
+  if(PC.idx>=PC.rounds){ percShowSummary(); return; }
+  percRenderRun();
 }
 
-function openEdit() {
-  const b = books.find(x=>x.id===currentId); if(!b) return;
-  formMode = 'edit'; formQR = false;
-  document.getElementById('form-title').textContent = '✏️ Modifica Libro';
-  document.getElementById('form-banner').style.display = 'none';
-  document.getElementById('f-save-btn').textContent = 'Salva modifiche';
-  document.getElementById('f-id').value = b.id;
-  document.getElementById('f-titolo').value = b.titolo||'';
-  document.getElementById('f-autore').value = b.autore||'';
-  document.getElementById('f-editore').value = b.editore||'';
-  document.getElementById('f-anno').value = b.anno||'';
-  document.getElementById('f-pagine').value = b.pagine||'';
-  document.getElementById('f-isbn').value = b.isbn||'';
-  document.getElementById('f-note').value = b.note||'';
-  document.getElementById('f-cit').value = b.citazioni||'';
-  document.getElementById('f-genere').value = b.genere||'';
-  document.getElementById('f-cover').value = b.copertina||'';
-  document.querySelectorAll('.genre-btn').forEach(btn =>
-    btn.classList.toggle('sel', btn.textContent.trim()===b.genere));
-  if(b.copertina) {
-    document.getElementById('cover-preview-img').src = b.copertina;
-    document.getElementById('cover-preview-wrap').style.display = 'block';
-  } else {
-    document.getElementById('cover-preview-wrap').style.display = 'none';
-  }
-  document.getElementById('m-form').classList.add('open');
+function percShowSummary(){
+  var s=TRAIN_STROKES[PC.strokeIdx];
+  var exactN=PC.log.filter(function(r){return r.exact;}).length;
+  var presN=PC.log.filter(function(r){return r.presenza;}).length;
+  document.getElementById('perc-summary-list').innerHTML=
+    '<div class="card">'+
+      '<div style="font-size:20px;font-weight:800">'+s.nome+'</div>'+
+      '<div style="font-size:14px;color:#aaa;margin-top:8px">Presenza/assenza percepita correttamente: '+presN+' / '+PC.rounds+'</div>'+
+      '<div style="font-size:14px;color:#aaa;margin-top:4px">Configurazione esatta (posizione e numero): '+exactN+' / '+PC.rounds+'</div>'+
+    '</div>'+
+    PC.log.map(function(r,i){
+      return '<div class="summary-row"><div style="flex:1">'+
+        '<b>Round '+(i+1)+'</b>'+
+        '<div style="font-size:13px;color:#ccc;margin-top:4px">Reale: '+r.real+' · Percepito: '+r.perc+'</div>'+
+      '</div>'+
+      '<div style="font-size:20px">'+(r.exact?'✓':r.presenza?'≈':'✗')+'</div></div>';
+    }).join('');
+  go('s-perc-summary');
 }
-
-function closeForm() { document.getElementById('m-form').classList.remove('open'); }
-
-function pickGenre(g) {
-  document.getElementById('f-genere').value = g;
-  document.querySelectorAll('.genre-btn').forEach(b =>
-    b.classList.toggle('sel', b.textContent.trim()===g));
+function percBuildText(){
+  var s=TRAIN_STROKES[PC.strokeIdx], date=new Date().toLocaleDateString('it-IT');
+  var exactN=PC.log.filter(function(r){return r.exact;}).length;
+  var presN=PC.log.filter(function(r){return r.presenza;}).length;
+  var t='CLIPPI™ PRO-T — Percezione Cieca\n'+date+'\n\n'+
+    'Colpo: '+s.nome+'\n'+
+    'Round: '+PC.rounds+'\n\n'+
+    'Presenza/assenza corretta: '+presN+' / '+PC.rounds+'\n'+
+    'Configurazione esatta: '+exactN+' / '+PC.rounds+'\n\n'+
+    'DETTAGLIO\n';
+  PC.log.forEach(function(r,i){
+    t+='Round '+(i+1)+' — Reale: '+r.real+' · Percepito: '+r.perc+' · '+(r.exact?'esatto':r.presenza?'presenza corretta, posizione/numero diversi':'non percepito correttamente')+'\n';
+  });
+  return t;
 }
-
-function loadCover(e) {
-  const file = e.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    document.getElementById('f-cover').value = ev.target.result;
-    document.getElementById('cover-preview-img').src = ev.target.result;
-    document.getElementById('cover-preview-wrap').style.display = 'block';
-  };
-  reader.readAsDataURL(file);
+function percCopyResults(){
+  var t=percBuildText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(t).then(function(){alert('✓ Copiato!');}).catch(function(){fb(t);});
+  } else { fb(t); }
 }
-function removeCover() {
-  document.getElementById('f-cover').value = '';
-  document.getElementById('cover-preview-wrap').style.display = 'none';
+function percSendWhatsApp(){
+  window.open('https://wa.me/?text='+encodeURIComponent(percBuildText()),'_blank');
 }
-
-function saveBook() {
-  const titolo = document.getElementById('f-titolo').value.trim();
-  if(!titolo) { alert('Il titolo è obbligatorio'); return; }
-  const idVal = document.getElementById('f-id').value;
-  const existing = idVal ? books.find(b=>b.id===Number(idVal)) : null;
-  const book = {
-    id: existing ? existing.id : Date.now(),
-    titolo,
-    autore: document.getElementById('f-autore').value.trim(),
-    editore: document.getElementById('f-editore').value.trim(),
-    anno: document.getElementById('f-anno').value.trim(),
-    pagine: document.getElementById('f-pagine').value.trim(),
-    isbn: document.getElementById('f-isbn').value.trim(),
-    genere: document.getElementById('f-genere').value,
-    note: document.getElementById('f-note').value.trim(),
-    citazioni: document.getElementById('f-cit').value.trim(),
-    copertina: document.getElementById('f-cover').value || null,
-    dataAggiunta: existing?.dataAggiunta || today()
-  };
-  if(existing) {
-    books = books.map(b => b.id===book.id ? book : b);
-    showNotif('✓ Libro aggiornato');
-  } else {
-    books.unshift(book);
-    showNotif('✓ Libro aggiunto alla libreria');
-  }
-  salva(); closeForm(); render();
-  if(currentId) openDetail(currentId);
-}
-
-function today() { return new Date().toISOString().split('T')[0]; }
-
-// ═══════════════════════════════════════════════════
-// NOTIFICA
-// ═══════════════════════════════════════════════════
-function showNotif(msg, err=false) {
-  const n = document.getElementById('notif');
-  n.textContent = msg;
-  n.className = `notif${err?' err':''}`;
-  clearTimeout(n._t);
-  n._t = setTimeout(()=>n.classList.add('hide'), 2600);
-}
-
-// ═══════════════════════════════════════════════════
-// DATI DEMO
-// ═══════════════════════════════════════════════════
-function demoBooks() {
-  return [
-    {id:1,titolo:"Il nome della rosa",autore:"Eco, Umberto",editore:"Bompiani",anno:"1980",pagine:"502",isbn:"9788845294482",genere:"Narrativa",note:"Uno dei romanzi più affascinanti del Novecento.",citazioni:"I libri non sono fatti per essere creduti, ma per essere sottoposti a indagine.",copertina:null,dataAggiunta:"2024-01-15"},
-    {id:2,titolo:"Essere e tempo",autore:"Heidegger, Martin",editore:"Longanesi",anno:"1927",pagine:"594",isbn:"",genere:"Saggistica",note:"Opera fondamentale della filosofia del Novecento.",citazioni:"",copertina:null,dataAggiunta:"2024-02-03"},
-    {id:3,titolo:"I promessi sposi",autore:"Manzoni, Alessandro",editore:"Mondadori",anno:"1827",pagine:"720",isbn:"",genere:"Classici",note:"Il capolavoro della letteratura italiana.",citazioni:"Adelante Pedro, con juicio.",copertina:null,dataAggiunta:"2024-03-20"},
-    {id:4,titolo:"Harry Potter e la Pietra Filosofale",autore:"Rowling, J.K.",editore:"Salani",anno:"1997",pagine:"309",isbn:"9788884510242",genere:"Libri Ragazzi",note:"",citazioni:"Non importa che tu sia nato in una capanna o in un castello.",copertina:null,dataAggiunta:"2024-04-10"},
-  ];
-}
-
-// ═══════════════════════════════════════════════════
-// SPLASH SCREEN — biblioteca antica disegnata su canvas
-// ═══════════════════════════════════════════════════
-function drawLibrary() {
-  const canvas = document.getElementById('splash-canvas');
-  if(!canvas) return;
-  const W = canvas.width = window.innerWidth;
-  const H = canvas.height = window.innerHeight;
-  const ctx = canvas.getContext('2d');
-
-  // Sfondo gradiente notturno
-  const bg = ctx.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, '#050200');
-  bg.addColorStop(0.5, '#0D0800');
-  bg.addColorStop(1, '#080400');
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, W, H);
-
-  // Parquet / pavimento
-  ctx.fillStyle = '#1A0A00';
-  ctx.fillRect(0, H*0.82, W, H*0.18);
-  ctx.strokeStyle = '#2A1200';
-  ctx.lineWidth = 1;
-  for(let x = 0; x < W; x += 40) {
-    ctx.beginPath(); ctx.moveTo(x, H*0.82); ctx.lineTo(x, H); ctx.stroke();
-  }
-  ctx.beginPath(); ctx.moveTo(0, H*0.85); ctx.lineTo(W, H*0.85); ctx.stroke();
-
-  // Finestra in fondo con luce lunare
-  const winX = W/2 - 60, winY = H*0.08, winW = 120, winH = 160;
-  const moonGlow = ctx.createRadialGradient(W/2, winY + winH/2, 10, W/2, winY + winH/2, 200);
-  moonGlow.addColorStop(0, 'rgba(200,180,100,0.12)');
-  moonGlow.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = moonGlow;
-  ctx.fillRect(0, 0, W, H);
-
-  ctx.fillStyle = '#0A1520';
-  ctx.strokeStyle = '#4A3210';
-  ctx.lineWidth = 3;
-  ctx.fillRect(winX, winY, winW, winH);
-  ctx.strokeRect(winX, winY, winW, winH);
-  // Croce finestra
-  ctx.strokeStyle = '#4A3210';
-  ctx.lineWidth = 2;
-  ctx.beginPath(); ctx.moveTo(W/2, winY); ctx.lineTo(W/2, winY+winH); ctx.stroke();
-  ctx.beginPath(); ctx.moveTo(winX, winY+winH/2); ctx.lineTo(winX+winW, winY+winH/2); ctx.stroke();
-  // Luna
-  ctx.fillStyle = '#E8D080';
-  ctx.beginPath(); ctx.arc(W/2 + 20, winY + 45, 22, 0, Math.PI*2); ctx.fill();
-  ctx.fillStyle = '#0A1520';
-  ctx.beginPath(); ctx.arc(W/2 + 28, winY + 40, 18, 0, Math.PI*2); ctx.fill();
-
-  // Disegna scaffali da destra e sinistra
-  const shelfColor = '#2A1500';
-  const shelfBorder = '#5C3D0E';
-  const shelfGold = '#8B6914';
-  const nShelves = 5;
-  const shelfH = 8;
-  const shelfSpacing = (H * 0.75) / nShelves;
-
-  // Scaffali laterali
-  for(let i = 0; i < nShelves; i++) {
-    const y = H*0.06 + i * shelfSpacing + shelfSpacing;
-
-    // Scaffale sinistro (da bordo a centro-sinistra)
-    const lw = W/2 - winX - 10;
-    ctx.fillStyle = shelfColor;
-    ctx.fillRect(0, y, lw, shelfH);
-    ctx.fillStyle = shelfGold;
-    ctx.fillRect(0, y, lw, 1.5);
-    ctx.fillStyle = shelfBorder;
-    ctx.fillRect(0, y + shelfH - 2, lw, 2);
-
-    // Scaffale destro
-    const rx = winX + winW + 10;
-    const rw = W - rx;
-    ctx.fillStyle = shelfColor;
-    ctx.fillRect(rx, y, rw, shelfH);
-    ctx.fillStyle = shelfGold;
-    ctx.fillRect(rx, y, rw, 1.5);
-    ctx.fillStyle = shelfBorder;
-    ctx.fillRect(rx, y + shelfH - 2, rw, 2);
-
-    // Libri su scaffale sinistro
-    drawBooks(ctx, 5, y - shelfSpacing + shelfH + 2, lw - 5, shelfSpacing - shelfH - 4, i);
-    // Libri su scaffale destro
-    drawBooks(ctx, rx + 2, y - shelfSpacing + shelfH + 2, rw - 4, shelfSpacing - shelfH - 4, i+3);
-  }
-
-  // Cornici laterali scaffale
-  ctx.fillStyle = '#3A2008';
-  ctx.fillRect(0, 0, 10, H*0.85);
-  ctx.fillRect(W-10, 0, 10, H*0.85);
-  ctx.fillStyle = shelfGold;
-  ctx.fillRect(9, 0, 1.5, H*0.85);
-  ctx.fillRect(W-11, 0, 1.5, H*0.85);
-
-  // Candela sul pavimento
-  drawCandle(ctx, W/2 - 80, H*0.78);
-  drawCandle(ctx, W/2 + 60, H*0.75);
-
-  // Vignetta bordi
-  const vig = ctx.createRadialGradient(W/2, H/2, H*0.3, W/2, H/2, H*0.85);
-  vig.addColorStop(0, 'rgba(0,0,0,0)');
-  vig.addColorStop(1, 'rgba(0,0,0,0.75)');
-  ctx.fillStyle = vig;
-  ctx.fillRect(0, 0, W, H);
-}
-
-function drawBooks(ctx, x, y, totalW, maxH, seed) {
-  const palette = ['#6B1A1A','#1A3A6B','#1A4A2A','#6B1A3A','#7A5A10','#4A2A0A','#2A1A6B','#5A3A00','#3A1A3A'];
-  let cx = x + 2;
-  let bi = seed * 3;
-  while(cx < x + totalW - 8) {
-    const bw = 8 + (bi*7+seed*3) % 10;
-    const bh = Math.min(maxH - 4, 20 + (bi*11+seed*5) % (maxH - 24));
-    const by = y + maxH - bh;
-    const col = palette[(bi + seed) % palette.length];
-    ctx.fillStyle = col;
-    ctx.fillRect(cx, by, bw, bh);
-    // Dorso libro
-    ctx.fillStyle = 'rgba(0,0,0,0.3)';
-    ctx.fillRect(cx, by, 2.5, bh);
-    // Riga oro
-    if(bh > 20) {
-      ctx.fillStyle = 'rgba(212,175,55,0.35)';
-      ctx.fillRect(cx+3, by + bh*0.25, bw-5, 1.5);
-    }
-    cx += bw + 1;
-    bi++;
-    if(cx > x + totalW - 6) break;
-  }
-}
-
-function drawCandle(ctx, x, y) {
-  // Cera
-  ctx.fillStyle = '#E8D8A0';
-  ctx.fillRect(x, y, 8, 20);
-  ctx.fillStyle = '#C8B880';
-  ctx.fillRect(x, y, 2, 20);
-  // Stoppino
-  ctx.strokeStyle = '#333';
-  ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(x+4, y); ctx.lineTo(x+4, y-6); ctx.stroke();
-  // Fiamma
-  const flame = ctx.createRadialGradient(x+4, y-10, 1, x+4, y-10, 10);
-  flame.addColorStop(0, 'rgba(255,240,150,0.95)');
-  flame.addColorStop(0.4, 'rgba(255,160,20,0.7)');
-  flame.addColorStop(1, 'rgba(255,80,0,0)');
-  ctx.fillStyle = flame;
-  ctx.beginPath();
-  ctx.ellipse(x+4, y-10, 6, 10, 0, 0, Math.PI*2);
-  ctx.fill();
-  // Alone luce
-  const glow = ctx.createRadialGradient(x+4, y-8, 2, x+4, y-8, 40);
-  glow.addColorStop(0, 'rgba(255,200,80,0.12)');
-  glow.addColorStop(1, 'rgba(0,0,0,0)');
-  ctx.fillStyle = glow;
-  ctx.fillRect(x-36, y-48, 80, 80);
-}
-
-// ═══════════════════════════════════════════════════
-// AVVIO
-// ═══════════════════════════════════════════════════
-carica();
-render();
-
-// Disegna biblioteca antica e poi mostra app
-drawLibrary();
-setTimeout(() => {
-  document.getElementById('splash-bar').style.width = '100%';
-}, 100);
-setTimeout(() => {
-  document.getElementById('splash').classList.add('fade');
-  setTimeout(() => {
-    document.getElementById('splash').style.display = 'none';
-  }, 850);
-}, 2200);
 </script>
 </body>
 </html>
