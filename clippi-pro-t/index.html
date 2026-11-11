@@ -1438,7 +1438,7 @@ function repBars(c,x,y,w,h,title,sub,labels,A,B,min,max,step,ACC,SEN,nameA,nameB
     }
   }
 }
-function repResp(r){ if(!r) return null; if(r.respSi===true) return r.resp||'nr'; if(r.respSi===false) return 'n.p.'; return null; }
+function repResp(r){ if(!r) return null; if(r.respSi===true) return r.resp||'non indicato'; if(r.respSi===false) return 'n.p.'; return null; }
 function repRespPanel(c,x,y,w,h,names,A,B,ACC,SEN){
   var COL={'Aperta':'#43a047','Superficiale':'#f9a825','Bloccato':'#e53935'};
   c.fillStyle='#1a1a1a'; c.fillRect(x,y,w,h);
