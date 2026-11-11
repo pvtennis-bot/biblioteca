@@ -243,6 +243,11 @@
   <div id="riepilogo-name" style="font-size:18px;font-weight:800;margin-bottom:20px"></div>
   <div id="riepilogo-list"></div>
   <div class="card" id="riepilogo-finali" style="margin-top:4px"></div>
+  <div class="card" style="padding:10px">
+    <div style="font-size:13px;color:#aaa;margin:4px 6px 10px">📊 Report grafico</div>
+    <canvas id="rep-canvas" style="width:100%;height:auto;border-radius:10px;display:block"></canvas>
+  </div>
+  <button class="btn-wa" onclick="saveReportImage()">🖼️ Salva / condividi immagine</button>
   <button class="btn-wa" onclick="sendWhatsApp()">💬 Invia su WhatsApp</button>
   <button class="btn-primary" onclick="copyResults()">📋 Copia testo</button>
   <button class="btn-secondary" onclick="resetAll()">↺ Nuovo test</button>
@@ -620,6 +625,7 @@ function showRiepilogo(){
   }).join('');
   var nf=document.getElementById('note-finale').value;
   if(nf) fc.innerHTML+='<div style="border-top:1px solid #2a2a2a;padding-top:10px;font-size:13px;color:#aaa">'+nf+'</div>';
+  try{drawReport();}catch(e){}
   go('s-riepilogo');
 }
 
@@ -1386,6 +1392,100 @@ function percCopyResults(){
 }
 function percSendWhatsApp(){
   window.open('https://wa.me/?text='+encodeURIComponent(percBuildText()),'_blank');
+}
+
+// ============================================================
+// ===== REPORT GRAFICO (immagine PNG del Test Campo) =====
+// ============================================================
+function repNum(v){ if(v===null||v===undefined||v==='') return null; var n=parseInt(String(v).replace('+',''),10); return isNaN(n)?null:n; }
+function repSigned(v){ return v>0?'+'+v:''+v; }
+function repBars(c,x,y,w,h,title,sub,labels,A,B,min,max,step,ACC,SEN,nameA,nameB,signedB,gripMode){
+  c.fillStyle='#1a1a1a'; c.fillRect(x,y,w,h);
+  c.textAlign='left'; c.fillStyle='#f0f0f0'; c.font='bold 30px Helvetica, Arial, sans-serif'; c.fillText(title,x+28,y+46);
+  c.fillStyle='#888'; c.font='22px Helvetica, Arial, sans-serif'; c.fillText(sub,x+28,y+78);
+  // legenda
+  c.fillStyle=ACC; c.fillRect(x+w-380,y+28,22,22); c.fillStyle='#ccc'; c.font='22px Helvetica, Arial, sans-serif'; c.fillText(nameA,x+w-350,y+47);
+  c.fillStyle=SEN; c.fillRect(x+w-210,y+28,22,22); c.fillStyle='#ccc'; c.fillText(nameB,x+w-180,y+47);
+  var px=x+80, py=y+120, pw=w-120, ph=h-190;
+  function yOf(v){ return py+ph*(max-v)/(max-min); }
+  c.font='20px Helvetica, Arial, sans-serif'; c.textAlign='right';
+  for(var g=min; g<=max; g+=step){
+    var gy=yOf(g);
+    c.strokeStyle=(g===0)?'#666':'#2e2e2e'; c.lineWidth=(g===0)?2:1;
+    c.beginPath(); c.moveTo(px,gy); c.lineTo(px+pw,gy); c.stroke();
+    c.fillStyle='#777'; c.fillText(String(g),px-10,gy+7);
+  }
+  var n=labels.length, gw=pw/n, bw=gw*0.28, base=yOf(0);
+  for(var i=0;i<n;i++){
+    var cx=px+gw*i+gw/2;
+    c.textAlign='center'; c.fillStyle='#ddd'; c.font='bold 24px Helvetica, Arial, sans-serif';
+    c.fillText(labels[i],cx,py+ph+40);
+    var arr=[[A[i],ACC,cx-bw-5,false],[B[i],SEN,cx+5,signedB]];
+    for(var k=0;k<2;k++){
+      var v=arr[k][0], col=arr[k][1], bx=arr[k][2], sg=arr[k][3];
+      c.textAlign='center';
+      if(v===null){
+        c.fillStyle='#666'; c.font='20px Helvetica, Arial, sans-serif';
+        c.fillText(gripMode?'n.p.':'—',bx+bw/2,base-10);
+        continue;
+      }
+      var top=yOf(v), y0=Math.min(base,top), hh=Math.abs(top-base);
+      if(hh<2) hh=2;
+      c.fillStyle=col; c.fillRect(bx,y0,bw,hh);
+      c.fillStyle='#fff'; c.font='bold 24px Helvetica, Arial, sans-serif';
+      var lab=sg?repSigned(v):String(v);
+      c.fillText(lab, bx+bw/2, v>=0? y0-8 : y0+hh+24);
+    }
+  }
+}
+function drawReport(){
+  var cv=document.getElementById('rep-canvas'); if(!cv) return;
+  var W=1080, H=1580; cv.width=W; cv.height=H;
+  var c=cv.getContext('2d');
+  var cs=getComputedStyle(document.body);
+  var ACC=cs.getPropertyValue('--acc').trim()||'#ff6a00';
+  var SEN=cs.getPropertyValue('--senza').trim()||'#ffcf77';
+  c.fillStyle='#0f0f0f'; c.fillRect(0,0,W,H);
+  var nome=document.getElementById('nome').value.trim(), date=new Date().toLocaleDateString('it-IT');
+  c.textAlign='left'; c.fillStyle=ACC; c.font='bold 22px Helvetica, Arial, sans-serif'; c.fillText('C L I P P I ™   P R O - T',40,60);
+  c.fillStyle='#f0f0f0'; c.font='bold 46px Helvetica, Arial, sans-serif'; c.fillText('Test Campo',40,118);
+  c.fillStyle='#aaa'; c.font='28px Helvetica, Arial, sans-serif'; c.fillText(date+' · '+(nome||'—')+' · '+lv,40,160);
+  var names=["Diritto","Servizio","Rovescio","Volée"];
+  var peso=[],legg=[],gCon=[],gSen=[];
+  names.forEach(function(nm){
+    var ic=-1,is=-1;
+    PROTOCOL.forEach(function(p,i){ if(p.colpo===nm){ if(p.tipo==='CON') ic=i; else is=i; } });
+    peso.push(ic>=0?repNum(R[ic].rpe):null);
+    legg.push(is>=0?repNum(R[is].rpe):null);
+    gCon.push(ic>=0&&R[ic].gripSi===true?repNum(R[ic].grip):null);
+    gSen.push(is>=0&&R[is].gripSi===true?repNum(R[is].grip):null);
+  });
+  repBars(c,40,190,W-80,520,'Sensazione per colpo','CON = peso percepito (1–5) · SENZA = leggerezza (−3…+1)',names,peso,legg,-4,5,1,ACC,SEN,'CON (peso)','SENZA (legg.)',true,false);
+  repBars(c,40,730,W-80,520,'Tensione impugnatura','0 = rilassata · 10 = massima tensione (n.p. = non percepita)',names,gCon,gSen,0,10,2,ACC,SEN,'CON','SENZA',false,true);
+  // conclusioni
+  var y=1280;
+  c.fillStyle='#1a1a1a'; c.fillRect(40,y,W-80,260);
+  c.textAlign='left'; c.fillStyle=ACC; c.font='bold 22px Helvetica, Arial, sans-serif'; c.fillText('CONCLUSIONI',68,y+42);
+  FINALI_Q.forEach(function(f,i){
+    var yy=y+90+i*44;
+    c.textAlign='left'; c.fillStyle='#999'; c.font='26px Helvetica, Arial, sans-serif'; c.fillText(f.label,68,yy);
+    c.textAlign='right'; c.fillStyle='#f0f0f0'; c.font='bold 28px Helvetica, Arial, sans-serif'; c.fillText(F[f.key]||'—',W-68,yy);
+  });
+  c.textAlign='left';
+}
+function saveReportImage(){
+  var cv=document.getElementById('rep-canvas'); if(!cv) return;
+  var nome=(document.getElementById('nome').value.trim()||'test').replace(/[^a-zA-Z0-9]+/g,'_');
+  var fn='CLIPPI-PRO-T_'+nome+'_'+new Date().toISOString().slice(0,10)+'.png';
+  cv.toBlob(function(b){
+    var file=null; try{ file=new File([b],fn,{type:'image/png'}); }catch(e){}
+    if(file&&navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({files:[file],title:'CLIPPI PRO-T — Test Campo'}).catch(function(){});
+    } else {
+      var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=fn;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }
+  },'image/png');
 }
 </script>
 </body>
