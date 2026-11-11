@@ -1438,9 +1438,31 @@ function repBars(c,x,y,w,h,title,sub,labels,A,B,min,max,step,ACC,SEN,nameA,nameB
     }
   }
 }
+function repResp(r){ if(!r) return null; if(r.respSi===true) return r.resp||'nr'; if(r.respSi===false) return 'n.p.'; return null; }
+function repRespPanel(c,x,y,w,h,names,A,B,ACC,SEN){
+  var COL={'Aperta':'#43a047','Superficiale':'#f9a825','Bloccato':'#e53935'};
+  c.fillStyle='#1a1a1a'; c.fillRect(x,y,w,h);
+  c.textAlign='left'; c.fillStyle='#f0f0f0'; c.font='bold 30px Helvetica, Arial, sans-serif'; c.fillText('Respiro',x+28,y+46);
+  c.fillStyle='#888'; c.font='22px Helvetica, Arial, sans-serif'; c.fillText('Aperta · Superficiale · Bloccato (n.p. = non percepito)',x+28,y+78);
+  var px=x+150, pw=w-180, gw=pw/names.length;
+  c.textAlign='right'; c.font='bold 22px Helvetica, Arial, sans-serif';
+  c.fillStyle=ACC; c.fillText('CON',px-14,y+158); c.fillStyle=SEN; c.fillText('SENZA',px-14,y+218);
+  for(var i=0;i<names.length;i++){
+    var cx=px+gw*i+gw/2;
+    c.textAlign='center'; c.fillStyle='#ddd'; c.font='bold 24px Helvetica, Arial, sans-serif'; c.fillText(names[i],cx,y+118);
+    [[A[i],y+134],[B[i],y+194]].forEach(function(p){
+      var v=p[0], by=p[1], bw=gw-24;
+      c.fillStyle=(v===null)?'#2a2a2a':(COL[v]||'#555');
+      c.fillRect(cx-bw/2,by,bw,48);
+      c.fillStyle=(v==='Superficiale')?'#111':'#fff'; c.font='bold 22px Helvetica, Arial, sans-serif';
+      c.fillText(v===null?'—':v,cx,by+32);
+    });
+  }
+  c.textAlign='left';
+}
 function drawReport(){
   var cv=document.getElementById('rep-canvas'); if(!cv) return;
-  var W=1080, H=1580; cv.width=W; cv.height=H;
+  var W=1080, H=1860; cv.width=W; cv.height=H;
   var c=cv.getContext('2d');
   var cs=getComputedStyle(document.body);
   var ACC=cs.getPropertyValue('--acc').trim()||'#ff6a00';
@@ -1451,7 +1473,7 @@ function drawReport(){
   c.fillStyle='#f0f0f0'; c.font='bold 46px Helvetica, Arial, sans-serif'; c.fillText('Test Campo',40,118);
   c.fillStyle='#aaa'; c.font='28px Helvetica, Arial, sans-serif'; c.fillText(date+' · '+(nome||'—')+' · '+lv,40,160);
   var names=["Diritto","Servizio","Rovescio","Volée"];
-  var peso=[],legg=[],gCon=[],gSen=[];
+  var peso=[],legg=[],gCon=[],gSen=[],rCon=[],rSen=[];
   names.forEach(function(nm){
     var ic=-1,is=-1;
     PROTOCOL.forEach(function(p,i){ if(p.colpo===nm){ if(p.tipo==='CON') ic=i; else is=i; } });
@@ -1459,11 +1481,14 @@ function drawReport(){
     legg.push(is>=0?repNum(R[is].rpe):null);
     gCon.push(ic>=0&&R[ic].gripSi===true?repNum(R[ic].grip):null);
     gSen.push(is>=0&&R[is].gripSi===true?repNum(R[is].grip):null);
+    rCon.push(ic>=0?repResp(R[ic]):null);
+    rSen.push(is>=0?repResp(R[is]):null);
   });
   repBars(c,40,190,W-80,520,'Sensazione per colpo','CON = peso percepito (1–5) · SENZA = leggerezza (−3…+1)',names,peso,legg,-4,5,1,ACC,SEN,'CON (peso)','SENZA (legg.)',true,false);
   repBars(c,40,730,W-80,520,'Tensione impugnatura','0 = rilassata · 10 = massima tensione (n.p. = non percepita)',names,gCon,gSen,0,10,2,ACC,SEN,'CON','SENZA',false,true);
+  repRespPanel(c,40,1270,W-80,270,names,rCon,rSen,ACC,SEN);
   // conclusioni
-  var y=1280;
+  var y=1560;
   c.fillStyle='#1a1a1a'; c.fillRect(40,y,W-80,260);
   c.textAlign='left'; c.fillStyle=ACC; c.font='bold 22px Helvetica, Arial, sans-serif'; c.fillText('CONCLUSIONI',68,y+42);
   FINALI_Q.forEach(function(f,i){
